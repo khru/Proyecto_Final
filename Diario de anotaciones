@@ -1,0 +1,22 @@
+//Propongo este archivo como un diario en el que se vayan realizando anotaciones sobre cambios relevantes en el proyecto.
+//Por ejemplo, si alguien crea una nueva funcion que se puede reutilizar en archivos que van a realizar otras personas,
+//o también cualquier idea o situación del proyecto que creais necesario compartir.
+//Para que no tengamos que estar bajando hasta el final, se escribirán las anotaciones de abajo a arriba, de forma que
+//se siga un orden cronológico, y la anotación más reciente sea también la primera.
+//Arriba del todo se situará la fecha, y se escribirá una nueva cuando se escriba en una fecha posterior, podeis ver el ejemplo.
+
+                                         --------------------------------
+                                        |           ANOTACIONES          |
+                                         ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+Sabado, 9 de enero
+
+>> Luis: Esta anotación siempre es más reciente que la de abajo. 
+
+>> Luis: Esta anotación de prueba es para que se vea el intervalo de fechas, y todas las anotaciones quieren ordenadas
+>> cronológicamente.
+
+Viernes, 8 de enero
+
+>> Luis: He subido los repositorios de la máquina mini que personalicé y que se usará para el proyecto,
+>> tened en cuenta que la clase vista es ahora estática, y que el acceso a los datos se hará usando el
+>> array "data" que aparece como parámetro en el método render.
