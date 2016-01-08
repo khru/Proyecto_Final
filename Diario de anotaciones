@@ -17,6 +17,9 @@ Sabado, 9 de enero
 
 Viernes, 8 de enero
 
+>> Luis: Los repositorios de la máquina mini actuales no incluyen las librerías de validación ya que está previsto
+>> un cambio en ellas, lo haré lo antes posible y las subiré para que todos podamos utilizarlas.
+
 >> Luis: He subido los repositorios de la máquina mini que personalicé y que se usará para el proyecto,
 >> tened en cuenta que la clase vista es ahora estática, y que el acceso a los datos se hará usando el
 >> array "data" que aparece como parámetro en el método render.
