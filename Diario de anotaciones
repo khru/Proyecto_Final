@@ -9,6 +9,7 @@
                                         |           ANOTACIONES          |
                                          ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 Sábado, 9 de enero
+
 >> Luis: Las validaciones ya están subidas, podeis encontrarlas en la carpeta libs.
 >> No están probadas porque me es imposible probar 600 lineas de código, así que según vayais usándolas,
 >> si veis que aparece algún error lo corregís (y obviamente lo subis a github).
