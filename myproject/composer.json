@@ -1,0 +1,13 @@
+{
+    "require": {
+        "php": ">=5.3.0",
+        "raveren/kint": "^1.0",
+        "phpmailer/phpmailer": "~5.2"
+    },
+    "autoload": {
+        "psr-4": { "": ["application/core/",
+                        "application/model/",
+                        "application/libs"]
+                 }
+    }
+}
