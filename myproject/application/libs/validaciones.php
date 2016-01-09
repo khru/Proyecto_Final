@@ -136,9 +136,10 @@
 		 * validarFecha, valida la fecha que se le pasa como parametro con el siguiente formato
 		 * FORMATO 1900/01/21
 		 * @param  $string $fecha fecha separada por barras
+		 * @param $String $separador Separador del formato [POR DEFECTO - ]
 		 * @return true | array  resultado()  [description]
 		 */
-		public static function validarFecha($fecha, $separador = "/"){ // FORMATO 1900/01/21
+		public static function validarFecha($fecha, $separador = "-"){ // FORMATO 1900-0-/21
 			$errores = [];
 			// Separamos la fecha en un array de 3 posiciones
 			$fechas = explode($separador,$fecha);
