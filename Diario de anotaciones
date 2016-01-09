@@ -10,6 +10,9 @@
                                          ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 Sábado, 9 de enero
 
+>> Luis: Os he incluido un ejemplo básico de como utilizar esta función renderMulti, desde el
+>> controlador "proyectos"
+
 >> Luis: Añadida una nueva función "renderMulti" en la clase View que permite renderizar una vista
 >> a partir de varios archivos. Recibe un array con los archivos que deben de estar ordenados en
 >> orden de aparición. Podemos usarlo para no tener que implementar las mismas vistas en los

@@ -275,6 +275,7 @@ create table proyecto(
 
 /* Insercion de datos en la tabla proyecto */
 insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (1, "2000-12-10", "2001-01-12", "2001-02-01", 1);
+    insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (1, "2003-12-10", "2001-01-12", "2001-02-01", 1);
 
 /* Comprobacion de la tabla proyecto */
 select * from proyecto;
