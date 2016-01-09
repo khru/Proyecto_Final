@@ -9,6 +9,8 @@
                                         |           ANOTACIONES          |
                                          ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 Sábado, 9 de enero
+>> Luis: Arreglado el controlador acceso para que funcione con las nuevas validaciones, lo he hecho yo pero al que le
+>> toque lo puede cambiar a su gusto sin problemas.
 
 >> Luis: Las validaciones ya están subidas, podeis encontrarlas en la carpeta libs.
 >> No están probadas porque me es imposible probar 600 lineas de código, así que según vayais usándolas,
