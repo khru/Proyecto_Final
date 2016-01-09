@@ -10,7 +10,7 @@ Este es el proyecto final de MINI
                                          --------------------------------
                                         |           ANOTACIONES          |
                                          ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-Sábado, 9 de enero
+## Sábado, 9 de enero
 
 >> Luis: Para la reutilización de vistas, propongo el nuevo método renderSinCabeceras, que es llamado múltiples veces desde
 >> el controlador, de esa forma puede llamarse a una misma vista con diferentes datos y presentar ambas vistas-resultado.
