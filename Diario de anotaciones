@@ -9,6 +9,12 @@
                                         |           ANOTACIONES          |
                                          ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 Sábado, 9 de enero
+
+>> Luis: Añadida una nueva función "renderMulti" en la clase View que permite renderizar una vista
+>> a partir de varios archivos. Recibe un array con los archivos que deben de estar ordenados en
+>> orden de aparición. Podemos usarlo para no tener que implementar las mismas vistas en los
+>> menus de backend, intentaré implementarlas lo antes posible para que se pueda hacer uso de ellas. 
+
 >> Luis: Arreglado el controlador acceso para que funcione con las nuevas validaciones, lo he hecho yo pero al que le
 >> toque lo puede cambiar a su gusto sin problemas.
 
