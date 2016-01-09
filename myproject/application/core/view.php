@@ -32,6 +32,6 @@ class View
 
         require APP . 'view/_templates/clientheader.php';
         require APP . 'view/'. $filename .'.php';
-        require APP . 'view/_templates/footer.php';
+        require APP . 'view/_templates/clientfooter.php';
     }
 }
