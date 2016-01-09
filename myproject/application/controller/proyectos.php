@@ -4,10 +4,12 @@ class Proyectos
 	public function index(){
 		HelperFunctions::comprobarSesion();
 		$proyectos = proyectosModel::getAll();
-		$archivos = array('generic/buscador', 'generic/listarelementos');
+		$desabilitados = proyectosModel::getAllDisabled();
+		$archivos = array('generic/buscador', 'generic/listarelementos', "generic/listardissabled");
 		View::renderMulti($archivos, 
-			array('listar' => $proyectos,
-				  'titulo' => 'Proyectos'
+			array('listar'    => $proyectos,
+				  'dissabled' => $desabilitados,
+				  'titulo'    => 'Proyectos'
 				));
 	}
 }

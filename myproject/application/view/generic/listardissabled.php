@@ -1,9 +1,9 @@
 <div class="container">
-<h1>Proyectos</h1>
-<?php if(isset($data['listar'])) :
-	$claves = array_keys($data['listar'][0]);?>
+<h1>Proyectos Deshabilitados</h1>
+<?php if(isset($data['dissabled'])) :
+	$claves = array_keys($data['dissabled'][0]);?>
 
-<table border="1">
+<table border="1" style="background-color:gray">
 	<tr>
 <?php 	foreach ($claves as $clave => $valor) : ;	//Se listan las cabeceras de la tabla?>
 		
@@ -13,7 +13,7 @@
 			<th colspan="2">Cambiar</th>
 	</tr>
 
-<?php   foreach ($data['listar'] as $clave => $valor) : //Se listan los datos?>
+<?php   foreach ($data['dissabled'] as $clave => $valor) : //Se listan los datos?>
 	<tr>
 		<?php foreach ($valor as $clave => $datos) : ?>
 			
@@ -25,6 +25,6 @@
 	</tr>
   <?php endforeach ?>
 </table>
-<p>Total: <?=count($data['listar'])?></p>
+<p>Total: <?=count($data['dissabled'])?></p>
 <?php else : echo "No hay datos que listar"; endif?>
 </div>
