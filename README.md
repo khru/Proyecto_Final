@@ -39,7 +39,7 @@ Este es el proyecto final de MINI
 >> Luis: Esta anotación de prueba es para que se vea el intervalo de fechas, y todas las anotaciones queden ordenadas
 >> cronológicamente.
 
-Viernes, 8 de enero
+## Viernes, 8 de enero
 
 >> Luis: Los repositorios de la máquina mini actuales no incluyen las librerías de validación ya que está previsto
 >> un cambio en ellas, lo haré lo antes posible y las subiré para que todos podamos utilizarlas.
