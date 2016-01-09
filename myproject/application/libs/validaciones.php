@@ -615,10 +615,12 @@
 		return self::resultado($errores);
 	}// validarNombreCorporativo()
 
+	//Sanea la entrada
 	public static function sanearEntrada($array){
 		foreach ($array as $clave => $valor) {
 			$array[$clave] = htmlspecialchars($valor, ENT_QUOTES);
 		}
+
 		return $array;
 	}
 

@@ -11,4 +11,15 @@ class HelperFunctions
 		$passwd = md5($passwd);
 		return $passwd;
 	}
+
+	//Comprueba que haya una sesión válida
+	public static function comprobarSesion(){
+		if($_SESSION){
+			if(isset($_SESSION['nick'])){
+				return true;
+			}
+		}
+		header("Location: acceso/login");
+	}//comprobarSesion()
+
 }
