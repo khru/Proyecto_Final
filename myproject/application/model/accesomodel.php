@@ -6,7 +6,7 @@ class AccesoModel
 
 		$conn = Database::getInstance()->getDatabase();
 		$nick = $datos['nick'];
-		$passwd = ValidationFunctions::encriptarPasswd($datos['passwd']);
+		$passwd = HelperFunctions::encriptarPasswd($datos['passwd']);
 		$ssql = "SELECT * from usuario where nick = :nick";
 
 		$query = $conn->prepare($ssql);

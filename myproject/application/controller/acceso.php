@@ -7,13 +7,13 @@ Class Acceso
 		}else{
 			$errores = array();
 
-			$_POST = ValidationFunctions::sanearEntrada($_POST);
+			$_POST = Validaciones::sanearEntrada($_POST);
 
-			if(($err = ValidationFunctions::validarExistencia($_POST['nick'], 'usuario')) !== true){
+			if(($err = Validaciones::validarNick($_POST['nick'])) !== true){
 				$errores['nick'] = $err;
 			}
 
-			if(($err = ValidationFunctions::validarExistencia($_POST['passwd'], 'contraseña')) !== true){
+			if(($err = Validaciones::validarPassLogin($_POST['passwd'])) !== true){
 				$errores['passwd'] = $err;
 			}
 

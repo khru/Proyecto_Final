@@ -409,7 +409,7 @@
 				$errores [] = "La contraseña es demasiado corta";
 			} elseif (mb_strlen(trim($pass)) > 25) {
 				$errores [] = "La contraseña es demasiado larga";
-			} elseif(!self::regexMayusculas($pass) || !self::regexMayusculas($pass) || !self::regexNumeros($pass)) {
+			} elseif(!self::regexMayusculas($pass) || !self::regexMinusculas($pass) || !self::regexNumeros($pass)) {
 				$errores[] = "La contraseña no cumple con el formato";
 			}
 			// Utilizamos la función que comprueba si el array existe o no
@@ -580,7 +580,7 @@
 	public static function validarDecimales($decimal, $parte_entera=4){
 		$errores=[]; // Array para almacenar los errores.
 		// Comprobamos si existe el campo pasado como parámetro.
-		if(!isset($decimal) || empty($decimal) || mb_strlen(trim($decimal)) === 0)){
+		if(!isset($decimal) || empty($decimal) || mb_strlen(trim($decimal)) === 0){
 			$errores[] = "El campo está vacío.";
 		}
 		// Comprobamos si el decimal es un numero y ademas es decimal o entero.
@@ -603,7 +603,7 @@
 	 * @return boolean/array true/$errores 		Devuelve que la validacion ha sido correcta/Errores producidos durante la validacion.
 	 */
 	public static function validarNombreCorporativo($nombreCorporativo){
-		if(!isset($nombreCorporativo) || empty($nombreCorporativo) || mb_strlen(trim($nombreCorporativo)) === 0)){
+		if(!isset($nombreCorporativo) || empty($nombreCorporativo) || mb_strlen(trim($nombreCorporativo)) === 0){
 			$errores[] = "Este campo está vacío.";
 		}
 		if(mb_strlen($nombreCorporativo) > 255 || mb_strlen($nombreCorporativo) < 3){
@@ -614,7 +614,6 @@
 		}
 		return self::resultado($errores);
 	}// validarNombreCorporativo()
-	}// Fin de clase
 
 	public static function sanearEntrada($array){
 		foreach ($array as $clave => $valor) {
@@ -622,4 +621,6 @@
 		}
 		return $array;
 	}
+
+}// Fin de clase
 ?>

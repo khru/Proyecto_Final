@@ -6,4 +6,9 @@ class HelperFunctions
 			echo $error . "<br/>";
 		}
 	}
+
+	public static function encriptarPasswd($passwd){
+		$passwd = md5($passwd);
+		return $passwd;
+	}
 }
