@@ -166,7 +166,7 @@ create table usuario(
 );
 
 /* Insercion de datos en la tabla usuario */
-insert into usuario(id, nick, pass, categoria, carpeta, img) values(1, "luilliangelux", "fd4d31aa385c928ad50f8a1efc0a4b49", 1, "/hola/user", "/hola/carpeta");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(1, "luilliangelux", "e64b78fc3bc91bcbc7dc232ba8ec59e0", 1, "/hola/user", "/hola/carpeta");
 
 /* Comprobacion de la tabla usuario */
 select * from usuario;
