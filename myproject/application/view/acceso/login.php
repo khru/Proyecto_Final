@@ -1,3 +1,4 @@
+<div class="container"><p>Usuario: luilliangelux Contraseña: Admin123</p></div>
 <form action="<?= URL . 'acceso/login'?>" method="post">
 	<?php if (isset($data['errores']['login'])) HelperFunctions::mostrarErrores($data['errores']['login']); ?>
 	<br/>
