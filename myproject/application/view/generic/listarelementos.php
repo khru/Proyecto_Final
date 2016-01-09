@@ -6,9 +6,10 @@
 	<tr>
 <?php 	foreach ($claves as $clave => $valor) : ;	//Se listan las cabeceras de la tabla?>
 		
-		<th><?=$valor?></th>
+			<th><?=$valor?></th>
 
 <?php 	endforeach ?>
+			<th colspan="2">Cambiar</th>
 	</tr>
 
 <?php   foreach ($data['listar'] as $clave => $valor) : //Se listan los datos?>
@@ -18,6 +19,8 @@
 				<td><?=$datos?></td>
 			
 		<?php endforeach ?>
+				<td><a href="#">Editar</a></td>
+				<td><a href="#">Borrar</a></td>
 	</tr>
   <?php endforeach ?>
 </table>
