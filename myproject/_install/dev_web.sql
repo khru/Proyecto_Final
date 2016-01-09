@@ -166,6 +166,7 @@ create table usuario(
 );
 
 /* Insercion de datos en la tabla usuario */
+/* Usuario de prueba, contraseña Admin123 */
 insert into usuario(id, nick, pass, categoria, carpeta, img) values(1, "luilliangelux", "e64b78fc3bc91bcbc7dc232ba8ec59e0", 1, "/hola/user", "/hola/carpeta");
 
 /* Comprobacion de la tabla usuario */
