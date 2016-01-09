@@ -28,6 +28,10 @@ class View
         }       
     }//renderMulti()
 
+    public static function renderSinCabeceras($filename, $data = null){
+        require APP . 'view/'. $filename .'.php';
+    }
+
     public static function clientRender($filename, $data = null){
 
         require APP . 'view/_templates/clientheader.php';

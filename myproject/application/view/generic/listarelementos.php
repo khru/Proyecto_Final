@@ -1,5 +1,4 @@
-<div class="container">
-<h1>Proyectos</h1>
+<h1><?=$data['subtitulo']?></h1>
 <?php if(isset($data['listar'])) :
 	$claves = array_keys($data['listar'][0]);?>
 
@@ -27,4 +26,3 @@
 </table>
 <p>Total: <?=count($data['listar'])?></p>
 <?php else : echo "No hay datos que listar"; endif?>
-</div>
