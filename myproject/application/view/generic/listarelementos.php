@@ -24,5 +24,6 @@
 	</tr>
   <?php endforeach ?>
 </table>
-
+<p>Total: <?=count($data['listar'])?></p>
 <?php else : echo "No hay datos que listar"; endif?>
+</div>

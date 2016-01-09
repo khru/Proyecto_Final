@@ -3,8 +3,8 @@ class Proyectos
 {
 	public function index(){
 		$proyectos = proyectosModel::getAll();
-
-		View::render("generic/listarelementos", 
+		$archivos = array('generic/buscador', 'generic/listarelementos');
+		View::renderMulti($archivos, 
 			array('listar' => $proyectos,
 				  'titulo' => 'Proyectos'
 				));
