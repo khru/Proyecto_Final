@@ -8,7 +8,7 @@ Este es el proyecto final de MINI
 //Arriba del todo se situará la fecha, y se escribirá una nueva cuando se escriba en una fecha posterior, podeis ver el ejemplo.
 
                                          --------------------------------
-                                        |           ##ANOTACIONES          |
+                                        |           ANOTACIONES          |
                                          ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 Sábado, 9 de enero
 
