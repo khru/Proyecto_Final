@@ -10,6 +10,9 @@
                                          ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 Sábado, 9 de enero
 
+>> Luis: Para la reutilización de vistas, propongo el nuevo método renderSinCabeceras, que es llamado múltiples veces desde
+>> el controlador, de esa forma puede llamarse a una misma vista con diferentes datos y presentar ambas vistas-resultado.
+
 >> Luis: He creado un acercamiento al tema de la separación entre la aplicación que ve el cliente y la que ven los usuarios.
 >> Básicamente, si queremos que se usen las plantillas (header y footer) del cliente tendremos que llamar al método
 >> ClientRender en vez de al método Render, que queda únicamente para el Backend.
