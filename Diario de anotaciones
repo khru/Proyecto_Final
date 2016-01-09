@@ -10,6 +10,10 @@
                                          ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 Sábado, 9 de enero
 
+>> Luis: He creado un acercamiento al tema de la separación entre la aplicación que ve el cliente y la que ven los usuarios.
+>> Básicamente, si queremos que se usen las plantillas (header y footer) del cliente tendremos que llamar al método
+>> ClientRender en vez de al método Render, que queda únicamente para el Backend.
+
 >> Luis: Os he incluido un ejemplo básico de como utilizar esta función renderMulti, desde el
 >> controlador "proyectos"
 
