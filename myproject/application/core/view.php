@@ -27,4 +27,11 @@ class View
         	self::render($filenames, $data);
         }       
     }//renderMulti()
+
+    public static function clientRender($filename, $data = null){
+
+        require APP . 'view/_templates/clientheader.php';
+        require APP . 'view/'. $filename .'.php';
+        require APP . 'view/_templates/footer.php';
+    }
 }

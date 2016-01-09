@@ -16,5 +16,5 @@
     <!-- navigation -->
     <div class="navigation">
         <a href="<?php echo URL; ?>">home</a>
-        <a href="<?php echo URL . 'proyectos'; ?>">Proyectos</a>
+        <a href="<?php echo URL . 'acceso/login'; ?>">Entrar</a>
     </div>

@@ -17,7 +17,7 @@ class Home
     public function index()
     {
         // load views
-        View::render("home/index");
+        View::clientRender("home/index");
         
     }
 }

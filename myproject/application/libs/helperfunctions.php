@@ -14,12 +14,18 @@ class HelperFunctions
 
 	//Comprueba que haya una sesión válida
 	public static function comprobarSesion(){
+		session_start();
+		$error = true;
 		if($_SESSION){
-			if(isset($_SESSION['nick'])){
+			if(isset($_SESSION['usuario'])){
+				$error = false;
 				return true;
 			}
 		}
-		header("Location: acceso/login");
+		if($error){
+			header("Location: acceso/login". $_SERVER['PHP_SELF']);
+		}
+		
 	}//comprobarSesion()
 
 }

@@ -1,49 +1,63 @@
 <?php
 Class Acceso
 {
+	public function index(){
+		header("Location: acceso/login");
+	}
 	public function login($url = null){
-		if(!$_POST){
-			View::render("acceso/login");
+		session_start();
+		if($_SESSION && isset($_SESSION['usuario'])){
+				
+				View::render("acceso/sesionactiva");
+
 		}else{
-			$errores = array();
 
-			$_POST = Validaciones::sanearEntrada($_POST);
+			if(!$_POST){
+				View::clientRender("acceso/login");
+			}else{
+				$errores = array();
 
-			if(($err = Validaciones::validarNick($_POST['nick'])) !== true){
-				$errores['nick'] = $err;
-			}
+				$_POST = Validaciones::sanearEntrada($_POST);
 
-			if(($err = Validaciones::validarPassLogin($_POST['passwd'])) !== true){
-				$errores['passwd'] = $err;
-			}
-
-			if(!$errores){
-				if(($err = AccesoModel::validarLogin($_POST)) !== true){
-					$errores['login'] = $err;
-					View::render("acceso/login", 
-							array("errores" => $errores
-							));
-				}else{
-					$usuario = $_POST['nick'];
-					$datosUsuario = UsuariosModel::getUser($usuario);
-					$_SESSION[$usuario] = $datosUsuario;
-
-					if($url){
-						header("Location: " . URL . $url);
-					}else{
-						header("Location: " . URL . "acceso/perfil");
-					}
+				if(($err = Validaciones::validarNick($_POST['nick'])) !== true){
+					$errores['nick'] = $err;
 				}
 
-			}else{
-				View::render("acceso/login", 
-							array("errores" => $errores
-							));
+				if(($err = Validaciones::validarPassLogin($_POST['passwd'])) !== true){
+					$errores['passwd'] = $err;
+				}
+
+				if(!$errores){
+					if(($err = AccesoModel::validarLogin($_POST)) !== true){
+						$errores['login'] = $err;
+						View::render("acceso/login", 
+								array("errores" => $errores
+								));
+					}else{
+						$usuario = $_POST['nick'];
+						$datosUsuario = UsuariosModel::getUser($usuario);
+						$_SESSION['usuario'] = $datosUsuario;
+
+						if($url){
+							header("Location: " . URL . $url);
+						}else{
+							header("Location: " . URL . "proyectos");
+						}
+					}
+
+				}else{
+					View::render("acceso/login", 
+								array("errores" => $errores
+								));
+				}
 			}
 		}
+		
 	}
 
-	public function perfil(){
-		echo "HOLA ESTE ES TU PERFIL";
+	public function logout(){
+		session_start();
+		session_destroy();
+		View::render("acceso/logout");
 	}
 }
