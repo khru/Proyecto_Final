@@ -1,11 +1,11 @@
 # Proyecto_Final
 Este es el proyecto final de MINI
-//Propongo este archivo como un diario en el que se vayan realizando anotaciones sobre cambios relevantes en el proyecto.
-//Por ejemplo, si alguien crea una nueva funcion que se puede reutilizar en archivos que van a realizar otras personas,
-//o también cualquier idea o situación del proyecto que creais necesario compartir.
-//Para que no tengamos que estar bajando hasta el final, se escribirán las anotaciones de abajo a arriba, de forma que
-//se siga un orden cronológico, y la anotación más reciente sea también la primera.
-//Arriba del todo se situará la fecha, y se escribirá una nueva cuando se escriba en una fecha posterior, podeis ver el ejemplo.
+Propongo este archivo como un diario en el que se vayan realizando anotaciones sobre cambios relevantes en el proyecto.
+Por ejemplo, si alguien crea una nueva funcion que se puede reutilizar en archivos que van a realizar otras personas,
+o también cualquier idea o situación del proyecto que creais necesario compartir.
+Para que no tengamos que estar bajando hasta el final, se escribirán las anotaciones de abajo a arriba, de forma que
+se siga un orden cronológico, y la anotación más reciente sea también la primera.
+Arriba del todo se situará la fecha, y se escribirá una nueva cuando se escriba en una fecha posterior, podeis ver el ejemplo.
 
                                          --------------------------------
                                         |           ANOTACIONES          |
