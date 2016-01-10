@@ -1,5 +1,5 @@
     <div class="container">
-        <p>Ya estás identificado</p>
+        Actualmente te encuentras identificado como <?= $_SESSION['usuario']['nick']?>
         <a href="<?= URL . 'acceso/logout'?>">Cerrar Sesion</a>
     </div>
 </body>
