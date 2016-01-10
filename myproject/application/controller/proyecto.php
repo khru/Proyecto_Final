@@ -69,7 +69,7 @@ class Proyecto
 		if(!$_POST){
 			$proyecto = ProyectoModel::getProyecto($id);
 			if($proyecto){
-				$datos = array('destino' => 'proyecto/editar/'. $id, 'proyecto' => $proyecto, 'submit' => 'editar');
+				$datos = array('destino' => 'proyecto/editar/'. $id, 'proyecto' => $proyecto, 'submit' => 'Editar');
 				View::render("proyecto/formulario", $datos);
 			}else{
 				header("Location: " . URL . "proyecto");
@@ -77,6 +77,17 @@ class Proyecto
 
 		}else{
 			echo "editando";
+		}
+	}
+
+	public function crear(){
+		HelperFunctions::comprobarSesion();
+		if(!$_POST){
+			$datos = array('destino' => 'proyecto/crear', 'submit' => 'Crear');
+			View::render("proyecto/formulario", $datos);
+
+		}else{
+			echo "creando";
 		}
 	}
 
