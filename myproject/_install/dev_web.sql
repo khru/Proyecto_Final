@@ -316,7 +316,7 @@ create table entrevista(
     id         int(11) not null auto_increment comment 'identificador de la entrevista',
     usuario    int(11) not null comment 'identificador del usuario que ha realizado la entrevista',
     cliente    int(11) not null comment 'identificador del cliente al que se ha entrevistado',
-    conclusion varchar(255) not null comment 'conclusiones que se han sacado despues de la entrevista',
+    conclusion text not null comment 'conclusiones que se han sacado despues de la entrevista',
     proyecto   int(11) not null comment 'proyecto asociado',
     fecha      date not null comment 'fecha en la que se ha realizado la entrevista',
     habilitado  boolean not null default 1 comment 'controla si está habilitada la entrevista o cancelada',
