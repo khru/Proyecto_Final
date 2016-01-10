@@ -15,4 +15,6 @@
 		<input type="text" name="estado" value="<?php if(isset($data['proyecto'])) HelperFunctions::mostrarDatos($data['proyecto'],'estado')?>"><br/>
 		<input type="submit" value="<?=$data['submit']?>">
 	</form>
+	<br/>
+	<a href="<?=URL . 'proyecto'?>">Atrás</a>
 </div>
