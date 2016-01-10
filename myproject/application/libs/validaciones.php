@@ -363,7 +363,7 @@
 			// =======================================================================
 			if (!isset($pass1) || empty($pass1) || mb_strlen(trim($pass1)) == 0) {
 				$errores[] = "La contraseña está vacía";
-		
+
 			} elseif(mb_strlen(trim($pass1)) < 6) {
 				$errores [] = "La contraseña es demasiado corta";
 			} elseif (mb_strlen(trim($pass1)) > 25) {
@@ -530,7 +530,7 @@
 	 		}
 	 		return false;
 	 	}// regexEmail()
-	 	
+
 	 public static function validarNif($nif){
 		$cadena = strtoupper($cadena);
 		//$letra = substr($cadena, -1, 1); donde empieza el substring y cuanto a de coger
@@ -639,15 +639,7 @@
 		return self::resultado($errores);
 	}// validarNombreCorporativo()
 
-	//Sanea la entrada
-	public static function sanearEntrada($array){
-		foreach ($array as $clave => $valor) {
-			$array[$clave] = htmlspecialchars($valor, ENT_QUOTES);
-		}
 
-		return $array;
-	}
-	
 	public static function sanearEntrada($array){
 		foreach ($array as $clave => $valor) {
 			$array[$clave] = self::saneamiento($valor);
