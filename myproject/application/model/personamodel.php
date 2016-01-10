@@ -5,6 +5,50 @@
 	*/
 	class PersonaModel
 	{
+		public static function habilitar($id){
+			$errores = [];
+            if (($err = Validaciones::validarId($id)) !== true) {
+                $errores["id"] = $err;
+            } else {
+                try {
+                    $conn = Database::getInstance()->getDatabase();
+
+                    $ssql = "UPDATE persona SET habilitado = 1 WHERE id = :id";
+                    $query = $conn->prepare($ssql);
+                    $query->bindParam(':id', $id);
+                    $query->execute();
+                    if($query->rowCount() == 0){
+                        $errores['id'] = "No se ha podido habilitar la persona especificada";
+                    }
+                    return Validaciones::resultado($errores);
+                } catch (PDOException $e) {
+                    throw new Exception("Error en la base de datos");
+                }// fin de bloque TRY-CATCH
+            }
+        }// habilitar()
+
+        public static function deshabilitar($id){
+            $errores = [];
+            if (($err = Validaciones::validarId($id)) !== true) {
+                $errores["id"] = $err;
+            } else {
+                try {
+                    $conn = Database::getInstance()->getDatabase();
+
+                    $ssql = "UPDATE persona SET habilitado = 0 WHERE id = :id";
+                    $query = $conn->prepare($ssql);
+                    $query->bindParam(':id', $id);
+                    $query->execute();
+                    if($query->rowCount() == 0){
+                        $errores['id'] = "No se ha podido deshabilitar la persona especificada";
+                    }
+                    return Validaciones::resultado($errores);
+                } catch (PDOException $e) {
+                    throw new Exception("Error en la base de datos");
+                }// fin de bloque TRY-CATCH
+            }
+        }// habilitar()
+
 		/**
 		 * Método estatico de inserción de registros en persona
 		 * + FECHA DE ALTA
@@ -133,8 +177,8 @@
 								}
 
 							} catch (PDOException $e){
-								// devolvemos el error
-								return "Error con la base de datos";
+								// Lanzamos una excepción a tratar en el controlador
+								throw new Exception('Error con la base de datos');
 							}
 						} else {
 							// devolvemos los errores
