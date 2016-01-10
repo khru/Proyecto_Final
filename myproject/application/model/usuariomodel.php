@@ -8,7 +8,7 @@
 
 		public function getAll(){
 			$conn = Database::getInstance()->getDatabase();
-			$ssql = "SELECT * FROM usuario, persona WHERE usuario.id = persona.id";
+			$ssql = "SELECT persona.id as id, persona.nombre, persona.apellidos, persona.email, persona.direccion, provincia.nombre, nif, telefono, fecha_alta as 'fecha alta', newsletter FROM usuario, persona, provincia WHERE usuario.id = persona.id AND provincia.id = persona.provincia AND persona.habilitado = 1";
 			$query = $conn->prepare($ssql);
 			$query->execute();
 			return $query->fetchAll();
