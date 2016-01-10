@@ -15,6 +15,6 @@
 
     <!-- navigation -->
     <div class="navigation">
-        <a href="<?php echo URL . 'backhome'; ?>">home</a>
+        <a href="<?php echo URL . 'admin'; ?>">home</a>
         <a href="<?php echo URL . 'proyectos'; ?>">Proyectos</a>
     </div>
