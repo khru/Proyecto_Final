@@ -22,7 +22,7 @@ class Proyecto
 
 		if($definitivo){
 			ProyectoModel::borrar($id);
-			header("Location: ". URL . "proyectos");
+			header("Location: ". URL . "proyecto");
 		}else{
 			if(!$_POST){
 				$proyecto = ProyectoModel::getProyecto($id);
@@ -39,7 +39,7 @@ class Proyecto
 
 		if($definitivo){
 			ProyectoModel::habilitar($id);
-			header("Location: ". URL . "proyectos");
+			header("Location: ". URL . "proyecto");
 		}else{
 			if(!$_POST){
 				$proyecto = ProyectoModel::getProyecto($id);
@@ -69,6 +69,7 @@ class Proyecto
 		if(!$_POST){
 			$proyecto = ProyectoModel::getProyecto($id);
 			if($proyecto){
+				$datos = array('destino' => 'proyecto/editar/'. $id, 'proyecto' => $proyecto);
 				View::render("proyecto/formulario", $datos);
 			}else{
 				header("Location: " . URL . "proyecto");
