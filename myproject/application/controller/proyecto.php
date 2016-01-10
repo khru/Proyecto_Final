@@ -64,5 +64,20 @@ class Proyecto
 		}
 	}
 
+	public function editar($id){
+		HelperFunctions::comprobarSesion();
+		if(!$_POST){
+			$proyecto = ProyectoModel::getProyecto($id);
+			if($proyecto){
+				View::render("proyecto/formulario", $datos);
+			}else{
+				header("Location: " . URL . "proyecto");
+			}
+
+		}else{
+			echo "editando";
+		}
+	}
+
 
 }
