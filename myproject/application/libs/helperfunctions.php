@@ -7,14 +7,20 @@ class HelperFunctions
 		}
 	}
 
+	public static function mostrarDatos($array, $clave){
+		if($array){
+			echo $array[$clave];
+		}
+	}
+
 	public static function encriptarPasswd($passwd){
 		$passwd = md5($passwd);
 		return $passwd;
 	}
 
 	public static function generarSesion(){
-		if (session_id() === "") { 
-			session_start(); 
+		if (session_id() === "") {
+			session_start();
 		}
 	}
 
@@ -31,7 +37,6 @@ class HelperFunctions
 		}else{
 			return false;
 		}
-		
 	}//comprobarSesion()
 
 }
