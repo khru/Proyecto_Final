@@ -69,7 +69,7 @@ class Proyecto
 		if(!$_POST){
 			$proyecto = ProyectoModel::getProyecto($id);
 			if($proyecto){
-				$datos = array('destino' => 'proyecto/editar/'. $id, 'proyecto' => $proyecto);
+				$datos = array('destino' => 'proyecto/editar/'. $id, 'proyecto' => $proyecto, 'submit' => 'editar');
 				View::render("proyecto/formulario", $datos);
 			}else{
 				header("Location: " . URL . "proyecto");

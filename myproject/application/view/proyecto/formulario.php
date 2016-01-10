@@ -13,5 +13,6 @@
 		<input type="date" name="fecha prevista" value="<?php HelperFunctions::mostrarDatos($data['proyecto'],'fecha prevista')?>"><br/>
 		<label for="cliente">Estado</label><br/>
 		<input type="text" name="estado" value="<?php HelperFunctions::mostrarDatos($data['proyecto'],'estado')?>"><br/>
+		<input type="submit" value="<?=$data['submit']?>">
 	</form>
 </div>
