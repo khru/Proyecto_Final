@@ -194,14 +194,14 @@ create table usuario(
 /* Usuario ranmita, contraseña lobo00 */
 
 insert into usuario(id, nick, pass, categoria, carpeta, img) values(1, "luilliangelux", "e64b78fc3bc91bcbc7dc232ba8ec59e0", 1, "luilliangelux", "luilliangelux/img/perfil.png");
-insert into usuario(id, nick, pass, categoria, carpeta, img) values(2, "dan22", "2477170743de110f8e1991602a3b9d88", 2, "dan22", "dan22/img/perfil.png");
-insert into usuario(id, nick, pass, categoria, carpeta, img) values(3, "quorum", "cfdb09744b075bfb140be051ccd91f0a", 1, "quorum", "quorum/img/perfil.png");
-insert into usuario(id, nick, pass, categoria, carpeta, img) values(4, "khru", "08cbea56b2c14c14da194b45d2ee096f", 1, "khru", "khru/img/perfil.png");
-insert into usuario(id, nick, pass, categoria, carpeta, img) values(5, "painya", "9ce44f88a25272b6d9cbb430ebbcfcf1", 2, "painya", "painya/img/perfil.png");
-insert into usuario(id, nick, pass, categoria, carpeta, img) values(9, "shiva", "bc94bee196bbcf6ddcf09d3b21d1bee4", 3, "shiva", "shiva/img/perfil.png");
-insert into usuario(id, nick, pass, categoria, carpeta, img) values(10, "ryusen", "e78333496d86214daee60be6c3d04733", 2, "ryusen", "ryusen/img/perfil.png");
-insert into usuario(id, nick, pass, categoria, carpeta, img) values(15, "djayu", "7aedfee95ab9c07ebc5aae4227ea3706", 4, "djayu", "djayu/img/perfil.png");
-insert into usuario(id, nick, pass, categoria, carpeta, img) values(18, "random", "7ddf32e17a6ac5ce04a8ecbf782ca509", 3, "random", "random/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(2, "dan22", "51a8a58a3088b51cd6bb066c827ee350", 2, "dan22", "dan22/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(3, "quorum", "9956fd0be981185585a7adb49fabce31", 1, "quorum", "quorum/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(4, "khru", "fbe9f959391eedd88aebd5e4729c36b3", 1, "khru", "khru/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(5, "painya", "4b576e26f68e1a0a5792019088bd0442", 2, "painya", "painya/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(9, "shiva", "4714b3acb7f29549a3e52349372547f8", 3, "shiva", "shiva/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(10, "ryusen", "4f94075173838a42ae4ef7524d73f433", 2, "ryusen", "ryusen/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(15, "djayu", "d202ecb6f02c69a21870f034a3c62da1", 4, "djayu", "djayu/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(18, "random", "4fd523215fa68cf01e4e7a73e885c4bb", 3, "random", "random/img/perfil.png");
 insert into usuario(id, nick, pass, categoria, carpeta, img) values(20, "ranmita", "9a99722c82cc3fccc828572abd2d8593", 1, "ranmita", "ranmita/img/perfil.png");
 
 
