@@ -20,7 +20,7 @@ Class Acceso
 					HelperFunctions::generarSesion();
 
 					$usuario = $_POST['nick'];
-					$datosUsuario = UsuariosModel::getUser($usuario);
+					$datosUsuario = UsuarioModel::getUser($usuario);
 
 					$_SESSION['usuario'] = $datosUsuario;
 

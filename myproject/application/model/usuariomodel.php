@@ -2,7 +2,7 @@
 	/**
 	* Clase modelo de usuario
 	*/
-	class UserModel
+	class UsuarioModel
 	{
 		// Todos los métodos de la clase son estáticos
 
