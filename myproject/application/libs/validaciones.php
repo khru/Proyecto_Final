@@ -647,6 +647,14 @@
 
 		return $array;
 	}
+	
+	public static function sanearEntrada($array){
+		foreach ($array as $clave => $valor) {
+			$array[$clave] = self::saneamiento($valor);
+		}
+
+		return $array;
+	}
 
 }// Fin de clase
 ?>
