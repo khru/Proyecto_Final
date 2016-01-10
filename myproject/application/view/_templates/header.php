@@ -16,5 +16,6 @@
     <!-- navigation -->
     <div class="navigation">
         <a href="<?php echo URL . 'admin'; ?>">home</a>
+        <a href="<?php echo URL . 'cliente'; ?>">Clientes</a>
         <a href="<?php echo URL . 'proyecto'; ?>">Proyectos</a>
     </div>
