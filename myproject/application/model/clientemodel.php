@@ -3,8 +3,11 @@
 	{
 		public static function getAll(){
 			$conn = Database::getInstance()->getDatabase();
-			$ssql = "SELECT cliente.id, cliente.nombre_corporativo as cliente
-			FROM cliente inner join persona on (cliente.id = persona.id) 
+			$ssql = "SELECT cliente.id, persona.nombre, apellidos,
+			 nombre_corporativo as 'nombre corporativo', email, telefono, nif, direccion,
+			 provincia.nombre as 'provincia', fecha_alta as 'fecha de alta', newsletter
+			FROM cliente inner join persona on cliente.id = persona.id
+			 inner join provincia on persona.provincia = provincia.id
 			where persona.habilitado = 1";
 			$query = $conn->prepare($ssql);
 			$query->execute();
@@ -13,8 +16,11 @@
 
 		public static function getAllDisabled(){
 			$conn = Database::getInstance()->getDatabase();
-			$ssql = "SELECT cliente.id, cliente.nombre_corporativo as cliente
-			FROM cliente inner join persona on (cliente.id = persona.id)
+			$ssql = "SELECT cliente.id, persona.nombre, apellidos,
+			 nombre_corporativo as 'nombre corporativo', email, telefono, nif, direccion,
+			 provincia.nombre as 'provincia', fecha_alta as 'fecha de alta', newsletter
+			FROM cliente inner join persona on cliente.id = persona.id
+			 inner join provincia on persona.provincia = provincia.id
 			where persona.habilitado = 0";
 			$query = $conn->prepare($ssql);
 			$query->execute();
@@ -23,9 +29,12 @@
 
 		public static function getCliente($id){
 			$conn = Database::getInstance()->getDatabase();
-			$ssql = "SELECT id, nombre_corporativo as cliente
-			FROM cliente
-			where id = :id";
+			$ssql = "SELECT cliente.id, persona.nombre, apellidos,
+			 nombre_corporativo as 'nombre corporativo', email, telefono, nif, direccion,
+			 provincia.nombre as 'provincia', fecha_alta as 'fecha de alta', newsletter
+			FROM cliente inner join persona on cliente.id = persona.id
+			 inner join provincia on persona.provincia = provincia.id
+			where persona.id = :id";
 			$query = $conn->prepare($ssql);
 			$query->bindParam(':id', $id, PDO::PARAM_INT);
 			$query->execute();
@@ -52,7 +61,7 @@
 		public static function habilitar($id){
 			$errores = array();
 			$conn = Database::getInstance()->getDatabase();
-			$ssql = "UPDATE proyecto SET habilitado = 1 WHERE id = :id";
+			$ssql = "UPDATE persona SET habilitado = 1 WHERE id = :id";
 			$query = $conn->prepare($ssql);
 			$query->bindParam(':id', $id, PDO::PARAM_INT);
 			
