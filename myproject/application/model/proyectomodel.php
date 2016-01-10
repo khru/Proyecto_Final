@@ -71,4 +71,23 @@ class ProyectoModel
 		}else return true;
 
 	}
+
+	public static function getSearch($busqueda){
+		$conn = Database::getInstance()->getDatabase();
+		$ssql = "SELECT cliente.nombre_corporativo as cliente, persona.nombre as nombre, persona.apellidos as apellidos,
+		persona.telefono as telefono, persona.nif as nif, persona.email as email, provincia.nombre as provincia, promocion,
+		fecha_inicio as 'fecha de inicio', fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado,
+		proyecto.habilitado
+		FROM proyecto inner join estado on (proyecto.estado = estado.id)
+					  inner join cliente on (proyecto.cliente = cliente.id)
+					  inner join persona on (cliente.id = persona.id)
+					  inner join provincia on (persona.provincia = provincia.id)
+		where cliente.nombre_corporativo like ':busqueda' OR persona.nombre like ':busqueda' OR persona.apellidos like ':busqueda' OR
+		persona.telefono like ':busqueda' OR persona.nif like ':busqueda' OR persona.email like ':busqueda' OR provincia.nombre like ':busqueda' OR
+		promocion like ':busqueda' OR fecha_inicio like ':busqueda' OR fecha_fin like ':busqueda' OR fecha_prevista like ':busqueda' OR estado like ':busqueda'";
+		$query = $conn->prepare($ssql);
+		$query->bindParam(':busqueda', $busqueda);
+		$query->execute();
+		return $query->fetchAll();
+	}
 }

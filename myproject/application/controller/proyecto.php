@@ -7,11 +7,11 @@ class Proyecto
 		$proyectos = ProyectoModel::getAll();
 		$deshabilitados = ProyectoModel::getAllDisabled();
 
-		$archivos = array("proyecto/buscador", "proyecto/listartodos",
+		$archivos = array("generic/buscador", "proyecto/listartodos",
 			"proyecto/listardeshabilitados");
 
 		$datos = array('titulo' => 'Proyectos', 'proyectos' => $proyectos,
-			'deshabilitados' => $deshabilitados);
+			'deshabilitados' => $deshabilitados, 'destino' => 'proyecto/buscar');
 
 		View::renderMulti($archivos, $datos);
 
@@ -48,6 +48,18 @@ class Proyecto
 
 				View::renderMulti($archivos, $datos);
 			}
+		}
+	}
+
+	public function buscar(){
+		HelperFunctions::comprobarSesion();
+		if(!$_POST){
+			header("Location: " . URL . "proyecto");
+		}else{
+			$proyectos = ProyectoModel::getSearch($_POST['buscar']);
+			$archivos = array("generic/buscador","proyecto/listartodos");
+			$datos = array('titulo' => 'Proyectos', 'proyectos' => $proyectos, 'destino' => 'proyecto/buscar');
+			View::renderMulti($archivos, $datos);
 		}
 	}
 
