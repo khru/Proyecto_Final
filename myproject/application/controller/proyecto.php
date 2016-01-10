@@ -57,6 +57,7 @@ class Proyecto
 			header("Location: " . URL . "proyecto");
 		}else{
 			$proyectos = ProyectoModel::getSearch($_POST['buscar']);
+
 			$archivos = array("generic/buscador","proyecto/listartodos");
 			$datos = array('titulo' => 'Proyectos', 'proyectos' => $proyectos, 'destino' => 'proyecto/buscar');
 			View::renderMulti($archivos, $datos);

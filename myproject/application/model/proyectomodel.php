@@ -82,9 +82,10 @@ class ProyectoModel
 					  inner join cliente on (proyecto.cliente = cliente.id)
 					  inner join persona on (cliente.id = persona.id)
 					  inner join provincia on (persona.provincia = provincia.id)
-		where cliente.nombre_corporativo like ':busqueda' OR persona.nombre like ':busqueda' OR persona.apellidos like ':busqueda' OR
-		persona.telefono like ':busqueda' OR persona.nif like ':busqueda' OR persona.email like ':busqueda' OR provincia.nombre like ':busqueda' OR
-		promocion like ':busqueda' OR fecha_inicio like ':busqueda' OR fecha_fin like ':busqueda' OR fecha_prevista like ':busqueda' OR estado like ':busqueda'";
+		where (cliente.nombre_corporativo like :busqueda OR persona.nombre like :busqueda OR persona.apellidos like :busqueda OR
+		persona.telefono like :busqueda OR persona.nif like :busqueda OR persona.email like :busqueda OR provincia.nombre like :busqueda OR
+		promocion like :busqueda OR fecha_inicio like :busqueda OR fecha_fin like :busqueda OR fecha_prevista like :busqueda OR estado like :busqueda
+		)AND proyecto.habilitado = 1";
 		$query = $conn->prepare($ssql);
 		$query->bindParam(':busqueda', $busqueda);
 		$query->execute();
