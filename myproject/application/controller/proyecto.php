@@ -7,7 +7,7 @@ class Proyecto
 		$proyectos = ProyectoModel::getAll();
 		$deshabilitados = ProyectoModel::getAllDisabled();
 
-		$archivos = array("generic/buscador", "proyecto/listartodos",
+		$archivos = array("proyecto/crearproyecto","generic/buscador", "proyecto/listartodos",
 			"proyecto/listardeshabilitados");
 
 		$datos = array('titulo' => 'Proyectos', 'proyectos' => $proyectos,
@@ -58,7 +58,7 @@ class Proyecto
 		}else{
 			$proyectos = ProyectoModel::getSearch($_POST['buscar']);
 
-			$archivos = array("generic/buscador","proyecto/listartodos");
+			$archivos = array("proyecto/crearproyecto","generic/buscador","proyecto/listartodos");
 			$datos = array('titulo' => 'Proyectos', 'proyectos' => $proyectos, 'destino' => 'proyecto/buscar');
 			View::renderMulti($archivos, $datos);
 		}
