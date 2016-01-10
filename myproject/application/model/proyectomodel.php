@@ -1,12 +1,12 @@
 <?php
-class ProyectosModel
+class ProyectoModel
 {
 	public static function getAll(){
 		$conn = Database::getInstance()->getDatabase();
-		$ssql = "SELECT proyecto.id, cliente.nombre_corporativo as cliente, promocion, fecha_inicio as 'fecha de inicio', 
-		fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado  
-		FROM proyecto inner join estado on (proyecto.estado = estado.id) 
-					  inner join cliente on (proyecto.cliente = cliente.id) 
+		$ssql = "SELECT proyecto.id, cliente.nombre_corporativo as cliente, promocion, fecha_inicio as 'fecha de inicio',
+		fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado
+		FROM proyecto inner join estado on (proyecto.estado = estado.id)
+					  inner join cliente on (proyecto.cliente = cliente.id)
 		where proyecto.habilitado = 1";
 		$query = $conn->prepare($ssql);
 		$query->execute();
@@ -15,9 +15,9 @@ class ProyectosModel
 
 	public static function getAllDisabled(){
 		$conn = Database::getInstance()->getDatabase();
-		$ssql = "SELECT proyecto.id, cliente.nombre_corporativo as cliente, promocion, fecha_inicio as 'fecha de inicio', 
-		fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado  
-		FROM proyecto inner join estado on (proyecto.estado = estado.id) 
+		$ssql = "SELECT proyecto.id, cliente.nombre_corporativo as cliente, promocion, fecha_inicio as 'fecha de inicio',
+		fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado
+		FROM proyecto inner join estado on (proyecto.estado = estado.id)
 					  inner join cliente on (proyecto.cliente = cliente.id)
 		where proyecto.habilitado = 0";
 		$query = $conn->prepare($ssql);
@@ -27,10 +27,10 @@ class ProyectosModel
 
 	public static function getProyecto($id){
 		$conn = Database::getInstance()->getDatabase();
-		$ssql = "SELECT proyecto.id, cliente.nombre_corporativo as cliente, promocion, fecha_inicio as 'fecha de inicio', 
-		fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado, proyecto.habilitado 
-		FROM proyecto inner join estado on (proyecto.estado = estado.id) 
-					  inner join cliente on (proyecto.cliente = cliente.id) 
+		$ssql = "SELECT proyecto.id, cliente.nombre_corporativo as cliente, promocion, fecha_inicio as 'fecha de inicio',
+		fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado, proyecto.habilitado
+		FROM proyecto inner join estado on (proyecto.estado = estado.id)
+					  inner join cliente on (proyecto.cliente = cliente.id)
 		where proyecto.id = :id";
 		$query = $conn->prepare($ssql);
 		$query->bindParam(':id', $id);
@@ -44,7 +44,7 @@ class ProyectosModel
 		$ssql = "UPDATE proyecto SET habilitado = 0 WHERE id = :id";
 		$query = $conn->prepare($ssql);
 		$query->bindParam(':id', $id);
-		
+
 		if(!$query->execute()){
 			$errores[] = "No se ha podido borrar el proyecto especificado";
 		}
@@ -52,7 +52,7 @@ class ProyectosModel
 		if($errores){
 			return $errores;
 		}else return true;
-		
+
 	}
 
 	public static function habilitar($id){
@@ -61,7 +61,7 @@ class ProyectosModel
 		$ssql = "UPDATE proyecto SET habilitado = 1 WHERE id = :id";
 		$query = $conn->prepare($ssql);
 		$query->bindParam(':id', $id);
-		
+
 		if(!$query->execute()){
 			$errores[] = "No se ha podido habilitar el proyecto especificado";
 		}
@@ -69,6 +69,6 @@ class ProyectosModel
 		if($errores){
 			return $errores;
 		}else return true;
-		
+
 	}
 }

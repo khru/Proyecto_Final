@@ -4,8 +4,8 @@ class Proyecto
 	public function index(){
 		HelperFunctions::comprobarSesion();
 
-		$proyectos = proyectosModel::getAll();
-		$deshabilitados = proyectosModel::getAllDisabled();
+		$proyectos = ProyectoModel::getAll();
+		$deshabilitados = ProyectoModel::getAllDisabled();
 
 		$archivos = array("proyecto/buscador", "proyecto/listartodos",
 			"proyecto/listardeshabilitados");
@@ -21,11 +21,11 @@ class Proyecto
 		HelperFunctions::comprobarSesion();
 
 		if($definitivo){
-			proyectosModel::borrar($id);
+			ProyectoModel::borrar($id);
 			header("Location: ". URL . "proyectos");
 		}else{
 			if(!$_POST){
-				$proyecto = ProyectosModel::getProyecto($id);
+				$proyecto = ProyectoModel::getProyecto($id);
 				$archivos = array("proyecto/listarproyecto", "proyecto/borrarproyecto");
 				$datos = array('titulo' => 'Proyecto', 'proyecto' => $proyecto);
 
@@ -38,11 +38,11 @@ class Proyecto
 		HelperFunctions::comprobarSesion();
 
 		if($definitivo){
-			proyectosModel::habilitar($id);
+			ProyectoModel::habilitar($id);
 			header("Location: ". URL . "proyectos");
 		}else{
 			if(!$_POST){
-				$proyecto = ProyectosModel::getProyecto($id);
+				$proyecto = ProyectoModel::getProyecto($id);
 				$archivos = array("proyecto/listarproyecto", "proyecto/habilitarproyecto");
 				$datos = array('titulo' => 'Proyecto', 'proyecto' => $proyecto);
 
