@@ -24,7 +24,7 @@ Class Acceso
 					
 					$_SESSION['usuario'] = $datosUsuario;
 
-					header("Location: " . URL . "home");
+					header("Location: " . URL . "backhome");
 				}
 			}
 		}
