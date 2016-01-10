@@ -16,5 +16,5 @@
     <!-- navigation -->
     <div class="navigation">
         <a href="<?php echo URL; ?>">home</a>
-        <a href="<?php echo URL . 'acceso/login'; ?>">Entrar</a>
+        <a href="<?php echo URL . 'acceso'; ?>">Entrar</a>
     </div>

@@ -1,6 +1,9 @@
-<div class="container"><p>Usuario: luilliangelux Contraseña: Admin123</p></div>
-<form action="<?= URL . 'acceso/login'?>" method="post">
-	<?php if (isset($data['errores']['login'])) HelperFunctions::mostrarErrores($data['errores']['login']); ?>
+<div class="container">
+	<p>Usuario: luilliangelux Contraseña: Admin123</p>
+</div>
+<!-- LA FUNCIÓN mostrarErrores INCLUYE UN SALTO DE LINEA PARA SEPARAR CADA ERROR -->
+<form action="<?= URL . 'acceso'?>" method="post">
+	<?php if (isset($data['errores']['generic'])) HelperFunctions::mostrarErrores($data['errores']['generic']); ?>
 	<br/>
 	<label for="nick">Usuario</label><br/>
 	<?php if (isset($data['errores']['nick'])) HelperFunctions::mostrarErrores($data['errores']['nick']); ?>

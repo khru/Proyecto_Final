@@ -2,11 +2,7 @@
 Class Acceso
 {
 	public function index(){
-		header("Location: acceso/login");
-	}
-	public function login($url = null){
-		session_start();
-		if($_SESSION && isset($_SESSION['usuario'])){
+		if(HelperFunctions::comprobarSesion(false)){
 				
 				View::render("acceso/sesionactiva");
 
@@ -15,49 +11,28 @@ Class Acceso
 			if(!$_POST){
 				View::clientRender("acceso/login");
 			}else{
-				$errores = array();
-
-				$_POST = Validaciones::sanearEntrada($_POST);
-
-				if(($err = Validaciones::validarNick($_POST['nick'])) !== true){
-					$errores['nick'] = $err;
-				}
-
-				if(($err = Validaciones::validarPassLogin($_POST['passwd'])) !== true){
-					$errores['passwd'] = $err;
-				}
-
-				if(!$errores){
-					if(($err = AccesoModel::validarLogin($_POST)) !== true){
-						$errores['login'] = $err;
-						View::render("acceso/login", 
-								array("errores" => $errores
-								));
-					}else{
-						$usuario = $_POST['nick'];
-						$datosUsuario = UsuariosModel::getUser($usuario);
-						$_SESSION['usuario'] = $datosUsuario;
-
-						if($url){
-							header("Location: " . URL . $url);
-						}else{
-							header("Location: " . URL . "proyectos");
-						}
-					}
-
+				
+				if(($err = AccesoModel::validarLogin()) !== true){
+					$datos = array("errores" => $err);
+					View::clientRender("acceso/login", $datos);
+						
 				}else{
-					View::render("acceso/login", 
-								array("errores" => $errores
-								));
+					HelperFunctions::generarSesion();
+
+					$usuario = $_POST['nick'];
+					$datosUsuario = UsuariosModel::getUser($usuario);
+					
+					$_SESSION['usuario'] = $datosUsuario;
+
+					header("Location: " . URL . "home");
 				}
 			}
 		}
-		
-	}
+	}//index()
 
 	public function logout(){
-		session_start();
+		HelperFunctions::generarSesion();
 		session_destroy();
-		View::render("acceso/logout");
-	}
+		View::clientRender("acceso/logout");
+	}//logout()
 }

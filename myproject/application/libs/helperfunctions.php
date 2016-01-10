@@ -12,18 +12,24 @@ class HelperFunctions
 		return $passwd;
 	}
 
-	//Comprueba que haya una sesión válida
-	public static function comprobarSesion(){
-		session_start();
-		$error = true;
+	public static function generarSesion(){
+		if (session_id() === "") { 
+			session_start(); 
+		}
+	}
+
+	//Comprueba que haya una sesión válida y redirecciona al login
+	public static function comprobarSesion($redireccion = true){
+		self::generarSesion();
 		if($_SESSION){
 			if(isset($_SESSION['usuario'])){
-				$error = false;
 				return true;
 			}
 		}
-		if($error){
-			header("Location: acceso/login". $_SERVER['PHP_SELF']);
+		if($redireccion){
+			header("Location:" . URL . "acceso");
+		}else{
+			return false;
 		}
 		
 	}//comprobarSesion()

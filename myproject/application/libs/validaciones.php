@@ -362,7 +362,7 @@
 			// PASSWORD 1
 			// =======================================================================
 			if (!isset($pass1) || empty($pass1) || mb_strlen(trim($pass1)) == 0) {
-				$errores[] = "La contraseña está vacío";
+				$errores[] = "La contraseña está vacía";
 		
 			} elseif(mb_strlen(trim($pass1)) < 6) {
 				$errores [] = "La contraseña es demasiado corta";
@@ -375,7 +375,7 @@
 			// PASSWORD 2
 			// =======================================================================
 			if (!isset($pass2) || empty($pass2)) {
-				$errores[] = "La contraseña está vacío";
+				$errores[] = "La contraseña está vacía";
 			} elseif (mb_strlen(trim($pass2)) == 0) {
 				$errores[] = "La contraseña está vacío";
 			} elseif(mb_strlen(trim($pass2)) < 6) {
@@ -403,9 +403,9 @@
 		public static function validarPassLogin($pass){
 			$errores = [];
 			if (!isset($pass) || empty($pass)) {
-				$errores[] = "La contraseña está vacío";
+				$errores[] = "La contraseña está vacía";
 			} elseif (mb_strlen(trim($pass)) == 0) {
-				$errores[] = "La contraseña está vacío";
+				$errores[] = "La contraseña está vacía";
 			} elseif(mb_strlen(trim($pass)) < 6) {
 				$errores [] = "La contraseña es demasiado corta";
 			} elseif (mb_strlen(trim($pass)) > 25) {
