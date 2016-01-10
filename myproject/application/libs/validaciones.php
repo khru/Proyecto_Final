@@ -132,6 +132,7 @@
 			// en caso de existir
 			return self::resultado($errores);
 		}// validarUrl()
+
 		/**
 		 * validarFecha, valida la fecha que se le pasa como parametro con el siguiente formato
 		 * FORMATO 1900/01/21
@@ -252,7 +253,7 @@
 				return false;
 			}
 		} // comparar()
-		public static function validarTelefono($telefono, $longitud = 14){
+		public static function validarTelefono($telefono){
 			$errores = [];
 			$longitudMinima = 9;
 			if (!isset($telefono) || empty($telefono) || mb_strlen(trim($telefono)) == 0) {
@@ -261,7 +262,7 @@
 				$errores[] = "El teléfono es demasiado corto";
 			} elseif (mb_strlen(trim($telefono)) > $longitud) {
 				$errores[] = "El teléfono es demasiado largo";
-			} elseif (!self::regexEnteros($telefono,$longitud)) {
+			} elseif (!self::regexTelefono($telefono)) {
 				$errores[] = "El teléfono no cumple el formato";
 			}
 			// Utilizamos la función que comprueba si el array existe o no
@@ -418,9 +419,10 @@
 			// en caso de existir
 			return self::resultado($errores);
 		}// validarPassLogin()
-		// ==================================================================================================
+
+		// =====================================================================================
  		// Funciones de Regex
- 		// ==================================================================================================
+ 		// ====================================================================================
  		/**
  		 * Método que comprueba una expresión regular
  		 * @param  String $cadena nick a comprobar
@@ -507,6 +509,7 @@
 	 		}
 	 		return false;
 	 	}// regexEnteros()
+
 	 	/**
 	 	 * Método que valide una cadena contra una expresión regular
 	 	 * @param  String $cadena Variable a comprobar
@@ -529,30 +532,28 @@
 	 			return true;
 	 		}
 	 		return false;
-	 	}// regexEmail()
+	 	}// regexNombre()
 
-	 public static function validarNif($nif){
-		$cadena = strtoupper($cadena);
-		//$letra = substr($cadena, -1, 1); donde empieza el substring y cuanto a de coger
-		$letra = substr($cadena, -1, 1);
-		//numero de digitos que tendrá el DNI o NIE
-		$numero = substr($cadena, 0, 8);
+	 	/**
+	 	 * Método que valide una cadena contra una expresión regular
+	 	 * @param  String $cadena Variable a comprobar
+	 	 * @return Boolean  true | false
+	 	 */
+	 	public static function regexDireccion($cadena, $longitud = 100){
+	 		$pattern = "/^[A-Za-zñÑáéíóúÁÉÍÓÚÄËÏÖÜäëïöüàèìòùÀÈÌÔÙçÇ 0-9-ºª,#.\\/]{3,". $longitud . "}/";
+	 		if (preg_match($pattern, $cadena)) {
+	 			return true;
+	 		}
+	 		return false;
+	 	}// regexDireccion()
 
-		// Si es un NIE hay que cambiar la primera letra por 0, 1 ó 2 dependiendo de si es X, Y o Z.
-		$numero = str_replace(array('X', 'Y', 'Z'), array(0, 1, 2), $numero);
-
-	 	//calculo de la letra mediante la formula del modulo 23
-		$modulo = $numero % 23;
-		$letras_validas = "TRWAGMYFPDXBNJZSQVHLCKE";
-		$letra_correcta = substr($letras_validas, $modulo, 1);
-
-	 	//Si la letra no es correcta da un error
-		if($letra_correcta != $letra) {
-			return false;
-		}
-		return true;
-	}// validarNif()
-
+	 	public static function regexTelefono($cadena){
+	 		$pattern = "/^((\\+?34([ \\t|\\-])?)?[9|6|7|8]((\\d{1}([ \\t|\\-])?[0-9]{3})|(\\d{2}([ \\t|\\-])?[0-9]{2}))([ \\t|\\-])?[0-9]{2}([ \\t|\\-])?[0-9]{2})$/";
+	 		if (preg_match($pattern, $cadena)) {
+	 			return true;
+	 		}
+	 		return false;
+	 	}
 	 // =========================================================================
 	 /** Clase de validaciones
 	  * @author Eduardo Lopéz Pardo
@@ -639,13 +640,52 @@
 		return self::resultado($errores);
 	}// validarNombreCorporativo()
 
-
+	//Sanea la entrada
 	public static function sanearEntrada($array){
 		foreach ($array as $clave => $valor) {
 			$array[$clave] = self::saneamiento($valor);
 		}
 
 		return $array;
+	}
+
+	public static function validarNif($nif){
+		$cadena = strtoupper($cadena);
+		//$letra = substr($cadena, -1, 1); donde empieza el substring y cuanto a de coger
+		$letra = substr($cadena, -1, 1);
+		//numero de digitos que tendrá el DNI o NIE
+		$numero = substr($cadena, 0, 8);
+
+		// Si es un NIE hay que cambiar la primera letra por 0, 1 ó 2 dependiendo de si es X, Y o Z.
+		$numero = str_replace(array('X', 'Y', 'Z'), array(0, 1, 2), $numero);
+
+	 	//calculo de la letra mediante la formula del modulo 23
+		$modulo = $numero % 23;
+		$letras_validas = "TRWAGMYFPDXBNJZSQVHLCKE";
+		$letra_correcta = substr($letras_validas, $modulo, 1);
+
+	 	//Si la letra no es correcta da un error
+		if($letra_correcta != $letra) {
+			return false;
+		}
+		return true;
+	}// validarNif()
+
+	public static function validarDireccion($direccion, $longitud = 100){
+		$errorer = [];
+		if (!isset($direccion) || empty($direccion) || mb_strlen(trim($direccion)) === 0) {
+			$errores[] = "La direccion está vacia";
+		} elseif (mb_strlen(trim($direccion)) <= 4) {
+			$errores[] = "La direccion es demasiado corta";
+		} elseif (mb_strlen(trim($direccion)) >= $longitud) {
+			$errores[] = "La direccion es demasiado larga";
+		} elseif (!self::regexDireccion($direccion, $longitud)) {
+			$errores[] = "La dirección no cumple el formato";
+		}
+		// Utilizamos la función que comprueba si el array existe o no
+		// Y devuelve true si la validación es correcta y el array de errores
+		// en caso de existir
+		return self::resultado($errores);
 	}
 
 }// Fin de clase
