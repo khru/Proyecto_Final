@@ -11,10 +11,15 @@ class AccesoModel
 
 		$_POST = Validaciones::sanearEntrada($_POST);
 
-		if(($err = Validaciones::validarNick($_POST['nick'])) !== true){
-			$errores['nick'] = $err;
+		if(strpos($_POST['nick'], "@") === false){
+			if(($err = Validaciones::validarNick($_POST['nick'])) !== true){
+				$errores['nick'] = $err;
+			}
+		}else{
+			if(($err = Validaciones::validarEmail($_POST['nick'])) !== true){
+				$errores['nick'] = $err;
+			}
 		}
-
 
 		if(($err = Validaciones::validarPassLogin($_POST['passwd'])) !== true){
 			$errores['passwd'] = $err;
@@ -37,7 +42,7 @@ class AccesoModel
 			
 			$ssql = "SELECT * 
 			from usuario inner join persona on (usuario.id = persona.id)
-			where nick = :nick AND habilitado = 1";
+			where (nick = :nick OR email = :nick) AND habilitado = 1";
 
 			$nick = $_POST['nick'];
 
@@ -51,7 +56,9 @@ class AccesoModel
 
 			}else {
 
-				$ssql2 = "SELECT * FROM usuario WHERE nick = :nick AND pass = :passwd";
+				$ssql2 = "SELECT * 
+				FROM usuario inner join persona on (usuario.id = persona.id)
+				WHERE (nick = :nick OR email = :nick) AND habilitado = 1 AND pass = :passwd";
 
 				$passwd = HelperFunctions::encriptarPasswd($_POST['passwd']);
 
