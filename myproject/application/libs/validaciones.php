@@ -530,6 +530,29 @@
 	 		}
 	 		return false;
 	 	}// regexEmail()
+	 	
+	 public static function validarNif($nif){
+		$cadena = strtoupper($cadena);
+		//$letra = substr($cadena, -1, 1); donde empieza el substring y cuanto a de coger
+		$letra = substr($cadena, -1, 1);
+		//numero de digitos que tendrá el DNI o NIE
+		$numero = substr($cadena, 0, 8);
+
+		// Si es un NIE hay que cambiar la primera letra por 0, 1 ó 2 dependiendo de si es X, Y o Z.
+		$numero = str_replace(array('X', 'Y', 'Z'), array(0, 1, 2), $numero);
+
+	 	//calculo de la letra mediante la formula del modulo 23
+		$modulo = $numero % 23;
+		$letras_validas = "TRWAGMYFPDXBNJZSQVHLCKE";
+		$letra_correcta = substr($letras_validas, $modulo, 1);
+
+	 	//Si la letra no es correcta da un error
+		if($letra_correcta != $letra) {
+			return false;
+		}
+		return true;
+	}// validarNif()
+
 	 // =========================================================================
 	 /** Clase de validaciones
 	  * @author Eduardo Lopéz Pardo
