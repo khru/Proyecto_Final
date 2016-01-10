@@ -128,6 +128,22 @@ insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefo
 insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Daniel", "Martínez Almela", "daniel@gmail.com", "calle esperanza Nº6", 1, "51027317M","659483052", "2000-11-10");
 insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Eduardo", "Lopez Pardo", "duardo@gmail.com", "calle esperanza Nº6", 1, "21027317M","659487002", "2000-11-10");
 insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Emmanuel", "Valverde Ramos", "emmanuel@gmail.com", "calle esperanza Nº6", 1, "71027317M","659183602", "2000-11-10");
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("David", "Valiente Martinez", "david@gmail.com", "calle esperanza Nº6", 1, "187546849M","659004685", "2000-11-10");
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Jose", "Rodrigez Campos", "jose@gmail.com", "calle de serrano", 28, "78957841S","666475821", "2002-10-25");
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta, habilitado) values ("Sara", "Albadalejo Navarro", "sara@gmail.com", "calle Real", 15, "45685219L","669742234", "2001-02-03",0);
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Ana", "Martinez Lopez", "ana@gmail.com", "calle Real", 15, "47812546E","678942136", "2010-06-24");
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Cristina", "Martinez Martinez", "cristina@gmail.com", "calle San Pio", 30, "47872231M","621457832", "2008-10-10");
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Antonio", "Pedreño Gonzalez", "antonio@gmail.com", "calle el pintor", 22, "87412356D","699588472", "2006-02-04");
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta, newsletter) values ("Pedro", "Torraño Plana", "pedro@gmail.com", "calle Mistica", 11, "79846513G","639124578", "2009-01-11", 1);
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Fernando", "Martinez Soriano", "fernando@gmail.com", "calle Sicilia", 47, "78941254I","600457821", "2007-12-14");
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta, newsletter) values ("Jesus", "Garrido Vazquez", "jesus@gmail.com", "calle del arco", 50, "94821354P","632412487", "2000-11-30", 1);
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Patricia", "Gomez Sanchez", "patricia@gmail.com", "calle del rio", 17, "12378954J","682179435", "2001-05-25");
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("chema", "Gutierrez Blanco", "chema@gmail.com", "calle del puente", 48, "8527985M","666541226", "2006-06-06");
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Ivan", "Gracia Martinez", "ivan@gmail.com", "calle huerta", 13, "79847255O","621456875", "2004-08-19");
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta, habilitado) values ("Manuel", "Silvente Fernandez", "manuel@gmail.com", "calle del caudillo", 5, "72458711N","621473389", "2001-08-14", 0);
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Alberto", "Martinez Pedreño", "alberto@gmail.com", "calle plaza de españa", 29, "15975328Y","602789451", "2012-01-26");
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Noelia", "Pancorbo Ruiz", "noelia@gmail.com", "calle del casco viejo", 4, "46706895F","671005891", "2003-08-18");
+insert into persona (nombre, apellidos, email, direccion, provincia, nif, telefono, fecha_alta) values ("Sofia", "Martinez Rodrigez", "sofia@gmail.com", "calle de la independencia", 22, "47815620A","689236914", "2005-06-17");
 
 /* Comprobacion de la tabla persona */
 select * from persona;
@@ -167,7 +183,27 @@ create table usuario(
 
 /* Insercion de datos en la tabla usuario */
 /* Usuario de prueba, contraseña Admin123 */
-insert into usuario(id, nick, pass, categoria, carpeta, img) values(1, "luilliangelux", "e64b78fc3bc91bcbc7dc232ba8ec59e0", 1, "/hola/user", "/hola/carpeta");
+/* Usuario dan22, contraseña moto123 */
+/* Usuario quorum, contraseña halo123*/
+/* Usuario khru, contraseña program1 */
+/* Usuario painya, contraseña pikachu */
+/* Usuario shiva, contraseña kingdom1  */
+/* Usuario ryusen, contraseña  dragon17 */
+/* Usuario djayu, contraseña captain7 */
+/* Usuario random, contraseña  random */
+/* Usuario ranmita, contraseña lobo00 */
+
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(1, "luilliangelux", "e64b78fc3bc91bcbc7dc232ba8ec59e0", 1, "luilliangelux", "luilliangelux/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(2, "dan22", "2477170743de110f8e1991602a3b9d88", 2, "dan22", "dan22/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(3, "quorum", "cfdb09744b075bfb140be051ccd91f0a", 1, "quorum", "quorum/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(4, "khru", "08cbea56b2c14c14da194b45d2ee096f", 1, "khru", "khru/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(5, "painya", "9ce44f88a25272b6d9cbb430ebbcfcf1", 2, "painya", "painya/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(9, "shiva", "bc94bee196bbcf6ddcf09d3b21d1bee4", 3, "shiva", "shiva/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(10, "ryusen", "e78333496d86214daee60be6c3d04733", 2, "ryusen", "ryusen/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(15, "djayu", "7aedfee95ab9c07ebc5aae4227ea3706", 4, "djayu", "djayu/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(18, "random", "7ddf32e17a6ac5ce04a8ecbf782ca509", 3, "random", "random/img/perfil.png");
+insert into usuario(id, nick, pass, categoria, carpeta, img) values(20, "ranmita", "9a99722c82cc3fccc828572abd2d8593", 1, "ranmita", "ranmita/img/perfil.png");
+
 
 /* Comprobacion de la tabla usuario */
 select * from usuario;
@@ -181,7 +217,17 @@ create table cliente(
 );
 
 /* Insercion de datos para los clientes */
-insert into cliente(id, nombre_corporativo) values (1, "Perros S.L");
+insert into cliente(id, nombre_corporativo) values (6, "Perros S.L");
+insert into cliente(id, nombre_corporativo) values (7, "Gatos S.L");
+insert into cliente(id, nombre_corporativo) values (8, "Hermanos Condor S.L");
+insert into cliente(id, nombre_corporativo) values (11, "Mecanicos Neumatico S.L");
+insert into cliente(id, nombre_corporativo) values (12, "ferreteria Tornillo S.L");
+insert into cliente(id, nombre_corporativo) values (13, "Autoescuela Volante");
+insert into cliente(id, nombre_corporativo) values (14, "Pizzerias Italianos S.L");
+insert into cliente(id, nombre_corporativo) values (16, "Librerias Dante S.L");
+insert into cliente(id, nombre_corporativo) values (17, "Peluquerias Cabello S.L");
+insert into cliente(id, nombre_corporativo) values (19, "Funeraria Muerto S.L");
+
 
 /* Comprobacion de la tabla cliente */
 select * from cliente;
@@ -215,10 +261,37 @@ create table servicio(
 );
 
 /* Insercion de datos en la tabla servicio */
-insert into servicio(nombre, categoria, tiempo_estimado, descripcion, precio) values ("mantenimiento", 1, 23, "hay que mantener bien las cosas hombre",2000);
+insert into servicio(nombre, categoria, tiempo_estimado, descripcion, precio) values ("mantenimiento", 1, 23, "Mantenimiento de una pagina web",2000);
+insert into servicio(nombre, categoria, tiempo_estimado, descripcion, precio) values ("creacion", 2, 30, "Creacion de una pagina web",2500);
+
 
 /* Comprobacion de la tabla servicio */
 select * from servicio;
+
+/* Tabla para las promociones */
+create table promo(
+    id           int(11) not null auto_increment comment 'identificador de la promocion',
+    codigo       varchar(15) not null comment 'codigo de la promocion',
+    descripcion  varchar(255) not null comment 'descripcion de la promocion que se trata',
+    unidades     int(5) comment 'unidades totales disponibles de esa promocion',
+    porcentaje   decimal(6,2) not null comment 'porcentaje de descuento que se aplica',
+    fecha_inicio date not null comment 'fecha en la que se inicia la promocion',
+    fecha_fin    date comment 'fecha en la que finaliza la promocion',
+    habilitado   boolean not null default 1 comment 'controla si está habilitada la promocion',
+    unique(codigo),
+    primary key(id)
+);
+
+/* Insercion de datos en la tabla promo */
+insert into promo(codigo, descripcion, unidades, porcentaje, fecha_inicio) values ('A42VDFGPO841', 'Se reduce en un 10% el precio del mantenimiento durante 2 meses', 6, 10, '2015-06-06');
+insert into promo(codigo, descripcion, unidades, porcentaje, fecha_inicio) values ('A317RTDP75S2', 'Se reduce en un 20% el precio de creacion de una segunda pagina web', 10, 20, '2015-06-06');
+insert into promo(codigo, descripcion, unidades, porcentaje, fecha_inicio) values ('A21TY8745S66', 'Se reduce en un 15% el precio del mantenimiento contratado por 3 años', 30, 15, '2015-09-09');
+insert into promo(codigo, descripcion, porcentaje, fecha_inicio, habilitado) values ('A877RAC47FF2', 'Se reduce en un 15% el precio del mantenimiento durante 3 meses', 15, '2015-03-06', 0);
+insert into promo(codigo, descripcion, porcentaje, fecha_inicio, fecha_fin) values ('78954GDSS87A', 'Se reduce en un 30% la contratacion de creacion+mantenimiento', 30, '2015-06-06', '2018-06-06');
+
+
+/* Comprobacion de la tabla promo */
+select * from promo;
 
 /* Tabla para el estado de los proyectos */
 create table estado(
@@ -238,26 +311,6 @@ insert into estado(descripcion) values ("mantenimiento");
 /* Comprobacion de la tabla estado */
 select * from estado;
 
-/* Tabla para las promociones */
-create table promo(
-    id           int(11) not null auto_increment comment 'identificador de la promocion',
-    codigo       varchar(15) not null comment 'codigo de la promocion',
-    descripcion  varchar(255) not null comment 'descripcion de la promocion que se trata',
-    unidades     int(5) comment 'unidades totales disponibles de esa promocion',
-    porcentaje   decimal(6,2) not null comment 'porcentaje de descuento que se aplica',
-    fecha_inicio date not null comment 'fecha en la que se inicia la promocion',
-    fecha_fin    date comment 'fecha en la que finaliza la promocion',
-    habilitado   boolean not null default 1 comment 'controla si está habilitada la promocion',
-    unique(codigo),
-    primary key(id)
-);
-
-/* Insercion de datos en la tabla promo */
-insert into promo(codigo, descripcion, unidades, porcentaje, fecha_inicio) values ('A42VDFGPO841', 'Se reduce en un 10% el precio del mantenimiento durante 2 meses', 6, 10, '2015-06-06');
-
-/* Comprobacion de la tabla promo */
-select * from promo;
-
 /* Tabla para los proyectos que se realicen */
 create table proyecto(
     id             int(11) not null auto_increment comment 'identificador del trabajo que se ha realizado o esta por realizar',
@@ -275,11 +328,22 @@ create table proyecto(
 );
 
 /* Insercion de datos en la tabla proyecto */
-insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (1, "2000-12-10", "2001-01-12", "2001-02-01", 1);
-    insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado, habilitado) values (1, "2003-12-10", "2001-01-12", "2001-02-01", 1, 0);
+insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (6, "2000-12-10", "2001-01-12", "2001-02-01", 1);
+insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado, habilitado) values (7, "2003-12-10", "2004-01-12", "2001-02-01", 1, 0);
+insert into proyecto(cliente, fecha_inicio, fecha_prevista , estado) values (8, "2015-12-10", "2016-02-19", 3);
+insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (11, "2001-12-22", "2002-01-12", "2002-02-10", 2);
+insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (12, "2000-12-10", "2001-04-22", "2001-04-24", 4);
+insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (13, "2002-8-03", "2002-10-10", "2001-09-27", 5);
+insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado, habilitado) values (14, "2007-01-04", "2007-03-01", "2007-03-05", 1, 0);
+insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (16, "2005-12-11", "2005-01-12", "2005-02-01", 2);
+insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (17, "2009-09-09", "2009-10-09", "2009-10-19", 4);
+insert into proyecto(cliente, fecha_inicio, fecha_prevista , estado) values (19, "2016-01-10", "2016-03-22", 3);
+
+
 
 /* Comprobacion de la tabla proyecto */
 select * from proyecto;
+
 
 /* Tabla para los usuarios que han trabajado en diferentes proyectos */
 create table usu_proy(
@@ -292,6 +356,16 @@ create table usu_proy(
 
 /* Insercion de datos en la tabla usu_proy */
 insert into usu_proy(usuario, proyecto) values (1, 1);
+insert into usu_proy(usuario, proyecto) values (2, 2);
+insert into usu_proy(usuario, proyecto) values (3, 3);
+insert into usu_proy(usuario, proyecto) values (4, 4);
+insert into usu_proy(usuario, proyecto) values (5, 5);
+insert into usu_proy(usuario, proyecto) values (9, 6);
+insert into usu_proy(usuario, proyecto) values (10, 7);
+insert into usu_proy(usuario, proyecto) values (15, 8);
+insert into usu_proy(usuario, proyecto) values (18, 9);
+insert into usu_proy(usuario, proyecto) values (20, 10);
+
 
 /* Comprobacion de la tabla usu_proy */
 select * from usu_proy;
@@ -307,6 +381,18 @@ create table proy_serv(
 
 /* Insercion de datos en la tabla proy_serv */
 insert into proy_serv(proyecto, servicio) values (1, 1);
+insert into proy_serv(proyecto, servicio) values (1, 2);
+insert into proy_serv(proyecto, servicio) values (2, 1);
+insert into proy_serv(proyecto, servicio) values (3, 2);
+insert into proy_serv(proyecto, servicio) values (4, 1);
+insert into proy_serv(proyecto, servicio) values (5, 1);
+insert into proy_serv(proyecto, servicio) values (6, 1);
+insert into proy_serv(proyecto, servicio) values (7, 1);
+insert into proy_serv(proyecto, servicio) values (7, 2);
+insert into proy_serv(proyecto, servicio) values (8, 1);
+insert into proy_serv(proyecto, servicio) values (9, 1);
+insert into proy_serv(proyecto, servicio) values (10, 2);
+
 
 /* Comprobacion de la tabla proy_serv */
 select * from proy_serv;
@@ -327,7 +413,17 @@ create table entrevista(
 );
 
 /* Insercion de datos en la tabla entrevista */
-insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (1, 1, 'Este tio es mejor que dani, vamos a echar a dani y contratarlo', 1, '2015-06-09');
+insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (1, 6, 'Proyecto aun por confirmar', 1, '2015-06-09');
+insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (1, 7, 'Proyecto no habilitado, el cliente aun no tiene claro que quiere', 2, '2015-06-09');
+insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (2, 8, 'Proyecto en proceso, todo va segun quiere el cliente', 3, '2015-07-09');
+insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (2, 11, 'Proyecto confirmado', 4, '2015-07-09');
+insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (3, 12, 'Proyecto finalizado, Todo conforme', 5, '2015-08-09');
+insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (3, 13, 'Proyecto en mantenimiento', 6, '2015-08-09');
+insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (4, 14, 'Proyecto aun por confirmar, cliente indeciso', 7, '2015-09-09');
+insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (4, 16, 'Proyecto confirmado', 8, '2015-09-09');
+insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (5, 17, 'Proyecto finalizado, sin quejas del cliente', 9, '2015-10-09');
+insert into entrevista(usuario, cliente, conclusion, proyecto, fecha, habilitado) values (5, 19, 'entrevista cancelada', 10, '2015-10-09',0);
+
 
 /* Comprobacion de la tabla entrevista */
 select * from entrevista;
@@ -343,7 +439,23 @@ create table client_fav_web(
 );
 
 /* Insercion de datos en la tabla client_fav_web */
-insert into client_fav_web(cliente, url) values (1, "javadesdecero.esy.es");
+insert into client_fav_web(cliente, url) values (6, "javadesdecero.esy.es");
+insert into client_fav_web(cliente, url) values (6, "youtube.com");
+insert into client_fav_web(cliente, url) values (7, "laopinion.es");
+insert into client_fav_web(cliente, url) values (8, "wikipedia.org");
+insert into client_fav_web(cliente, url) values (8, "youtube.com");
+insert into client_fav_web(cliente, url) values (8, "facebook.com");
+insert into client_fav_web(cliente, url) values (11, "php.net");
+insert into client_fav_web(cliente, url) values (12, "hostinger.es");
+insert into client_fav_web(cliente, url) values (13, "w3schools.com");
+insert into client_fav_web(cliente, url) values (13, "www.youtube.com");
+insert into client_fav_web(cliente, url) values (14, "phpya.com.ar");
+insert into client_fav_web(cliente, url) values (16, "hostinger.com");
+insert into client_fav_web(cliente, url) values (16, "cssya.com.ar");
+insert into client_fav_web(cliente, url) values (17, "php.net");
+insert into client_fav_web(cliente, url) values (17, "wikipedia.org");
+insert into client_fav_web(cliente, url) values (19, "youtube.com");
+
 
 /* Comprobacion de la tabla client_fav_web */
 select * from client_fav_web;
@@ -362,7 +474,16 @@ create table presupuesto(
 );
 
 /* Insercion de datos en la tabla presupuesto */
-insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (1, 1, 12, "2000-12-12");
+insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (1, 1, 4500, "2000-12-12");
+insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (2, 2, 2000, "2003-01-11");
+insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (3, 3, 2500, "2015-12-12");
+insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (4, 4, 2000, "2001-02-14");
+insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (5, 5, 2000, "2000-03-01");
+insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (9, 6, 2000, "2002-05-27");
+insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (10, 7, 4500, "2007-03-07");
+insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (15, 8, 2000, "2005-01-12");
+insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (18, 9, 2000, "2009-02-12");
+insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (20, 10, 2500, "2016-01-01");
 
 /* Comprobacion de la tabla presupuesto */
 select * from presupuesto;
@@ -401,7 +522,34 @@ create table red_social(
 );
 
 /* Insercion de datos en la tabla red_social */
-insert into red_social(tipo_red, url, persona) values (1, "/hola/caracola/", 1);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/luilliangelux", 1);
+insert into red_social(tipo_red, url, persona) values (6, "www.instagram.com/luilliangelux", 1);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/dan22", 2);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/quorum", 3);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/khru", 4);
+insert into red_social(tipo_red, url, persona) values (1, "www.github.com/khru", 4);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/painya", 5);
+insert into red_social(tipo_red, url, persona) values (3, "www.twitter.com/painya", 5);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/jose", 6);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/sara", 7);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/ana", 8);
+insert into red_social(tipo_red, url, persona) values (4, "www.linkedin.com/ana", 8);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/shiva", 9);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/ryusen", 10);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/pedro", 11);
+insert into red_social(tipo_red, url, persona) values (6, "www.instagram.com/pedro", 11);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/fernando", 12);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/jesus", 13);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/patricia", 14);
+insert into red_social(tipo_red, url, persona) values (5, "www.pinterest.com/patricia", 14);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/djayu", 15);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/ivan", 16);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/manuel", 17);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/random", 18);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/noelia", 19);
+insert into red_social(tipo_red, url, persona) values (3, "www.twitter.com/noelia", 19);
+insert into red_social(tipo_red, url, persona) values (6, "www.instagram.com/noelia", 19);
+insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/ranmita", 20);
 
 /* Comprobacion de la tabla red_social */
 select * from red_social;
