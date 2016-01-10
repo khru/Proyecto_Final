@@ -17,7 +17,12 @@
 		public static function getUser($usuario){
 			$conn = Database::getInstance()->getDatabase();
 			// creamos la consulta
-			$ssql = "SELECT * FROM usuario WHERE nick = :nick";
+			if(strpos($usuario, "@") === false){
+				$ssql = "SELECT * FROM usuario WHERE nick = :nick";
+			}else{
+				$ssql = "SELECT * FROM usuario where id = (select id from persona where email = :nick)";
+			}
+
 			// Preparamos la consulta
 			$query = $conn->prepare($ssql);
 			$query->bindParam(':nick', $usuario);
