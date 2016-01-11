@@ -6,7 +6,7 @@
 <table border="1">
 	<tr>
 <?php 	foreach ($claves as $clave => $valor) : ;	//Se listan las cabeceras de la tabla?>
-
+		
 			<th><?=$valor?></th>
 
 <?php 	endforeach ?>
@@ -16,12 +16,12 @@
 <?php   foreach ($data['proyectos'] as $clave => $valor) : //Se listan los datos?>
 	<tr>
 		<?php foreach ($valor as $clave => $datos) : ?>
-
+			
 				<td><?=$datos?></td>
-
+			
 		<?php endforeach ?>
-				<td><a href="<?=URL . 'proyecto/editar/' . $valor['id']?>">Editar</a></td>
-				<td><a href="<?=URL . 'proyecto/borrar/' . $valor['id']?>">Borrar</a></td>
+				<td><a href="#">Editar</a></td>
+				<td><a href="<?=URL . 'proyectos/borrar/' . $valor['id']?>">Borrar</a></td>
 	</tr>
   <?php endforeach ?>
 </table>
