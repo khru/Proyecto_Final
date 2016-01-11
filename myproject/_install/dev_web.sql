@@ -183,15 +183,15 @@ create table usuario(
 
 /* Insercion de datos en la tabla usuario */
 /* Usuario de prueba, contraseña Admin123 */
-/* Usuario dan22, contraseña moto123 */
-/* Usuario quorum, contraseña halo123*/
-/* Usuario khru, contraseña program1 */
-/* Usuario painya, contraseña pikachu */
-/* Usuario shiva, contraseña kingdom1  */
-/* Usuario ryusen, contraseña  dragon17 */
-/* Usuario djayu, contraseña captain7 */
-/* Usuario random, contraseña  random */
-/* Usuario ranmita, contraseña lobo00 */
+/* Usuario dan22, contraseña Moto123 */
+/* Usuario quorum, contraseña Halo123*/
+/* Usuario khru, contraseña Program1 */
+/* Usuario painya, contraseña Pikachu */
+/* Usuario shiva, contraseña Kingdom1  */
+/* Usuario ryusen, contraseña  Dragon17 */
+/* Usuario djayu, contraseña Captain7 */
+/* Usuario random, contraseña  Random0 */
+/* Usuario ranmita, contraseña Lobo00 */
 
 insert into usuario(id, nick, pass, categoria, carpeta, img) values(1, "luilliangelux", "e64b78fc3bc91bcbc7dc232ba8ec59e0", 1, "luilliangelux", "luilliangelux/img/perfil.png");
 insert into usuario(id, nick, pass, categoria, carpeta, img) values(2, "dan22", "51a8a58a3088b51cd6bb066c827ee350", 2, "dan22", "dan22/img/perfil.png");
