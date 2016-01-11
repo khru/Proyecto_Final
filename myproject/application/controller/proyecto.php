@@ -18,13 +18,14 @@ class Proyecto
 	}
 
 	public function borrar($id, $definitivo = false){
+	
 		HelperFunctions::comprobarSesion();
 		
 		if(Validaciones::validarId($id) !== true){
 			header("Location: ". URL . "proyecto");
 		}
 
-		if($definitivo){
+		if($definitivo === true){
 			ProyectoModel::borrar($id);
 			header("Location: ". URL . "proyecto");
 			
@@ -46,14 +47,25 @@ class Proyecto
 	}
 
 	public function habilitar($id, $definitivo = false){
+
 		HelperFunctions::comprobarSesion();
 
-		if($definitivo){
+		if(Validaciones::validarId($id) !== true){
+			header("Location: ". URL . "proyecto");
+		}
+
+		if($definitivo === "true"){
 			ProyectoModel::habilitar($id);
 			header("Location: ". URL . "proyecto");
+		
 		}else{
 			if(!$_POST){
 				$proyecto = ProyectoModel::getProyecto($id);
+
+				if(!$proyecto){
+					header("Location: ". URL . "proyecto");
+				}
+
 				$archivos = array("proyecto/listarproyecto", "proyecto/habilitarproyecto");
 				$datos = array('titulo' => 'Proyecto', 'proyecto' => $proyecto);
 
@@ -64,6 +76,7 @@ class Proyecto
 
 	public function buscar(){
 		HelperFunctions::comprobarSesion();
+
 		if(!$_POST){
 			header("Location: " . URL . "proyecto");
 		}else{
@@ -77,7 +90,13 @@ class Proyecto
 	}
 
 	public function editar($id){
+
 		HelperFunctions::comprobarSesion();
+
+		if(Validaciones::validarId($id) !== true){
+			header("Location: ". URL . "proyecto");
+		}
+
 		if(!$_POST){
 			$proyecto = ProyectoModel::getProyecto($id);
 			if($proyecto){
@@ -93,7 +112,13 @@ class Proyecto
 	}
 
 	public function crear(){
+
 		HelperFunctions::comprobarSesion();
+
+		if(Validaciones::validarId($id) !== true){
+			header("Location: ". URL . "proyecto");
+		}
+
 		if(!$_POST){
 			$datos = array('destino' => 'proyecto/crear', 'submit' => 'Crear');
 			View::render("proyecto/formulario", $datos);
