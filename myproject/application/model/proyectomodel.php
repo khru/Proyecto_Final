@@ -26,6 +26,9 @@ class ProyectoModel
 	}
 
 	public static function getProyecto($id){
+
+		$id = intval($id);
+		
 		$conn = Database::getInstance()->getDatabase();
 		$ssql = "SELECT proyecto.id, cliente.nombre_corporativo as cliente, promocion, fecha_inicio as 'fecha de inicio',
 		fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado, proyecto.habilitado
@@ -40,6 +43,9 @@ class ProyectoModel
 
 	public static function borrar($id){
 		$errores = array();
+
+		$id = intval($id);
+
 		$conn = Database::getInstance()->getDatabase();
 		$ssql = "UPDATE proyecto SET habilitado = 0 WHERE id = :id";
 		$query = $conn->prepare($ssql);
@@ -57,6 +63,9 @@ class ProyectoModel
 
 	public static function habilitar($id){
 		$errores = array();
+		
+		$id = intval($id);
+
 		$conn = Database::getInstance()->getDatabase();
 		$ssql = "UPDATE proyecto SET habilitado = 1 WHERE id = :id";
 		$query = $conn->prepare($ssql);

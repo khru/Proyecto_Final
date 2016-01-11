@@ -19,7 +19,7 @@ class Proyecto
 
 	public function borrar($id, $definitivo = false){
 		HelperFunctions::comprobarSesion();
-
+		
 		if($definitivo){
 			ProyectoModel::borrar($id);
 			header("Location: ". URL . "proyecto");
