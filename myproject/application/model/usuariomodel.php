@@ -51,7 +51,26 @@
 		// =========================================
 
 		public static function insert(){
+			// Primero tenemos que preparar un bloque try catch
+			$errores = [];
+			try {
+				// empezamos la transacción
+				$conn = DBPDO::getInstance()->getDatabase();
+				$conn->beginTransaction();
+				if (($error = PersonaModel::insert()) === true) {
+					return $errores['generic'][] = "El usuario se a insertado correctamente";
+				} elseif (($error = PersonaModel::insert()) === false) {
+					return  $errores['generic'][] = "El usuario no se a insertado correctamente";
+				} else {
+					// Almacenamos los errores los errores
+					$errores[] = $error;
+				}
 
+
+				// terminamos la transacción
+			} catch (PDOException $e) {
+
+			}
 		}
 	}
 ?>

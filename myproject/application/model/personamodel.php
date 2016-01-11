@@ -57,7 +57,7 @@
 		public static function insert(){
 			if (!$_POST) {
 				// sino hay dolar post devolvemos
-				$errores['generic'] = "No se han recibido datos";
+				$errores['generic'][] = "No se han recibido datos";
 				return Validaciones::resultado($errores);
 			} else{
 				// Validamos todas las variables de $_POST
@@ -66,11 +66,11 @@
 				if (isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["email"])) {
 
 						// variable del método para poder hacer un rapido bindeo de parametros y errores
-						$errores["persona"];
+						$errores = [];
 						$campos = [];
 						//  validamos el nombre
 						if (($err = Validaciones::validarNombre($_POST["nombre"])) !== true) {
-							$errores["personas"]["nombre"] = $err;
+							$errores["nombre"] = $err;
 						} else {
 							// si hay nombre lo ponemos en un array
 							$campos[":nombre"] = $_POST["nombre"];
@@ -78,7 +78,7 @@
 
 						// Validamos los apellidos
 						if (($err = Validaciones::validarApellidos($_POST["apellidos"])) !== true) {
-							$errores["persona"]["apellidos"] = $err;
+							$errores["apellidos"] = $err;
 						} else {
 							// si son validos los apellidos lo preparamos para el bindeo
 							$campos[":apellidos"] = $_POST["apellidos"];
@@ -86,7 +86,7 @@
 
 						// validamos el email
 						if (($err = Validaciones::validarEmail($_POST["email"])) !== true) {
-							$errores["persona"]["email"] = $err;
+							$errores["email"] = $err;
 						} else {
 							// si es valido, preparamos para el bindeo
 							$campos[":email"] = $_POST["email"];
@@ -95,7 +95,7 @@
 						if (isset($_POST["direccion"])) {
 							// Si existe la dirección se valida
 							if (($err = Validaciones::validarDireccion($_POST["direccion"])) !== true) {
-								$errores["persona"]["direccion"] = $err;
+								$errores["direccion"] = $err;
 							} else {
 								// si existe, preparamos el bindeo
 								$campos[":direccion"] = $_POST["direccion"];
@@ -106,7 +106,7 @@
 						if (isset($_POST["provincia"])) {
 							// se valida la provincia
 							if (($err = Validaciones::validarId($_POST["provincia"])) !== true) {
-								$errores["persona"]["provincia"] = $err;
+								$errores["provincia"] = $err;
 							} else {
 								// si existe la preparo
 								$campos[":provincia"] = $_POST["provincia"];
@@ -117,7 +117,7 @@
 						if (isset($_POST["nif"])) {
 							// se valida
 							if (($err = Validaciones::validarNif($_POST["nif"])) !== true) {
-								$errores["persona"]["nif"] = $err;
+								$errores["nif"] = $err;
 							} else {
 								// si existe la preparo
 								$campos[":nif"] = $_POST["nif"];
@@ -128,7 +128,7 @@
 						if (isset($_POST["telefono"])) {
 							// se valida
 							if (($err = Validaciones::validarTelefono($_POST["telefono"])) !== true) {
-								$errores["persona"]["telefono"] = $err;
+								$errores["telefono"] = $err;
 							} else {
 								// si existe la preparo
 								$campos[":telefono"] = $_POST["telefono"];
@@ -138,7 +138,7 @@
 						if (isset($_POST["newsletter"])) {
 							// se valida
 							if (($err = Validaciones::validarTelefono($_POST["newsletter"])) !== true) {
-								$errores["persona"]["newsletter"] = $err;
+								$errores["newsletter"] = $err;
 							} else {
 								// si existe la preparo
 								$campos[":newsletter"] = $_POST["newsletter"];
@@ -177,6 +177,11 @@
 										$query->bindParam($indice, $valor,PDO::PARAM_STR);
 									}
 								}
+								$query->execute();
+								if ($query->rowCount === 1) {
+									return true;
+								}
+								return false;
 
 							} catch (PDOException $e){
 								// Lanzamos una excepción a tratar en el controlador
@@ -189,7 +194,7 @@
 
 				} else {
 					// si los campos requeridos no existen
-					$errores['generic'] = "Los campos requeridos no han sido introducidos";
+					$errores['generic'][] = "Los campos requeridos no han sido introducidos";
 					return Validaciones::resultado($errores);
 				}
 			}
