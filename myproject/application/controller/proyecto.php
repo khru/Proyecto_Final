@@ -18,9 +18,9 @@ class Proyecto
 	}
 
 	public function borrar($id, $definitivo = false){
-	
+
 		HelperFunctions::comprobarSesion();
-		
+
 		if(Validaciones::validarId($id) !== true){
 			header("Location: ". URL . "proyecto");
 		}
@@ -28,12 +28,12 @@ class Proyecto
 		if($definitivo === "true"){
 			ProyectoModel::borrar($id);
 			header("Location: ". URL . "proyecto");
-			
-			
+
+
 		}else{
 			if(!$_POST){
 				$proyecto = ProyectoModel::getProyecto($id);
-				
+
 				if(!$proyecto){
 					header("Location: ". URL . "proyecto");
 				}
@@ -57,7 +57,7 @@ class Proyecto
 		if($definitivo === "true"){
 			ProyectoModel::habilitar($id);
 			header("Location: ". URL . "proyecto");
-		
+
 		}else{
 			if(!$_POST){
 				$proyecto = ProyectoModel::getProyecto($id);
