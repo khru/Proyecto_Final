@@ -53,6 +53,7 @@
 		public static function insert(){
 			// Primero tenemos que preparar un bloque try catch
 			$errores = [];
+			$campos = [];
 			if ($_POST) {
 				// Validamos todas las variables de $_POST
 				$_POST = Validaciones::sanearEntrada($_POST);
@@ -68,12 +69,31 @@
 
 							// validar Nick
 							if (($err = Validaciones::validarNick($_POST["nick"])) !== true) {
+								// comprobamos que dicho nick exista en la base de datos
+								// Sino lanzamos un error
+								try {
+									$conn = DBPDO::getInstance()->getDatabase();
+									$ssql = "SELECT * FROM usuario WHERE nick = :nick";
+									$prepare = $conn->prepare($ssql);
+									$prepare->bindParam(":nick", $_POST["nick"], PDO::PARAM_STR);
+									$prepare->execute();
+									if ($prepare->rowCount() === 1) {
+										// si existe la preparo
+										$errores["nick"][] = "El nick ya existe";
+									} else{
+										$campos[":nick"] = $_POST["nick"];
+									}
+								} catch (PDOException $e) {
+									return $errores['generic'][] = "Error en la base de datos";
+								}
 								$errores["nick"] = $err;
 							}
 
 							// Validar contraseña
 							if (($err = Validaciones::validarPassAlta($_POST["pass1"], $_POST["pass2"])) !== true) {
 								$errores["pass"] = $err;
+							} else {
+								$campos[":pass"] = $_POST["pass1"];
 							}
 
 							// Validar la categoría
@@ -89,22 +109,25 @@
 									$conn = DBPDO::getInstance()->getDatabase();
 									$ssql = "SELECT * FROM categoria WHERE id = :id";
 									$prepare = $conn->prepare($ssql);
-									$prepare->bindParam(":id", $id, PDO::PARAM_INT);
+									$prepare->bindParam(":id", $_POST["categoria"], PDO::PARAM_INT);
 									$prepare->execute();
 									if ($prepare->rowCount() === 1) {
 										// si existe la preparo
-										$campos[":provincia"] = $_POST["provincia"];
+										$campos[":categoria"] = $_POST["categoria"];
 									} else{
-										$errores["provincia"][] = "La provincia no existe";
+										$errores["categoria"][] = "La categoria no existe";
 									}
 								} catch (PDOException $e) {
 									return $errores['generic'][] = "Error en la base de datos";
 								}
 							}// fin de las comprobaciones de categoria
 
+							// Si hay errores los retornamos
 							if ($errores) {
 								$conn->rollback();
-								Validaciones::resultado($errores);
+								return Validaciones::resultado($errores);
+							} else {
+
 							}
 
 						} else {
