@@ -7,9 +7,13 @@
 		// Todos los métodos de la clase son estáticos
 
 		// =================================================
-		// MÉTODOS DE Obtención de información
+		// MÉTODOS DE obtención de información
 		// =================================================
-		public function getAll(){
+		/**
+		 * Método que muestra todos los clientes
+		 * @return Array
+		 */
+		public static function getAll(){
 			$conn = Database::getInstance()->getDatabase();
 			$ssql = "SELECT persona.id as id, persona.nombre, persona.apellidos, persona.email, persona.direccion, provincia.nombre, nif, telefono, fecha_alta as 'fecha alta', cat_usu.nombre, usuario.nick as nick, carpeta, img,newsletter FROM usuario, persona, provincia, cat_usu WHERE usuario.id = persona.id AND provincia.id = persona.provincia AND persona.habilitado = 1 AND usuario.categoria = cat_usu.id";
 			$query = $conn->prepare($ssql);
@@ -17,6 +21,10 @@
 			return $query->fetchAll();
 		}// getAll()
 
+		/**
+		 * Método de mostrar deshabiliado
+		 * @return Array
+		 */
 		public static function getAllDisabled(){
 			$conn = Database::getInstance()->getDatabase();
 			$ssql = "SELECT persona.id as id, persona.nombre, persona.apellidos, persona.email, persona.direccion, provincia.nombre, nif, telefono, fecha_alta as 'fecha alta', cat_usu.nombre, usuario.nick as nick, carpeta, img,newsletter FROM usuario, persona, provincia, cat_usu WHERE usuario.id = persona.id AND provincia.id = persona.provincia AND persona.habilitado = 0 AND usuario.categoria = cat_usu.id";
@@ -25,7 +33,37 @@
 			return $query->fetchAll();
 		}// getAllDisabled()
 
+		// [IMPLEMENTAR CONSULTA]
+		public static function getSearch($busqueda){
+		$conn = Database::getInstance()->getDatabase();
 
+		$busqueda = '%' . $busqueda . '%';
+
+		$ssql = "SELECT cliente.nombre_corporativo as cliente, persona.nombre as nombre, persona.apellidos as apellidos,
+		persona.telefono as telefono, persona.nif as nif, persona.email as email, provincia.nombre as provincia, promocion,
+		fecha_inicio as 'fecha de inicio', fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado,
+		proyecto.habilitado
+		FROM proyecto inner join estado on (proyecto.estado = estado.id)
+					  inner join cliente on (proyecto.cliente = cliente.id)
+					  inner join persona on (cliente.id = persona.id)
+					  inner join provincia on (persona.provincia = provincia.id)
+		where (cliente.nombre_corporativo like :busqueda OR persona.nombre like :busqueda OR persona.apellidos like :busqueda OR
+		persona.telefono like :busqueda OR persona.nif like :busqueda OR persona.email like :busqueda OR provincia.nombre like :busqueda OR
+		promocion like :busqueda OR fecha_inicio like :busqueda OR fecha_fin like :busqueda OR fecha_prevista like :busqueda OR estado like :busqueda
+		)AND proyecto.habilitado = 1";
+
+		$query = $conn->prepare($ssql);
+
+		$query->bindParam(':busqueda', $busqueda);
+		$query->execute();
+		return $query->fetchAll();
+	}
+
+		/**
+		 * Método que devuelve un usuario, en vase del nick o del email
+		 * @param  String $usuario
+		 * @return false | Array
+		 */
 		public static function getUser($usuario){
 			$conn = Database::getInstance()->getDatabase();
 			// creamos la consulta
@@ -49,7 +87,10 @@
 		// =========================================
 		// Método de inserción de usuario
 		// =========================================
-
+		/**
+		 * Método de inserción que recoge las variables de $_POST
+		 * @return [type] [description]
+		 */
 		public static function insert(){
 			// Primero tenemos que preparar un bloque try catch
 			$errores = [];
@@ -127,6 +168,8 @@
 								$conn->rollback();
 								return Validaciones::resultado($errores);
 							} else {
+								// Insertamos todos los valores
+
 
 							}
 
