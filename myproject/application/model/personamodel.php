@@ -27,7 +27,6 @@
             }
         }// habilitar()
 
-
         public static function deshabilitar($id){
             $errores = [];
             if (($err = Validaciones::validarId($id)) !== true) {

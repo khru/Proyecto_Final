@@ -78,11 +78,3 @@ body {
     background-color: #222;
     color: #fff;
 }
-.listadocanciones{
-    border: 1px solid #ccc;
-    padding: 12px;
-    margin-bottom: 15px;
-}
-.listadocanciones header{
-    font-weigth: bold;
-}

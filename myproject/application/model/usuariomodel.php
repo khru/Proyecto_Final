@@ -51,14 +51,7 @@
 		// =========================================
 
 		public static function insert(){
-			try {
-				$conn = Database::getInstance()->getDatabase();
-				$conn->beginTransaction();
 
-
-			} catch (PDOException $e){
-
-			}
 		}
 	}
 ?>
