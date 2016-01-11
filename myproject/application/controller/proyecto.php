@@ -20,12 +20,23 @@ class Proyecto
 	public function borrar($id, $definitivo = false){
 		HelperFunctions::comprobarSesion();
 		
+		if(Validaciones::validarId($id) !== true){
+			header("Location: ". URL . "proyecto");
+		}
+
 		if($definitivo){
 			ProyectoModel::borrar($id);
 			header("Location: ". URL . "proyecto");
+			
+			
 		}else{
 			if(!$_POST){
 				$proyecto = ProyectoModel::getProyecto($id);
+				
+				if(!$proyecto){
+					header("Location: ". URL . "proyecto");
+				}
+
 				$archivos = array("proyecto/listarproyecto", "proyecto/borrarproyecto");
 				$datos = array('titulo' => 'Proyecto', 'proyecto' => $proyecto);
 

@@ -1,6 +1,7 @@
 <div class="container">
 	<h1>Proyectos</h1>
-<?php if(isset($data['proyectos']) && (!empty($data['proyectos']))) :
+<?php if (isset($data['errores']['generic'])) HelperFunctions::mostrarErrores($data['errores']['generic']); ?>
+<?php if (isset($data['proyectos']) && (!empty($data['proyectos']))) :
 	$claves = array_keys($data['proyectos'][0]);?>
 
 <table border="1">
