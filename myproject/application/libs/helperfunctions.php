@@ -10,7 +10,7 @@
 		* @param  type $expira    [cuando expira la cookie, por defecto 2 anios]
 		*
 		*/
-		function generarCookie($id ,$contenido, $expira){
+		public static function generarCookie($id ,$contenido, $expira){
 			if(!isset($expira)){
 				$expira = time() + ((60*60*24*365)*2);
 			}
