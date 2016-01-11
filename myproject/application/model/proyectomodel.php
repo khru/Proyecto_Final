@@ -83,6 +83,9 @@ class ProyectoModel
 
 	public static function getSearch($busqueda){
 		$conn = Database::getInstance()->getDatabase();
+
+		$busqueda = '%' . $busqueda . '%';
+
 		$ssql = "SELECT cliente.nombre_corporativo as cliente, persona.nombre as nombre, persona.apellidos as apellidos,
 		persona.telefono as telefono, persona.nif as nif, persona.email as email, provincia.nombre as provincia, promocion,
 		fecha_inicio as 'fecha de inicio', fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado,
@@ -95,7 +98,9 @@ class ProyectoModel
 		persona.telefono like :busqueda OR persona.nif like :busqueda OR persona.email like :busqueda OR provincia.nombre like :busqueda OR
 		promocion like :busqueda OR fecha_inicio like :busqueda OR fecha_fin like :busqueda OR fecha_prevista like :busqueda OR estado like :busqueda
 		)AND proyecto.habilitado = 1";
+
 		$query = $conn->prepare($ssql);
+
 		$query->bindParam(':busqueda', $busqueda);
 		$query->execute();
 		return $query->fetchAll();
