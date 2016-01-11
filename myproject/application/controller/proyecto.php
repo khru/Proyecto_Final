@@ -59,7 +59,8 @@ class Proyecto
 			$proyectos = ProyectoModel::getSearch($_POST['buscar']);
 
 			$archivos = array("proyecto/crearproyecto","generic/buscador","proyecto/listartodos");
-			$datos = array('titulo' => 'Proyectos', 'proyectos' => $proyectos, 'destino' => 'proyecto/buscar');
+			$datos = array('titulo' => 'Proyectos', 'proyectos' => $proyectos, 'destino' => 'proyecto/buscar',
+						   'ultima_busqueda' => $_POST['buscar']);
 			View::renderMulti($archivos, $datos);
 		}
 	}
