@@ -307,6 +307,7 @@ insert into estado(descripcion) values ("confirmado");
 insert into estado(descripcion) values ("en proceso");
 insert into estado(descripcion) values ("finalizado");
 insert into estado(descripcion) values ("mantenimiento");
+insert into estado(descripcion) values ("desconocido");
 
 /* Comprobacion de la tabla estado */
 select * from estado;
