@@ -58,13 +58,17 @@
 				$conn = DBPDO::getInstance()->getDatabase();
 				$conn->beginTransaction();
 				if (($error = PersonaModel::insert()) === true) {
-					return $errores['generic'][] = "El usuario se a insertado correctamente";
+					$errores['generic'][] = "El usuario se a insertado correctamente";
+
 				} elseif (($error = PersonaModel::insert()) === false) {
-					return  $errores['generic'][] = "El usuario no se a insertado correctamente";
+					$errores['generic'][] = "El usuario no se a insertado correctamente";
+					// Si no se puede insertar el usuario hacemos un rollback
+					$conn->rollback();
 				} else {
 					// Almacenamos los errores los errores
 					$errores[] = $error;
 				}
+
 
 
 				// terminamos la transacción
