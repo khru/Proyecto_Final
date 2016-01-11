@@ -25,7 +25,7 @@ class Proyecto
 			header("Location: ". URL . "proyecto");
 		}
 
-		if($definitivo === true){
+		if($definitivo === "true"){
 			ProyectoModel::borrar($id);
 			header("Location: ". URL . "proyecto");
 			
