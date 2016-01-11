@@ -295,7 +295,7 @@ class ClassLoader
      * @param  string    $class The name of the class
      * @return bool|null True if loaded, null otherwise
      */
-    public function loadClass($class)
+    public function loadClas($class)
     {
         if ($file = $this->findFile(mb_strtolower($class))) {
             includeFile($file);
