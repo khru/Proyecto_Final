@@ -163,7 +163,9 @@
 								// conexión a la base de datos
 								$conn = DBPDO::getInstance()->getDatabase();
 								// consulta de la base de datos
-								$ssql = "INSERT INTO persona($fields) VALUES ($values)";
+								// Añadimos a la consulta la fecha de alta formateada
+								$fecha = date("Y-m-d");
+								$ssql = "INSERT INTO persona($fields) VALUES ($values, $fecha)";
 								// preparamos la consulta
 
 								$query = $conn->prepare($ssql);
