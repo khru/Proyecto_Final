@@ -69,6 +69,8 @@ class ProyectoModel
 
 		$query->execute();
 
+		return $query->rowCount();
+
 	}
 
 	public static function habilitar($id){
