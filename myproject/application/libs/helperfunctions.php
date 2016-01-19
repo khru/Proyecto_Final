@@ -87,7 +87,10 @@
 	 * @param  $array Array, el array con las opciones a listar
 	 * @param  $selected String, el campo que debe de estar seleccionado
 	 */
-	public static function optionList($array, $clave, $selected = null){
+	public static function optionList($array, $clave, $void = true, $selected = null){
+		if($void){ ?>
+			<option value='ninguna'>Ninguna</option>
+  <?php } 
 		foreach ($array as $key => $value) {
 			if($selected){
 				if($value[$clave] == $selected){?>

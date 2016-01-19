@@ -99,7 +99,7 @@ class Proyecto
 		if(!$_POST){
 			$proyecto = ProyectoModel::getProyecto($id);
 			$promos = PromocionModel::getAllPromociones();
-			$promoselected = PromocionModel::getPromocion($proyecto['promocion']);
+			$promoselected = PromocionModel::getPromocion($proyecto['promocion'])['codigo'];
 			if($proyecto){
 				$datos = array('destino' => 'proyecto/editar/'. $id, 
 					'proyecto' => $proyecto, 'submit' => 'Editar', 'promolist' => $promos,
@@ -110,7 +110,7 @@ class Proyecto
 			}
 
 		}else{
-			
+			ProyectoModel::update($id, $_POST);
 		}
 	}
 
@@ -118,16 +118,14 @@ class Proyecto
 
 		HelperFunctions::comprobarSesion();
 
-		if(Validaciones::validarId($id) !== true){
-			header("Location: ". URL . "proyecto");
-		}
-
 		if(!$_POST){
-			$datos = array('destino' => 'proyecto/crear', 'submit' => 'Crear');
+			$promos = PromocionModel::getAllPromociones();
+			$datos = array('destino' => 'proyecto/crear', 'submit' => 'Crear',
+				'promolist' => $promos);
 			View::render("proyecto/formulario", $datos);
 
 		}else{
-			echo "creando";
+			ProyectoModel::insert($_POST);
 		}
 	}
 

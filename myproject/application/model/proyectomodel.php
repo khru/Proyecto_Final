@@ -114,4 +114,20 @@ class ProyectoModel
 		$query->execute();
 		return $query->fetchAll();
 	}
+
+	public static function update($id, $data){
+		$id = intval($id);
+
+		$conn = Database::getInstance()->getDatabase();
+
+		$ssql = "UPDATE proyecto SET habilitado = 0 WHERE id = :id";
+
+		$query = $conn->prepare($ssql);
+
+		$query->bindParam(':id', $id);
+
+		$query->execute();
+
+		return $query->rowCount();
+	}
 }
