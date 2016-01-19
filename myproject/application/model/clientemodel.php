@@ -82,7 +82,7 @@
 			$query->bindParam(':nombre', $name, PDO::PARAM_INT);
 			$query->execute();
 			return $query->fetch();
-		} // getCliente()
+		} // getByName()
 
 	} // ClienteModel
 ?>
