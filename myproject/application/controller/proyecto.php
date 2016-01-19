@@ -98,6 +98,9 @@ class Proyecto
 
 		if(!$_POST){
 			$proyecto = ProyectoModel::getProyecto($id);
+			
+			$clientes = ClienteModel::getAll();
+			$clienteselected = ClienteModel::getCliente($proyecto['cliente_id'])['nombre corporativo'];
 			$promos = PromocionModel::getAllPromociones();
 			$promoselected = PromocionModel::getPromocion($proyecto['promocion'])['codigo'];
 			$estados = EstadoModel::getAll();
@@ -105,7 +108,8 @@ class Proyecto
 
 
 			if($proyecto){
-				$datos = array('destino' => 'proyecto/editar/'. $id, 
+				$datos = array('destino' => 'proyecto/editar/'. $id,
+					'clientelist' => $clientes, 'cliente_selected' => $clienteselected, 
 					'proyecto' => $proyecto, 'submit' => 'Editar', 'promolist' => $promos,
 					'promo_selected' => $promoselected, 'estadolist' => $estados,
 					'estado_selected' => $estadoselected);
@@ -125,10 +129,11 @@ class Proyecto
 		HelperFunctions::comprobarSesion();
 
 		if(!$_POST){
+			$clientes = ClienteModel::getAll();
 			$promos = PromocionModel::getAllPromociones();
 			$estados = EstadoModel::getAll();
 			$datos = array('destino' => 'proyecto/crear', 'submit' => 'Crear',
-				'promolist' => $promos, 'estadolist' => $estados);
+				'promolist' => $promos, 'estadolist' => $estados, 'clientelist' => $clientes);
 			View::render("proyecto/formulario", $datos);
 
 		}else{

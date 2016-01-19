@@ -213,19 +213,20 @@ create table cliente(
     id int(11) not null comment 'identificador del cliente',
     nombre_corporativo varchar(255) not null comment 'Nombre de la empresa',
     foreign key(id) references persona(id) on update cascade on delete restrict,
+    unique(nombre_corporativo),
     primary key(id)
 );
 
 /* Insercion de datos para los clientes */
 insert into cliente(id, nombre_corporativo) values (6, "Perros S.L");
-insert into cliente(id, nombre_corporativo) values (7, "Gatos S.L");
+insert into cliente(id, nombre_corporativo) values (6, "Gatos S.L");
 insert into cliente(id, nombre_corporativo) values (8, "Hermanos Condor S.L");
-insert into cliente(id, nombre_corporativo) values (11, "Mecanicos Neumatico S.L");
+insert into cliente(id, nombre_corporativo) values (14, "Mecanicos Neumatico S.L");
 insert into cliente(id, nombre_corporativo) values (12, "ferreteria Tornillo S.L");
 insert into cliente(id, nombre_corporativo) values (13, "Autoescuela Volante");
 insert into cliente(id, nombre_corporativo) values (14, "Pizzerias Italianos S.L");
 insert into cliente(id, nombre_corporativo) values (16, "Librerias Dante S.L");
-insert into cliente(id, nombre_corporativo) values (17, "Peluquerias Cabello S.L");
+insert into cliente(id, nombre_corporativo) values (19, "Peluquerias Cabello S.L");
 insert into cliente(id, nombre_corporativo) values (19, "Funeraria Muerto S.L");
 
 

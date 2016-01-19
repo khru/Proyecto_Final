@@ -74,5 +74,15 @@
 			}else return true;
 			
 		} // habilitar()
+
+		public static function getByName($name){
+			$conn = Database::getInstance()->getDatabase();
+			$ssql = "SELECT * from cliente where nombre_corporativo = :nombre";
+			$query = $conn->prepare($ssql);
+			$query->bindParam(':nombre', $name, PDO::PARAM_INT);
+			$query->execute();
+			return $query->fetch();
+		} // getCliente()
+
 	} // ClienteModel
 ?>

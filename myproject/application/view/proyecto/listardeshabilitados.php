@@ -1,5 +1,5 @@
 <div class="container">
-	<h1>Clientes Deshabilitados</h1>
+	<h1>Proyectos Deshabilitados</h1>
 <?php if (isset($data['deshabilitados']) && (!empty($data['deshabilitados']))) :
 	$claves = array_keys($data['deshabilitados'][0]);?>
 

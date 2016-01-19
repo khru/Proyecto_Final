@@ -40,7 +40,7 @@ class ProyectoModel
 		$id = intval($id);
 		
 		$conn = Database::getInstance()->getDatabase();
-		$ssql = "SELECT proyecto.id, cliente.nombre_corporativo as cliente, promocion, fecha_inicio as 'fecha de inicio',
+		$ssql = "SELECT proyecto.id, cliente.id as cliente_id, cliente.nombre_corporativo as cliente, promocion, fecha_inicio as 'fecha de inicio',
 		fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado, estado.id as estado_id, proyecto.habilitado
 		FROM proyecto inner join estado on (proyecto.estado = estado.id)
 					  inner join cliente on (proyecto.cliente = cliente.id)
@@ -116,17 +116,60 @@ class ProyectoModel
 		return $query->fetchAll();
 	}
 
-	public static function update($id, $data){
-		$id = intval($id);
-
+	public static function insert($data){
+	
 		$conn = Database::getInstance()->getDatabase();
 
-		$ssql = "UPDATE proyecto SET habilitado = 0 WHERE id = :id";
+		$cliente = $data['cliente'];
+		$promocion = $data['promocion'];
+		$fecha_inicio = $data['fecha_inicio'];
+		$fecha_fin = $data['fecha_fin'];
+		$fecha_prevista = $data['fecha_prevista'];
+		$estado = $data['estado'];
+
+		$ssql = "INSERT INTO proyecto (cliente, ";
+
+		if($promocion != 'ninguna'){
+			$ssql .= "promocion, ";
+		}
+
+		$ssql .= "fecha_inicio, fecha_fin, estado";
+
+		if(!empty($fecha_prevista)){
+			$ssql .= ", fecha_prevista";
+		}
+
+		$ssql .= ") values (:cliente, ";
+
+		if($promocion != 'ninguna'){
+			$ssql .= ":promocion, ";
+		}
+
+		$ssql .= ":fecha_inicio, :fecha_fin, :estado";
+
+		if(!empty($fecha_prevista)){
+			$ssql .= ", :fecha_prevista";
+		}
+
+		$ssql .= ")";
 
 		$query = $conn->prepare($ssql);
 
-		$query->bindParam(':id', $id);
+		$query->bindParam(':cliente', $cliente);
 
+		if($promocion != 'ninguna'){
+			$promocion = PromocionModel::getByCode($promocion);
+			$query->bindParam(':promocion', $promocion);
+		}
+		
+		$query->bindParam(':fecha_inicio', $fecha_inicio);
+		$query->bindParam(':fecha_fin', $fecha_fin);
+		$query->bindParam(':estado', $estado);
+
+		if(!empty($fecha_prevista)){
+			$query->bindParam(':fecha_prevista', $fecha_prevista);
+		}
+		
 		$query->execute();
 
 		return $query->rowCount();

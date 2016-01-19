@@ -2,7 +2,9 @@
 <h1>Proyecto</h1>
 	<form action="<?=URL . $data['destino']?>" method="post">
 		<label for="cliente">Cliente</label><br/>
-		<input type="text" name="cliente" value="<?php if(isset($data['proyecto'])) HelperFunctions::mostrarDatos($data['proyecto'],'cliente')?>"><br/>
+		<select name="cliente">
+			<?php HelperFunctions::optionList($data['clientelist'], 'nombre corporativo', false , $data['cliente_selected']); ?>
+		</select><br/>
 		<label for="cliente">Promoción</label><br/>
 		<select name="promocion">
 			<?php HelperFunctions::optionList($data['promolist'], 'codigo', true , $data['promo_selected']); ?>
