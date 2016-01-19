@@ -30,7 +30,7 @@
 		<td><?=$value['nif']?></td>
 		<td><?=$value['email']?></td>
 		<td><?=$value['provincia']?></td>
-		<td><a href="<?=URL . 'promociones/mostrarPromocion/' . $value['promo_id']?>"><?=$value['promocion']?></a></td>
+		<td><a href="<?=URL . 'promocion/mostrarPromocion/' . $value['promo_id']?>"><?=$value['promocion']?></a></td>
 		<td><?=$value['fecha de inicio']?></td>
 		<td><?=$value['fecha de fin']?></td>
 		<td><?=$value['fecha prevista']?></td>
