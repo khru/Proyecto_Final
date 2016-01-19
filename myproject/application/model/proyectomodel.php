@@ -41,7 +41,7 @@ class ProyectoModel
 		
 		$conn = Database::getInstance()->getDatabase();
 		$ssql = "SELECT proyecto.id, cliente.nombre_corporativo as cliente, promocion, fecha_inicio as 'fecha de inicio',
-		fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado, proyecto.habilitado
+		fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado, estado.id as estado_id, proyecto.habilitado
 		FROM proyecto inner join estado on (proyecto.estado = estado.id)
 					  inner join cliente on (proyecto.cliente = cliente.id)
 		where proyecto.id = :id";
@@ -95,17 +95,18 @@ class ProyectoModel
 
 		$busqueda = '%' . $busqueda . '%';
 
-		$ssql = "SELECT proyecto.id as id, cliente.nombre_corporativo as cliente, persona.nombre as nombre, persona.apellidos as apellidos,
-		persona.telefono as telefono, persona.nif as nif, persona.email as email, provincia.nombre as provincia, promocion,
-		fecha_inicio as 'fecha de inicio', fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado,
+		$ssql = "SELECT proyecto.id as id, cliente.id as cliente_id, cliente.nombre_corporativo as cliente, persona.nombre as nombre, persona.apellidos as apellidos,
+		persona.telefono as telefono, persona.nif as nif, persona.email as email, provincia.nombre as provincia, promocion as promo_id, promo.codigo as promocion,
+		proyecto.fecha_inicio as 'fecha de inicio', proyecto.fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado,
 		proyecto.habilitado
 		FROM proyecto inner join estado on (proyecto.estado = estado.id)
 					  inner join cliente on (proyecto.cliente = cliente.id)
 					  inner join persona on (cliente.id = persona.id)
 					  inner join provincia on (persona.provincia = provincia.id)
+					  left outer join promo on (proyecto.promocion = promo.id)
 		where (cliente.nombre_corporativo like :busqueda OR persona.nombre like :busqueda OR persona.apellidos like :busqueda OR
 		persona.telefono like :busqueda OR persona.nif like :busqueda OR persona.email like :busqueda OR provincia.nombre like :busqueda OR
-		promocion like :busqueda OR fecha_inicio like :busqueda OR fecha_fin like :busqueda OR fecha_prevista like :busqueda OR estado like :busqueda
+		promocion like :busqueda OR proyecto.fecha_inicio like :busqueda OR proyecto.fecha_fin like :busqueda OR fecha_prevista like :busqueda OR estado like :busqueda
 		)AND proyecto.habilitado = 1";
 
 		$query = $conn->prepare($ssql);

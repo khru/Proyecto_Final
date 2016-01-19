@@ -14,7 +14,9 @@
 		<label for="cliente">Fecha Prevista</label><br/>
 		<input type="date" name="fecha prevista" value="<?php if(isset($data['proyecto'])) HelperFunctions::mostrarDatos($data['proyecto'],'fecha prevista')?>"><br/>
 		<label for="cliente">Estado</label><br/>
-		<input type="text" name="estado" value="<?php if(isset($data['proyecto'])) HelperFunctions::mostrarDatos($data['proyecto'],'estado')?>"><br/>
+		<select name="estado">
+			<?php HelperFunctions::optionList($data['estadolist'], 'descripcion', false , $data['estado_selected']); ?>
+		</select><br>
 		<input type="submit" value="<?=$data['submit']?>">
 	</form>
 	<br/>

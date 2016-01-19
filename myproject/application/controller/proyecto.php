@@ -100,10 +100,16 @@ class Proyecto
 			$proyecto = ProyectoModel::getProyecto($id);
 			$promos = PromocionModel::getAllPromociones();
 			$promoselected = PromocionModel::getPromocion($proyecto['promocion'])['codigo'];
+			$estados = EstadoModel::getAll();
+			$estadoselected = EstadoModel::getEstado($proyecto['estado_id'])['descripcion'];
+
+
 			if($proyecto){
 				$datos = array('destino' => 'proyecto/editar/'. $id, 
 					'proyecto' => $proyecto, 'submit' => 'Editar', 'promolist' => $promos,
-					'promo_selected' => $promoselected);
+					'promo_selected' => $promoselected, 'estadolist' => $estados,
+					'estado_selected' => $estadoselected);
+
 				View::render("proyecto/formulario", $datos);
 			}else{
 				header("Location: " . URL . "proyecto");
@@ -120,8 +126,9 @@ class Proyecto
 
 		if(!$_POST){
 			$promos = PromocionModel::getAllPromociones();
+			$estados = EstadoModel::getAll();
 			$datos = array('destino' => 'proyecto/crear', 'submit' => 'Crear',
-				'promolist' => $promos);
+				'promolist' => $promos, 'estadolist' => $estados);
 			View::render("proyecto/formulario", $datos);
 
 		}else{
