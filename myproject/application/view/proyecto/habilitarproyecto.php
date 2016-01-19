@@ -1,3 +1,4 @@
+<?php if(isset($data['errores'])) HelperFunctions::mostrarErrores($data['errores']);?>
 <p>¿Está seguro de que quiere habilitar este proyecto?</p>
 <p>Este proyecto pasará al listado de proyectos habilitados</p>
 <a href="<?= URL . 'proyecto/' ?>">

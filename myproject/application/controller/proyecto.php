@@ -49,6 +49,7 @@ class Proyecto
 		HelperFunctions::comprobarSesion();
 
 		if(Validaciones::validarId($id) !== true){
+		
 			header("Location: ". URL . "proyecto");
 		}
 
@@ -105,7 +106,10 @@ class Proyecto
 			}
 
 		}else{
-			echo "editando";
+			$proyecto = ProyectoModel::getProyecto($id);
+
+			$datos = array('titulo' => 'Editar Proyecto', 'proyecto' => $proyecto);
+			View::render("proyecto/formproyecto", $datos);
 		}
 	}
 

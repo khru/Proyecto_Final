@@ -56,46 +56,36 @@ class ProyectoModel
 	}
 
 	public static function borrar($id){
-		$errores = array();
-
-		if(($err = Validaciones::validarId($id)) !== true){
-			$errores = $err;
-			return $errores;
-		}
-		
-		$conn = Database::getInstance()->getDatabase();
-		$ssql = "UPDATE proyecto SET habilitado = 0 WHERE id = :id";
-		$query = $conn->prepare($ssql);
-		$query->bindParam(':id', $id);
-
-		if(!$query->execute() || $query->rowCount() !== 1){
-			$errores[] = "No se ha podido borrar el proyecto especificado";
-		}
-
-		if($errores){
-			return $errores;
-		}else return true;
-
-	}
-
-	public static function habilitar($id){
-		$errores = array();
 		
 		$id = intval($id);
 
 		$conn = Database::getInstance()->getDatabase();
-		$ssql = "UPDATE proyecto SET habilitado = 1 WHERE id = :id";
+
+		$ssql = "UPDATE proyecto SET habilitado = 0 WHERE id = :id";
+
 		$query = $conn->prepare($ssql);
+
 		$query->bindParam(':id', $id);
 
-		if(!$query->execute()){
-			$errores[] = "No se ha podido habilitar el proyecto especificado";
-		}
+		$query->execute();
 
-		if($errores){
-			return $errores;
-		}else return true;
+	}
 
+	public static function habilitar($id){
+		
+		$id = intval($id);
+
+		$conn = Database::getInstance()->getDatabase();
+
+		$ssql = "UPDATE proyecto SET habilitado = 1 WHERE id = :id";
+
+		$query = $conn->prepare($ssql);
+
+		$query->bindParam(':id', $id);
+
+		$query->execute();
+
+		return $query->rowCount();
 	}
 
 	public static function getSearch($busqueda){
