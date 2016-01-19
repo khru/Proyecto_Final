@@ -23,6 +23,12 @@
 			}
 		}// mostrarErrores()
 
+		public static function mostrarDatos($array, $clave){
+			if(isset($array[$clave])){
+				echo $array[$clave];
+			}
+		}
+
 		/**
 		 * Método que encripta la contraseña
 		 * @param  String $passwd Contraseña a cifrar

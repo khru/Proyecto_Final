@@ -106,10 +106,7 @@ class Proyecto
 			}
 
 		}else{
-			$proyecto = ProyectoModel::getProyecto($id);
-
-			$datos = array('titulo' => 'Editar Proyecto', 'proyecto' => $proyecto);
-			View::render("proyecto/formproyecto", $datos);
+			
 		}
 	}
 
