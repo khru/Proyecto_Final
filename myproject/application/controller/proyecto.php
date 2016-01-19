@@ -98,8 +98,12 @@ class Proyecto
 
 		if(!$_POST){
 			$proyecto = ProyectoModel::getProyecto($id);
+			$promos = PromocionModel::getAllPromociones();
+			$promoselected = PromocionModel::getPromocion($proyecto['promocion']);
 			if($proyecto){
-				$datos = array('destino' => 'proyecto/editar/'. $id, 'proyecto' => $proyecto, 'submit' => 'Editar');
+				$datos = array('destino' => 'proyecto/editar/'. $id, 
+					'proyecto' => $proyecto, 'submit' => 'Editar', 'promolist' => $promos,
+					'promo_selected' => $promoselected);
 				View::render("proyecto/formulario", $datos);
 			}else{
 				header("Location: " . URL . "proyecto");

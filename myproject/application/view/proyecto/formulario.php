@@ -4,7 +4,9 @@
 		<label for="cliente">Cliente</label><br/>
 		<input type="text" name="cliente" value="<?php if(isset($data['proyecto'])) HelperFunctions::mostrarDatos($data['proyecto'],'cliente')?>"><br/>
 		<label for="cliente">Promoción</label><br/>
-		<input type="text" name="promocion" value="<?php if(isset($data['proyecto'])) HelperFunctions::mostrarDatos($data['proyecto'],'promocion')?>"><br/>
+		<select name="promocion">
+			<?php HelperFunctions::optionList($data['promolist'], 'descripcion', $data['promo_selected']); ?>
+		</select>
 		<label for="cliente">Fecha de Inicio</label><br/>
 		<input type="date" name="fecha de inicio" value="<?php if(isset($data['proyecto'])) HelperFunctions::mostrarDatos($data['proyecto'],'fecha de inicio')?>"><br/>
 		<label for="cliente">Fecha de Fin</label><br/>

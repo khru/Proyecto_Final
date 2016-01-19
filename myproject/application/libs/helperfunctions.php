@@ -81,4 +81,24 @@
 			return $params;
 		}// normalizePrepareArray()
 
+		/**
+	 * optionList(array, string)
+	 * Genera código html para listar las opciones de un array
+	 * @param  $array Array, el array con las opciones a listar
+	 * @param  $selected String, el campo que debe de estar seleccionado
+	 */
+	public static function optionList($array, $clave, $selected = null){
+		foreach ($array as $key => $value) {
+			if($selected){
+				if($value[$clave] == $selected){?>
+					<option selected ="selected" value='<?=$value[$clave]?>'><?=$value[$clave]?></option>;
+		  <?php }else{?>
+					<option value='<?=$value[$clave]?>'><?=$value[$clave]?></option>;
+		  <?php }
+			}else{ ?>
+				<option value='<?=$value[$clave]?>'><?=$value[$clave]?></option>;
+	  <?php }
+		}
+	}//optionList()
+
 }// fin de la clase
