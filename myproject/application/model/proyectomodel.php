@@ -3,10 +3,14 @@ class ProyectoModel
 {
 	public static function getAll(){
 		$conn = Database::getInstance()->getDatabase();
-		$ssql = "SELECT proyecto.id, cliente.nombre_corporativo as cliente, promocion, fecha_inicio as 'fecha de inicio',
-		fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado
+		$ssql = "SELECT proyecto.id as id, cliente.nombre_corporativo as cliente, persona.nombre as nombre, persona.apellidos as apellidos,
+		persona.telefono as telefono, persona.nif as nif, persona.email as email, provincia.nombre as provincia, promocion,
+		fecha_inicio as 'fecha de inicio', fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado,
+		proyecto.habilitado
 		FROM proyecto inner join estado on (proyecto.estado = estado.id)
 					  inner join cliente on (proyecto.cliente = cliente.id)
+					  inner join persona on (cliente.id = persona.id)
+					  inner join provincia on (persona.provincia = provincia.id)
 		where proyecto.habilitado = 1";
 		$query = $conn->prepare($ssql);
 		$query->execute();
@@ -15,10 +19,14 @@ class ProyectoModel
 
 	public static function getAllDisabled(){
 		$conn = Database::getInstance()->getDatabase();
-		$ssql = "SELECT proyecto.id, cliente.nombre_corporativo as cliente, promocion, fecha_inicio as 'fecha de inicio',
-		fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado
+		$ssql = "SELECT proyecto.id as id, cliente.nombre_corporativo as cliente, persona.nombre as nombre, persona.apellidos as apellidos,
+		persona.telefono as telefono, persona.nif as nif, persona.email as email, provincia.nombre as provincia, promocion,
+		fecha_inicio as 'fecha de inicio', fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado,
+		proyecto.habilitado
 		FROM proyecto inner join estado on (proyecto.estado = estado.id)
 					  inner join cliente on (proyecto.cliente = cliente.id)
+					  inner join persona on (cliente.id = persona.id)
+					  inner join provincia on (persona.provincia = provincia.id)
 		where proyecto.habilitado = 0";
 		$query = $conn->prepare($ssql);
 		$query->execute();
@@ -93,7 +101,7 @@ class ProyectoModel
 
 		$busqueda = '%' . $busqueda . '%';
 
-		$ssql = "SELECT cliente.nombre_corporativo as cliente, persona.nombre as nombre, persona.apellidos as apellidos,
+		$ssql = "SELECT proyecto.id as id, cliente.nombre_corporativo as cliente, persona.nombre as nombre, persona.apellidos as apellidos,
 		persona.telefono as telefono, persona.nif as nif, persona.email as email, provincia.nombre as provincia, promocion,
 		fecha_inicio as 'fecha de inicio', fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado,
 		proyecto.habilitado

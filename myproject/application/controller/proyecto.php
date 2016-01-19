@@ -31,18 +31,16 @@ class Proyecto
 
 
 		}else{
-			if(!$_POST){
-				$proyecto = ProyectoModel::getProyecto($id);
+			$proyecto = ProyectoModel::getProyecto($id);
 
-				if(!$proyecto){
-					header("Location: ". URL . "proyecto");
-				}
-
-				$archivos = array("proyecto/listarproyecto", "proyecto/borrarproyecto");
-				$datos = array('titulo' => 'Proyecto', 'proyecto' => $proyecto);
-
-				View::renderMulti($archivos, $datos);
+			if(!$proyecto){
+				header("Location: ". URL . "proyecto");
 			}
+
+			$archivos = array("proyecto/listarproyecto", "proyecto/borrarproyecto");
+			$datos = array('titulo' => 'Proyecto', 'proyecto' => $proyecto);
+
+			View::renderMulti($archivos, $datos);
 		}
 	}
 
