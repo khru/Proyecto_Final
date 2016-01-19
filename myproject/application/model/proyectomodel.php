@@ -4,7 +4,7 @@ class ProyectoModel
 	public static function getAll(){
 		$conn = Database::getInstance()->getDatabase();
 		$ssql = "SELECT proyecto.id as id, cliente.id as cliente_id, cliente.nombre_corporativo as cliente, persona.nombre as nombre, persona.apellidos as apellidos,
-		persona.telefono as telefono, persona.nif as nif, persona.email as email, provincia.nombre as provincia, promocion, promo.id as promo_id,
+		persona.telefono as telefono, persona.nif as nif, persona.email as email, provincia.nombre as provincia, promocion as promo_id, promo.codigo as promocion,
 		proyecto.fecha_inicio as 'fecha de inicio', proyecto.fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado,
 		proyecto.habilitado
 		FROM proyecto inner join estado on (proyecto.estado = estado.id)
@@ -21,7 +21,7 @@ class ProyectoModel
 	public static function getAllDisabled(){
 		$conn = Database::getInstance()->getDatabase();
 		$ssql = "SELECT proyecto.id as id, cliente.id as cliente_id, cliente.nombre_corporativo as cliente, persona.nombre as nombre, persona.apellidos as apellidos,
-		persona.telefono as telefono, persona.nif as nif, persona.email as email, provincia.nombre as provincia, promocion, promo.id as promo_id,
+		persona.telefono as telefono, persona.nif as nif, persona.email as email, provincia.nombre as provincia, promocion as promo_id, promo.codigo as promocion,
 		proyecto.fecha_inicio as 'fecha de inicio', proyecto.fecha_fin as 'fecha de fin', fecha_prevista as 'fecha prevista', estado.descripcion as estado,
 		proyecto.habilitado
 		FROM proyecto inner join estado on (proyecto.estado = estado.id)
