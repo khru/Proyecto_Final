@@ -23,13 +23,14 @@
 <?php foreach ($data['proyectos'] as $key => $value): ?>
 	<tr>
 		<td><?=$value['id']?></td>
-		<td><?=$value['cliente']?></td>
+		<td><a href="<?=URL . 'cliente/listarcliente/' . $value['cliente_id']?>"><?=$value['cliente']?></a></td>
 		<td><?=$value['nombre']?></td>
 		<td><?=$value['apellidos']?></td>
 		<td><?=$value['telefono']?></td>
 		<td><?=$value['nif']?></td>
+		<td><?=$value['email']?></td>
 		<td><?=$value['provincia']?></td>
-		<td><?=$value['promocion']?></td>
+		<td><a href="<?=URL . 'promociones/listarpromocion/' . $value['promo_id']?>"><?=$value['promocion']?></a></td>
 		<td><?=$value['fecha de inicio']?></td>
 		<td><?=$value['fecha de fin']?></td>
 		<td><?=$value['fecha prevista']?></td>

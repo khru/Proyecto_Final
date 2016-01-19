@@ -329,11 +329,11 @@ create table proyecto(
 );
 
 /* Insercion de datos en la tabla proyecto */
-insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (6, "2000-12-10", "2001-01-12", "2001-02-01", 1);
-insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado, habilitado) values (7, "2003-12-10", "2004-01-12", "2001-02-01", 1, 0);
+insert into proyecto(cliente, promocion, fecha_inicio, fecha_fin, fecha_prevista , estado) values (6, 4, "2000-12-10", "2001-01-12", "2001-02-01", 1);
+insert into proyecto(cliente, promocion, fecha_inicio, fecha_fin, fecha_prevista , estado, habilitado) values (7, 3, "2003-12-10", "2004-01-12", "2001-02-01", 1, 0);
 insert into proyecto(cliente, fecha_inicio, fecha_prevista , estado) values (8, "2015-12-10", "2016-02-19", 3);
 insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (11, "2001-12-22", "2002-01-12", "2002-02-10", 2);
-insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (12, "2000-12-10", "2001-04-22", "2001-04-24", 4);
+insert into proyecto(cliente, promocion, fecha_inicio, fecha_fin, fecha_prevista , estado) values (12, 2, "2000-12-10", "2001-04-22", "2001-04-24", 4);
 insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (13, "2002-8-03", "2002-10-10", "2001-09-27", 5);
 insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado, habilitado) values (14, "2007-01-04", "2007-03-01", "2007-03-05", 1, 0);
 insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (16, "2005-12-11", "2005-01-12", "2005-02-01", 2);
