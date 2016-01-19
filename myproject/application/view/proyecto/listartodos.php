@@ -5,25 +5,40 @@
 
 <table border="1">
 	<tr>
-<?php 	foreach ($claves as $clave => $valor) : ;	//Se listan las cabeceras de la tabla?>
-
-			<th><?=$valor?></th>
-
-<?php 	endforeach ?>
-			<th colspan="2">Cambiar</th>
+		<td>Id</td>
+		<td>Cliente</td>
+		<td>Nombre</td>
+		<td>Apellidos</td>
+		<td>Teléfono</td>
+		<td>NIF</td>
+		<td>Email</td>
+		<td>Provincia</td>
+		<td>Promoción</td>
+		<td>Fecha de Inicio</td>
+		<td>Fecha de Fin</td>
+		<td>Fecha Prevista</td>
+		<td>Estado</td>
+		<td colspan="2">Cambiar</td>
 	</tr>
-
-<?php   foreach ($data['proyectos'] as $clave => $valor) : //Se listan los datos?>
+<?php foreach ($data['proyectos'] as $key => $value): ?>
 	<tr>
-		<?php foreach ($valor as $clave => $datos) : ?>
-
-				<td><?=$datos?></td>
-
-		<?php endforeach ?>
-				<td><a href="<?=URL . 'proyecto/editar/' . $valor['id']?>">Editar</a></td>
-				<td><a href="<?=URL . 'proyecto/borrar/' . $valor['id']?>">Borrar</a></td>
+		<td><?=$value['id']?></td>
+		<td><?=$value['cliente']?></td>
+		<td><?=$value['nombre']?></td>
+		<td><?=$value['apellidos']?></td>
+		<td><?=$value['telefono']?></td>
+		<td><?=$value['nif']?></td>
+		<td><?=$value['provincia']?></td>
+		<td><?=$value['promocion']?></td>
+		<td><?=$value['fecha de inicio']?></td>
+		<td><?=$value['fecha de fin']?></td>
+		<td><?=$value['fecha prevista']?></td>
+		<td><?=$value['estado']?></td>
+		<td><a href="<?=URL . 'proyecto/editar/' . $value['id']?>">Editar</a></td>
+		<td><a href="<?=URL . 'proyecto/borrar/' . $value['id']?>">Borrar</a></td>
 	</tr>
-  <?php endforeach ?>
+<?php endforeach ?>
+	
 </table>
 <p>Total: <?=count($data['proyectos'])?></p>
 <?php else : echo "No hay datos que listar"; endif?>
