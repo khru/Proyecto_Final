@@ -120,7 +120,7 @@ class ProyectoModel
 	
 		$conn = Database::getInstance()->getDatabase();
 
-		$cliente = $data['cliente'];
+		$cliente = ClienteModel::getByCode($data['cliente']);
 		$promocion = $data['promocion'];
 		$fecha_inicio = $data['fecha_inicio'];
 		$fecha_fin = $data['fecha_fin'];
