@@ -28,7 +28,7 @@
 <p>
 	<label for "provincia">Provincia:</label>
 	<select name="cliente">
-	<?php HelperFunctions::optionList($data['provincialist'], 'nombre', false , $data['provincia_selected']); ?>
+	<?php HelperFunctions::optionList($data['provincialist'], 'nombre', false , isset($data['provincia_selected']) ? $data['categoria_selected'] : null); ?>
 	</select><br/>
 </p>
 

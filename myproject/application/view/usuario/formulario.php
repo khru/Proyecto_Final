@@ -5,10 +5,18 @@
 		<?php if (isset($data['errores']['nick'])) HelperFunctions::mostrarErrores($data['errores']['nick']); ?>
 	</p>
 	<p>
-		<label for "pass">Password:</label>
-		<input type="password" name="pass" maxlength="30" value="<?php (isset($_POST['pass'])) ? HelperFunctions::mostrarDatos($data['cliente']['pass']) : ""; ?>" required autofocus><br>
-		<?php if (isset($data['errores']['pass'])) HelperFunctions::mostrarErrores($data['errores']['pass']); ?>
+		<label for "pass1">Password:</label>
+		<input type="password" name="pass1" maxlength="30" value="<?php (isset($_POST['pass1'])) ? HelperFunctions::mostrarDatos($data['cliente']['pass1']) : ""; ?>" required autofocus><br>
+		<?php if (isset($data['errores']['pass1'])) HelperFunctions::mostrarErrores($data['errores']['pass1']); ?>
 	</p>
+	<?php if($data['submit'] === "Crear") : ?>
+	<p>
+		<label for "pass2">Repetir password:</label>
+		<input type="password" name="pass2" maxlength="30" value="<?php (isset($_POST['pass2'])) ? HelperFunctions::mostrarDatos($data['cliente']['pass2']) : ""; ?>" required autofocus><br>
+		<?php if (isset($data['errores']['pass2'])) HelperFunctions::mostrarErrores($data['errores']['pass2']); ?>
+	</p>
+
+	<?php endif ?>
 	<p>
 		<label for "categoria">Categoria del usuario:</label>
 		<select name="categoria">

@@ -66,28 +66,36 @@
 				$errores = [];
 				$campos = [];
 				//  validamos el nombre
-				if (($err = Validaciones::validarNombre($_POST["nombre"])) !== true) {
-					$errores["nombre"] = $err;
-				} else {
-					// si hay nombre lo ponemos en un array
-					$campos[":nombre"] = $_POST["nombre"];
+				if (isset($_POST["nombre"])) {
+					if (($err = Validaciones::validarNombre($_POST["nombre"])) !== true) {
+						$errores["nombre"] = $err;
+					} else {
+						// si hay nombre lo ponemos en un array
+						$campos[":nombre"] = $_POST["nombre"];
+					}
 				}
 
-				// Validamos los apellidos
-				if (($err = Validaciones::validarApellidos($_POST["apellidos"])) !== true) {
-					$errores["apellidos"] = $err;
-				} else {
-					// si son validos los apellidos lo preparamos para el bindeo
-					$campos[":apellidos"] = $_POST["apellidos"];
+				if (isset($_POST["apellidos"])) {
+					// Validamos los apellidos
+					if (($err = Validaciones::validarApellidos($_POST["apellidos"])) !== true) {
+						$errores["apellidos"] = $err;
+					} else {
+						// si son validos los apellidos lo preparamos para el bindeo
+						$campos[":apellidos"] = $_POST["apellidos"];
+					}
 				}
 
-				// validamos el email
-				if (($err = Validaciones::validarEmail($_POST["email"])) !== true) {
-					$errores["email"] = $err;
-				} else {
-					// si es valido, preparamos para el bindeo
-					$campos[":email"] = $_POST["email"];
+
+				if (isset($_POST["email"])) {
+					// validamos el email
+					if (($err = Validaciones::validarEmail($_POST["email"])) !== true) {
+						$errores["email"] = $err;
+					} else {
+						// si es valido, preparamos para el bindeo
+						$campos[":email"] = $_POST["email"];
+					}
 				}
+
 
 				if (isset($_POST["direccion"])) {
 					// Si existe la dirección se valida
@@ -102,26 +110,10 @@
 				// si existe la provincia
 				if (isset($_POST["provincia"])) {
 					// se valida la provincia
-					if (($err = Validaciones::validarId($_POST["provincia"])) !== true) {
-						$errores["provincia"] = $err;
+					if (($err = provinciaModel::getProvinciaByNombre($_POST["provincia"])) !== true) {
+						$errores["provincia"][] = "La provincia no existe";
 					} else {
-						// comprobamos que dicho id exista en la base de datos
-						// Sino lanzamos un error
-						try {
-							$conn = Database::getInstance()->getDatabase();
-							$ssql = "SELECT * FROM categoria WHERE id = :id";
-							$prepare = $conn->prepare($ssql);
-							$prepare->bindParam(":id", $id, PDO::PARAM_INT);
-							$prepare->execute();
-							if ($prepare->rowCount() === 1) {
-								// si existe la preparo
-								$campos[":provincia"] = $_POST["provincia"];
-							} else{
-								$errores["provincia"][] = "La provincia no existe";
-							}
-						} catch (PDOException $e) {
-							return $errores['generic'][] = "Error en la base de datos";
-						}// fin del try - catch
+						$campos[":provincia"] = $_POST["provincia"];
 					}
 				}// si existe provincia
 

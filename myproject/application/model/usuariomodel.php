@@ -98,22 +98,22 @@
 			if ($_POST) {
 				// Validamos todas las variables de $_POST
 				$_POST = Validaciones::sanearEntrada($_POST);
-				try {
 					// empezamos la transacción
-					$conn = DBPDO::getInstance()->getDatabase();
+					$conn = Database::getInstance()->getDatabase();
 					$conn->beginTransaction();
 					if (($error = PersonaModel::insert()) === true) {
 						// Comprobaos los campos requeridos en la tabla
-						if (isset($_POST["nick"]) && isset($_POST["pass1"]) && isset($_POST["pass2"]) && isset($_POST["categoria"]) && isset($_POST["carpeta"]) && isset($_POST["img"])) {
+						if (isset($_POST["carpeta"]) && isset($_POST["img"])) {
 							// Si cualquiera de los campos requeridos
 							// Diese un error deberemos lanzar un rollback
 
-							// validar Nick
+						// validar Nick
+						if (isset($_POST["nick"])) {
 							if (($err = Validaciones::validarNick($_POST["nick"])) !== true) {
 								// comprobamos que dicho nick exista en la base de datos
 								// Sino lanzamos un error
 								try {
-									$conn = DBPDO::getInstance()->getDatabase();
+									$conn = Database::getInstance()->getDatabase();
 									$ssql = "SELECT * FROM usuario WHERE nick = :nick";
 									$prepare = $conn->prepare($ssql);
 									$prepare->bindParam(":nick", $_POST["nick"], PDO::PARAM_STR);
@@ -127,41 +127,37 @@
 								} catch (PDOException $e) {
 									return $errores['generic'][] = "Error en la base de datos";
 								}
-								$errores["nick"] = $err;
-							}
 
-							// Validar contraseña
+							} else {
+
+							}
+						}
+
+
+						// Validar contraseña
+						if (isset($_POST["pass1"]) && isset($_POST["pass1"])) {
 							if (($err = Validaciones::validarPassAlta($_POST["pass1"], $_POST["pass2"])) !== true) {
 								$errores["pass"] = $err;
 							} else {
 								$campos[":pass"] = $_POST["pass1"];
 							}
+						} else {
+							$errores["pass"][] = "Una de las contraseñas o ambas no han sido introducidas";
+						}
+
+						if (isset($_POST["categoria"])) {
 
 							// Validar la categoría
 							// En el formulario es un campo select
 							// el cual tiene como value el valor de la BD
 							// de forma que aqui solo hay que validar el id de la categria
-							if (($err = Validaciones::validarPassId($_POST["categoria"])) !== true) {
-								$errores["categoria"] = $err;
+							if (($err = CategoriaModel::getCategoriaByNombre($_POST["categoria"])) !== true) {
+								$errores["categoria"][] = "La categoría no existe";
 							} else {
-								// comprobamos que dicho id exista en la base de datos
-								// Sino lanzamos un error
-								try {
-									$conn = DBPDO::getInstance()->getDatabase();
-									$ssql = "SELECT * FROM categoria WHERE id = :id";
-									$prepare = $conn->prepare($ssql);
-									$prepare->bindParam(":id", $_POST["categoria"], PDO::PARAM_INT);
-									$prepare->execute();
-									if ($prepare->rowCount() === 1) {
-										// si existe la preparo
-										$campos[":categoria"] = $_POST["categoria"];
-									} else{
-										$errores["categoria"][] = "La categoria no existe";
-									}
-								} catch (PDOException $e) {
-									return $errores['generic'][] = "Error en la base de datos";
-								}
+								$campos[":categoria"] = $_POST["categoria"];
 							}// fin de las comprobaciones de categoria
+						}
+
 
 							// Si hay errores los retornamos
 							if ($errores) {
@@ -169,7 +165,6 @@
 								return Validaciones::resultado($errores);
 							} else {
 								// Insertamos todos los valores
-
 
 							}
 
@@ -190,12 +185,6 @@
 						$conn->rollback();
 						return Validaciones::resultado($errores);
 					}
-
-
-				// terminamos la transacción
-				} catch (PDOException $e) {
-
-				}
 			} else {
 				$errores['generic'][] = "No se han recivido datos";
 				return Validaciones::resultado($errores);

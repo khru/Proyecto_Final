@@ -16,5 +16,18 @@
 			$query->execute();
 			return $query->fetchAll();
 		}
+
+		public static function getCategoriaByNombre($nombre)
+		{
+			$conn = Database::getInstance()->getDatabase();
+			$ssql = "SELECT nombre FROM cat_usu WHERE nombre = :nombre";
+			$query = $conn->prepare($ssql);
+			$query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+			$query->execute();
+			if ($query->rowCount() === 0) {
+				return false;
+			}
+			return true;
+		}
 	}
 ?>
