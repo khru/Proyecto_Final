@@ -223,7 +223,7 @@
 		 * @param  String $codigo String texto que buscamos
 		 * @return Boolean true | false
 		 */
-		private function comparar($array,$codigo){
+		private static function comparar($array,$codigo){
 			// contador de aciertos
 			$cont = 0;
 			// longitud de los campos
@@ -617,7 +617,7 @@
 			$errores[]="Este campo no puede ser menor o igual a cero.";
 		}
 		// Comprobamos si el decimal tiene la longitud correcta y se adapta al patron.
-		if(mb_strlen($decimal) > ($parte_entera+3) || mb_strlen($decimal) < 1 || !regexDecimales($decimal, $parte_entera)){
+		if(mb_strlen($decimal) > ($parte_entera+3) || mb_strlen($decimal) < 1 || !self::regexDecimales($decimal, $parte_entera)){
 			$errores[]="Este campo debe tener una longitud máxima de " . $parte_entera . " cifras enteras y 2 decimales separadas por un punto.";
 		}
 		return self::resultado($errores);
