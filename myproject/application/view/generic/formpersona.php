@@ -20,14 +20,15 @@
 
 <p>
 	<label for "direccion">Direccion:</label>
-	<input type="text" name="direccion" maxlength="70" value="<?php (isset($_POST['direccion'])) ? HelperFunctions::mostrarDatos($data['cliente']['direccion']) : ""; ?>" required autofocus><br>
+	<input type="text" name="direccion" size="70" maxlength="70" value="<?php (isset($_POST['direccion'])) ? HelperFunctions::mostrarDatos($data['cliente']['direccion']) : ""; ?>" required autofocus><br>
 	<?php if (isset($data['errores']['direccion'])) HelperFunctions::mostrarErrores($data['errores']['direccion']); ?>
 </p>
 
 <p>
 	<label for "provincia">Provincia:</label>
-	<input type="text" name="provincia" maxlength="45" value="<?php (isset($_POST['provincia'])) ?HelperFunctions::mostrarDatos($data['cliente']['provincia']) : ""; ?>" required autofocus><br>
-	<?php if (isset($data['errores']['provincia'])) HelperFunctions::mostrarErrores($data['errores']['provincia']); ?>
+	<select name="cliente">
+	<?php HelperFunctions::optionList($data['provincialist'], 'nombre', false /*, $data['cliente_selected']*/); ?>
+	</select><br/>
 </p>
 
 <p>
@@ -44,8 +45,7 @@
 
 <p>
 	<label for "newsletter">Suscripción a noticias:</label>
-	<input type="checkbox" name="newsletter" value="newsletter" checked="
-	<?php (isset($_POST['newsletter']) && $_POST['newsletter'] = 'On') ? 'checked' : "" ?>"><br>
+	<input type="checkbox" name="newsletter" value="newsletter" <?php (isset($_POST['newsletter']) && $_POST['newsletter'] = 'On') ? 'checked' : '' ?>><br>
 	<?php if (isset($data['errores']['telefono'])) HelperFunctions::mostrarErrores($data['errores']['telefono']); ?>
 </p>
 

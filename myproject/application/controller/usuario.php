@@ -117,14 +117,11 @@
 
 			HelperFunctions::comprobarSesion();
 
-			/*if(Validaciones::validarId($id) !== true){
-				//header("Location: ". URL . "usuario");
-				echo "Error al validar ID";
-			}*/
 
 			if(!$_POST){
+				$provincias = ProvinciaModel::getAll();
 				$filenames = ["generic/formpersona", "usuario/formulario"];
-				$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear');
+				$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear', 'provincialist' => $provincias);
 				View::renderMulti($filenames, $datos);
 
 			}else{

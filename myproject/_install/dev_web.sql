@@ -39,7 +39,7 @@ use devweb;
 /* Tabla listado de provincias */
 create table provincia (
     id int(11) primary key not null,
-    nombre nvarchar(50) null
+    nombre nvarchar(50) comment 'Nombre de la provincia, no se admiten null'
 );
 
 /* Insercion de datos en la tabla provincia */
@@ -323,7 +323,7 @@ create table proyecto(
     fecha_fin      date comment 'fecha en la que se ha finalizado el proyecto',
     fecha_prevista date not null comment 'fecha prevista de finalizacion del proyecto',
     estado         int(11) default 2 not null comment 'controla el estado del proyecto',
-    habilitado     boolean not null default 1 comment 'controla si está habilitado el proyecto', 
+    habilitado     boolean not null default 1 comment 'controla si está habilitado el proyecto',
     foreign key(cliente) references cliente(id) on update cascade on delete restrict,
     foreign key(estado) references estado(id) on update cascade on delete restrict,
     foreign key(promocion) references promo(id) on update cascade on delete restrict,

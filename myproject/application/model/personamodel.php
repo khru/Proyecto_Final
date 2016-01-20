@@ -205,5 +205,6 @@
 				return Validaciones::resultado($errores);
 			}
 		}// insert()
+
 	}
 ?>
