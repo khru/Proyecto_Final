@@ -334,12 +334,12 @@ create table proyecto(
 insert into proyecto(cliente, promocion, fecha_inicio, fecha_fin, fecha_prevista , estado) values (6, 4, "2000-12-10", "2001-01-12", "2001-02-01", 1);
 insert into proyecto(cliente, promocion, fecha_inicio, fecha_fin, fecha_prevista , estado, habilitado) values (7, 3, "2003-12-10", "2004-01-12", "2001-02-01", 1, 0);
 insert into proyecto(cliente, fecha_inicio, fecha_prevista , estado) values (8, "2015-12-10", "2016-02-19", 3);
-insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (11, "2001-12-22", "2002-01-12", "2002-02-10", 2);
+insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (12, "2001-12-22", "2002-01-12", "2002-02-10", 2);
 insert into proyecto(cliente, promocion, fecha_inicio, fecha_fin, fecha_prevista , estado) values (12, 2, "2000-12-10", "2001-04-22", "2001-04-24", 4);
 insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (13, "2002-8-03", "2002-10-10", "2001-09-27", 5);
 insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado, habilitado) values (14, "2007-01-04", "2007-03-01", "2007-03-05", 1, 0);
 insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (16, "2005-12-11", "2005-01-12", "2005-02-01", 2);
-insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (17, "2009-09-09", "2009-10-09", "2009-10-19", 4);
+insert into proyecto(cliente, fecha_inicio, fecha_fin, fecha_prevista , estado) values (19, "2009-09-09", "2009-10-09", "2009-10-19", 4);
 insert into proyecto(cliente, fecha_inicio, fecha_prevista , estado) values (19, "2016-01-10", "2016-03-22", 3);
 
 
@@ -363,11 +363,11 @@ insert into usu_proy(usuario, proyecto) values (2, 2);
 insert into usu_proy(usuario, proyecto) values (3, 3);
 insert into usu_proy(usuario, proyecto) values (4, 4);
 insert into usu_proy(usuario, proyecto) values (5, 5);
-insert into usu_proy(usuario, proyecto) values (9, 6);
+insert into usu_proy(usuario, proyecto) values (10, 6);
 insert into usu_proy(usuario, proyecto) values (10, 7);
-insert into usu_proy(usuario, proyecto) values (15, 8);
-insert into usu_proy(usuario, proyecto) values (18, 9);
-insert into usu_proy(usuario, proyecto) values (20, 10);
+insert into usu_proy(usuario, proyecto) values (4, 8);
+insert into usu_proy(usuario, proyecto) values (2, 9);
+insert into usu_proy(usuario, proyecto) values (5, 10);
 
 
 /* Comprobacion de la tabla usu_proy */
@@ -419,12 +419,12 @@ create table entrevista(
 insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (1, 6, 'Proyecto aun por confirmar', 1, '2015-06-09');
 insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (1, 7, 'Proyecto no habilitado, el cliente aun no tiene claro que quiere', 2, '2015-06-09');
 insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (2, 8, 'Proyecto en proceso, todo va segun quiere el cliente', 3, '2015-07-09');
-insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (2, 11, 'Proyecto confirmado', 4, '2015-07-09');
+insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (2, 13, 'Proyecto confirmado', 4, '2015-07-09');
 insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (3, 12, 'Proyecto finalizado, Todo conforme', 5, '2015-08-09');
 insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (3, 13, 'Proyecto en mantenimiento', 6, '2015-08-09');
 insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (4, 14, 'Proyecto aun por confirmar, cliente indeciso', 7, '2015-09-09');
 insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (4, 16, 'Proyecto confirmado', 8, '2015-09-09');
-insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (5, 17, 'Proyecto finalizado, sin quejas del cliente', 9, '2015-10-09');
+insert into entrevista(usuario, cliente, conclusion, proyecto, fecha) values (3, 19, 'Proyecto finalizado, sin quejas del cliente', 9, '2015-10-09');
 insert into entrevista(usuario, cliente, conclusion, proyecto, fecha, habilitado) values (5, 19, 'entrevista cancelada', 10, '2015-10-09',0);
 
 
@@ -448,15 +448,15 @@ insert into client_fav_web(cliente, url) values (7, "laopinion.es");
 insert into client_fav_web(cliente, url) values (8, "wikipedia.org");
 insert into client_fav_web(cliente, url) values (8, "youtube.com");
 insert into client_fav_web(cliente, url) values (8, "facebook.com");
-insert into client_fav_web(cliente, url) values (11, "php.net");
+insert into client_fav_web(cliente, url) values (12, "php.net");
 insert into client_fav_web(cliente, url) values (12, "hostinger.es");
 insert into client_fav_web(cliente, url) values (13, "w3schools.com");
 insert into client_fav_web(cliente, url) values (13, "www.youtube.com");
 insert into client_fav_web(cliente, url) values (14, "phpya.com.ar");
 insert into client_fav_web(cliente, url) values (16, "hostinger.com");
 insert into client_fav_web(cliente, url) values (16, "cssya.com.ar");
-insert into client_fav_web(cliente, url) values (17, "php.net");
-insert into client_fav_web(cliente, url) values (17, "wikipedia.org");
+insert into client_fav_web(cliente, url) values (15, "php.net");
+insert into client_fav_web(cliente, url) values (15, "wikipedia.org");
 insert into client_fav_web(cliente, url) values (19, "youtube.com");
 
 
@@ -482,9 +482,9 @@ insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) v
 insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (3, 3, 2500, "2015-12-12");
 insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (4, 4, 2000, "2001-02-14");
 insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (5, 5, 2000, "2000-03-01");
-insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (9, 6, 2000, "2002-05-27");
+insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (10, 6, 2000, "2002-05-27");
 insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (10, 7, 4500, "2007-03-07");
-insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (15, 8, 2000, "2005-01-12");
+insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (1, 8, 2000, "2005-01-12");
 insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (18, 9, 2000, "2009-02-12");
 insert into presupuesto(usuario, proyecto, precio_estimado, fecha_presupuesto) values (20, 10, 2500, "2016-01-01");
 
@@ -556,6 +556,22 @@ insert into red_social(tipo_red, url, persona) values (2, "www.facebook.com/ranm
 
 /* Comprobacion de la tabla red_social */
 select * from red_social;
+
+/*Tabla para los artículo*/
+create table articulo(
+    id int(5) not null auto_increment,
+    titulo varchar(100) not null,
+    cuerpo text not null,
+    url varchar(100) not null,
+    fecha_publicacion datetime not null,
+    unique(titulo),
+    unique(url),
+    primary key(id)
+);
+/*Inserción de los datos en la tabla artículo*/
+insert into articulo(titulo, cuerpo, url, fecha_publicacion) values ("¡Precios por los suelos!", "¡Nueva promoción! Se reduce en un 10% el precio del mantenimiento durante 2 meses", "precios+por+los+suelos", "2012-10-10 13:20:25");
+
+
 
  /**
   *  _
