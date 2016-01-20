@@ -136,7 +136,7 @@ class Estado
 			if($errores){
 				
 				$datos = array('destino' => 'estado/crear',
-					'estado' => $estado, 'submit' => 'Crear',
+					'submit' => 'Crear',
 					'errores' => $errores);
 				View::render("estado/formulario", $datos);
 
