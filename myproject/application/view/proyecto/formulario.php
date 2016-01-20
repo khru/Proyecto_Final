@@ -1,3 +1,6 @@
+<?php if(!isset($data['promo_selected'])) $data['promo_selected'] = null;
+if(!isset($data['estado_selected'])) $data['estado_selected'] = null;
+if(!isset($data['cliente_selected'])) $data['cliente_selected'] = null;?>
 <div class="container">
 <h1>Proyecto</h1>
 	<form action="<?=URL . $data['destino']?>" method="post">
