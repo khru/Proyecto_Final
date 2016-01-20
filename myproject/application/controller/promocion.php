@@ -42,6 +42,9 @@ class Promocion
                 ));
 
         }else{
+
+            $_POST = HelperFunctions::sanear($_POST);
+            
         	$errores = [];
 
 			if(!isset($_POST['descripcion']) || empty($_POST['descripcion'])){
@@ -58,10 +61,6 @@ class Promocion
 
 			if(($err = Validaciones::validarFecha($_POST['fecha_inicio']))!== true){
 				$errores['fecha_inicio'] = $err;
-			}
-
-			if(($err = Validaciones::validarFecha($_POST['fecha_fin']))!== true){
-				$errores['fecha_fin'] = $err;
 			}
 
 			if($errores){
@@ -159,6 +158,8 @@ class Promocion
 
         }else{
 
+            $_POST = HelperFunctions::sanear($_POST);
+
         	$errores = [];
 
 			if(!isset($_POST['descripcion']) || empty($_POST['descripcion'])){
@@ -180,10 +181,15 @@ class Promocion
 			
 
 			if($errores){
-				 var_dump($errores);
 
-        	 View::render('promocion/editarPromocion',
-            array('titulo' => 'Nueva Promocion','errores' => $errores
+			$promocion = PromocionModel::getPromocion($id);
+
+
+            View::render('promocion/editarPromocion',
+            array('titulo'   => 'Promocion',
+                  'promocion' => $promocion,
+                  'destino' => 'promocion/editarPromocion/' . $id,
+                  'errores' => $errores
                 ));
 
         	}else{

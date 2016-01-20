@@ -43,15 +43,27 @@ class PromocionModel
 
 	public static function insertPromocion($datos){
 		$conn = Database::getInstance()->getDatabase();
-		$ssql = "INSERT INTO promo (codigo,descripcion,unidades,porcentaje,fecha_inicio,fecha_fin) values
-		 (:codigo,:descripcion,:unidades,:porcentaje,:fecha_inicio,:fecha_fin)"; 
+		$ssql = "INSERT INTO promo (codigo,descripcion,unidades,porcentaje,fecha_inicio";
+
+			if(!empty($fecha_fin)){
+				$ssql .= ",fecha_fin";
+			}
+			$ssql .= ") values
+		 (:codigo,:descripcion,:unidades,:porcentaje,:fecha_inicio";
+		 	if (!empty($fecha_fin)) {
+		 		$ssql .= ",:fecha_fin";
+		 	}
+		 	$ssql .= ")";
+
 		$query = $conn->prepare($ssql);
 		$query->bindParam(':codigo',$datos['codigo']);
 		$query->bindParam(':descripcion',$datos['descripcion']);
 		$query->bindParam(':unidades',$datos['unidades']);
 		$query->bindParam(':porcentaje',$datos['porcentaje']);
 		$query->bindParam(':fecha_inicio',$datos['fecha_inicio']);
-		$query->bindParam(':fecha_fin',$datos['fecha_fin']);
+		if (!empty($fecha_fin)) {
+			$query->bindParam(':fecha_fin',$datos['fecha_fin']);
+		}
 		$query->execute();
 		return $query->rowCount();
 	}
@@ -60,22 +72,28 @@ class PromocionModel
 
 	public static function editPromocion($id,$datos){
 		$errores = array();
-
-		/*if(($err = Validaciones::validarId($id)) !== true){
-			$errores = $err;
-			return $errores;
-		}*/
 		
 		$conn = Database::getInstance()->getDatabase();
 		$ssql = "UPDATE promo SET  descripcion = :descripcion, unidades = :unidades,
-		porcentaje = :porcentaje, fecha_inicio = :fecha_inicio, fecha_fin = :fecha_fin WHERE id = :id";
+		porcentaje = :porcentaje, fecha_inicio = :fecha_inicio";
+		
+		if(!empty($fecha_fin)){
+			$ssql .= ", fecha_fin = :fecha_fin";
+		}else{
+			$ssql .= ", fecha_fin = null";
+		}
+
+		$ssql .= " where id = :id";
+
 		$query = $conn->prepare($ssql);
 		$query->bindParam(':id', $id);
 		$query->bindParam(':descripcion',$datos['descripcion']);
 		$query->bindParam(':unidades',$datos['unidades']);
 		$query->bindParam(':porcentaje',$datos['porcentaje']);
 		$query->bindParam(':fecha_inicio',$datos['fecha_inicio']);
+		if(!empty($fecha_fin)){
 		$query->bindParam(':fecha_fin',$datos['fecha_fin']);
+		};
 		$query->execute();
 		return $query->rowCount();
 
