@@ -219,14 +219,14 @@ create table cliente(
 
 /* Insercion de datos para los clientes */
 insert into cliente(id, nombre_corporativo) values (6, "Perros S.L");
-insert into cliente(id, nombre_corporativo) values (6, "Gatos S.L");
+insert into cliente(id, nombre_corporativo) values (7, "Gatos S.L");
 insert into cliente(id, nombre_corporativo) values (8, "Hermanos Condor S.L");
-insert into cliente(id, nombre_corporativo) values (14, "Mecanicos Neumatico S.L");
+insert into cliente(id, nombre_corporativo) values (9, "Mecanicos Neumatico S.L");
 insert into cliente(id, nombre_corporativo) values (12, "ferreteria Tornillo S.L");
 insert into cliente(id, nombre_corporativo) values (13, "Autoescuela Volante");
 insert into cliente(id, nombre_corporativo) values (14, "Pizzerias Italianos S.L");
 insert into cliente(id, nombre_corporativo) values (16, "Librerias Dante S.L");
-insert into cliente(id, nombre_corporativo) values (19, "Peluquerias Cabello S.L");
+insert into cliente(id, nombre_corporativo) values (15, "Peluquerias Cabello S.L");
 insert into cliente(id, nombre_corporativo) values (19, "Funeraria Muerto S.L");
 
 
