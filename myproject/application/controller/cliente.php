@@ -4,14 +4,15 @@ class Cliente
 	public function index(){
 		HelperFunctions::comprobarSesion();
 
-		$cliente = ClienteModel::getAll();
+		$habilitados = ClienteModel::getAll();
 		$deshabilitados = ClienteModel::getAllDisabled();
 
-		$archivos = array("cliente/buscador", "cliente/listartodos", 
+		$archivos = array("generic/buscador", "cliente/listarhabilitados", 
 			"cliente/listardeshabilitados");
 
-		$datos = array('titulo' => 'Clientes', 'cliente' => $cliente, 
-			'deshabilitados' => $deshabilitados);
+		$datos = array('titulo' => 'Clientes', 'habilitados' => $habilitados, 
+			'deshabilitados' => $deshabilitados, 'destino' => 'cliente/buscar',
+			'tituloListado' => 'Clientes Habilitados');
 
 		View::renderMulti($archivos, $datos);
 		
@@ -45,10 +46,25 @@ class Cliente
 				$cliente = ClienteModel::getCliente($id);
 				$archivos = array("cliente/listarcliente", "cliente/habilitarcliente");
 				$datos = array('titulo' => 'Clientes', 'cliente' => $cliente);
-				echo "hola";
 				View::renderMulti($archivos, $datos);
 			}
 		}
 	} // habilitar()
+
+
+	public function buscar(){
+		HelperFunctions::comprobarSesion();
+
+		if(!$_POST){
+			header("Location: " . URL . "cliente");
+		}else{
+			$cliente = ClienteModel::getSearch($_POST['buscar']);
+
+			$archivos = array("generic/buscador","cliente/listarhabilitados");
+			$datos = array('titulo' => 'Clientes', 'cliente' => $cliente, 'destino' => 'cliente/buscar',
+			 'tituloListado' => 'Clientes Encontrados <sub>(Incluye deshabilitados)</sub>');
+			View::renderMulti($archivos, $datos);
+		}
+	} // buscar()
 
 } // Cliente
