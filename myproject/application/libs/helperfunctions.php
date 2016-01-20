@@ -112,4 +112,18 @@
 		return $url;
 	}
 
+		/**
+	 * sanear(array)
+	 * Sanea un array
+	 * @param  $array Array a sanear
+	 * @return $array el array saneado
+	 */
+	public static function sanear($array){
+		foreach ($array as $key => $value) {
+			$array[$key] = trim(strip_tags($value));
+		}
+		return $array;
+	}// sanear()
+
+
 }// fin de la clase
