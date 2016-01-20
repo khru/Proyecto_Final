@@ -171,7 +171,7 @@ select * from cat_usu;
 create table usuario(
     id          int(11) not null comment 'identificador del usuario',
     nick        varchar(20) not null comment 'nombre de usuario elegido por la persona',
-    pass        varchar(32) not null comment 'contrasenya elegida por el usuario',
+    pass        varchar(35) not null comment 'contrasenya elegida por el usuario',
     categoria   int(11) not null comment 'identificador de la categoria del usuario',
     carpeta     varchar(255) not null comment 'ruta donde se aloja la carpeta personal del usuario',
     img         varchar(255) comment 'ruta donde se aloja la imagen del usuario, puede ser null',
