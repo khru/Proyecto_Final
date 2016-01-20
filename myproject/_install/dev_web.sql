@@ -44,7 +44,7 @@ create table provincia (
 
 /* Insercion de datos en la tabla provincia */
 insert into provincia(id, nombre) values (0,'DESCONOCIDO');
-insert into provincia(id, nombre) values (1, 'Araba');
+insert into provincia(id, nombre) values (1, 'Álava');
 insert into provincia(id, nombre) values (2, 'Albacete');
 insert into provincia(id, nombre) values (3, 'Alacant');
 insert into provincia(id, nombre) values (4, 'Almería');

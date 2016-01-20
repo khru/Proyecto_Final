@@ -108,7 +108,7 @@
 						// comprobamos que dicho id exista en la base de datos
 						// Sino lanzamos un error
 						try {
-							$conn = DBPDO::getInstance()->getDatabase();
+							$conn = Database::getInstance()->getDatabase();
 							$ssql = "SELECT * FROM categoria WHERE id = :id";
 							$prepare = $conn->prepare($ssql);
 							$prepare->bindParam(":id", $id, PDO::PARAM_INT);
@@ -173,7 +173,7 @@
 						// le quito la última coma de más
 						$fields = trim($fields, ",");
 						// conexión a la base de datos
-						$conn = DBPDO::getInstance()->getDatabase();
+						$conn = Database::getInstance()->getDatabase();
 						// consulta de la base de datos
 						// Añadimos a la consulta la fecha de alta formateada
 						$fecha = date("Y-m-d");

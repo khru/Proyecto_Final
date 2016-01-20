@@ -119,12 +119,18 @@
 
 
 			if(!$_POST){
+				// Sino hay post mostramos el formulario
 				$provincias = ProvinciaModel::getAll();
+				$categorias = CategoriaModel::getAll();
 				$filenames = ["generic/formpersona", "usuario/formulario"];
-				$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear', 'provincialist' => $provincias);
+				$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear', 'provincialist' => $provincias, 'categorialist' => $categorias);
 				View::renderMulti($filenames, $datos);
 
 			}else{
+				// En caso de que haya formulario
+				// Validamos las entradas, una vez validadas, las saneamos
+				// y comprobamos si existen o no errores, en caso de que existan
+				// volvemos a llamar al formulario pasandole los errores
 				echo "creando";
 			}
 		}
