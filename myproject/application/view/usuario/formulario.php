@@ -23,4 +23,6 @@
 	<p>
 		<input type="submit" name="usuario" value="<?=$data['submit']?>">
 	</p>
+
+	</form>
 </div>

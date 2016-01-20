@@ -90,7 +90,11 @@
 				View::renderMulti($archivos, $datos);
 			}
 		}
-
+		/**
+		 * Método de edición de usuarios
+		 * @param  Integer $id ID del usuario a modificar
+		 * @return [type]     [description]
+		 */
 		public function editar($id){
 
 			HelperFunctions::comprobarSesion();
@@ -127,10 +131,33 @@
 				View::renderMulti($filenames, $datos);
 
 			}else{
+				$errores = [];
 				// En caso de que haya formulario
 				// Validamos las entradas, una vez validadas, las saneamos
 				// y comprobamos si existen o no errores, en caso de que existan
 				// volvemos a llamar al formulario pasandole los errores
+
+				// comprobaciones del nombre
+				if (isset($_POST['nombre'])) {
+					if(($err = Validaciones::validarNombre($_POST['nombre']))!== true){
+						$errores['nombre'] = $err;
+					}
+				} else {
+					$errores['nombre'][] = "El campo está vacio";
+				}// fin de las comprobaciones del nombre
+
+				// Comprobaciones de los apellidos
+				if (isset($_POST["apellidos"])) {
+					if(($err = Validaciones::validarApellidos($_POST['apellidos']))!== true){
+						$errores['apellidos'] = $err;
+					}
+				} else {
+					$errores['apellidos'][] = "El campo está vacio";
+				}// fin de las comprobaciones de los apellidos
+
+
+
+
 				echo "creando";
 			}
 		}

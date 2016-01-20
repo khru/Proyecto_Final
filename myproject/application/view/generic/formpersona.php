@@ -1,5 +1,6 @@
 <div class="container">
 <h1>Información personal</h1>
+<form action="<?=URL . $data['destino']?>" method="post" name="persona" enctype="multipart/form-data">
 <p>
 	<label for "nombre">Nombre:</label>
 	<input type="text" name="nombre" maxlength="25" required autofocus value="<?php (isset($_POST['nombre'])) ? HelperFunctions::mostrarDatos($data['cliente']['nombre']) : ""; ?>"><br>
