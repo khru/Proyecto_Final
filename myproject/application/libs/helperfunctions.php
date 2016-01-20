@@ -104,4 +104,11 @@
 		}
 	}//optionList()
 
+	//Genera la url de un artículo basándose en el título
+	public static function generarUrl($titulo){
+		$url = preg_replace("/[^a-zA-Z0-9]/", '+', $titulo);
+		$url = strtolower($url);
+		return $url;
+	}
+
 }// fin de la clase

@@ -569,7 +569,7 @@ create table articulo(
     primary key(id)
 );
 /*Inserción de los datos en la tabla artículo*/
-insert into articulo(titulo, cuerpo, url, fecha_publicacion) values ("¡Precios por los suelos!", "¡Nueva promoción! Se reduce en un 10% el precio del mantenimiento durante 2 meses", "precios+por+los+suelos", "2012-10-10 13:20:25");
+insert into articulo(titulo, cuerpo, url, fecha_publicacion) values ("¡Precios por los suelos!", "¡Nueva promoción! Se reduce en un 10% el precio del mantenimiento durante 2 meses", "precios-por-los-suelos", "2012-10-10 13:20:25");
 
 
 

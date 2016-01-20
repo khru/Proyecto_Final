@@ -20,4 +20,6 @@
         <a href="<?php echo URL . 'cliente'; ?>">Clientes</a>
         <a href="<?php echo URL . 'proyecto'; ?>">Proyectos</a>
         <a href="<?php echo URL . 'promocion'; ?>">Promociones</a>
+        <a href="<?php echo URL . 'articulo'; ?>">Artículos</a>
+        <a href="<?php echo URL . 'rss'; ?>">RSS</a>
     </div>
