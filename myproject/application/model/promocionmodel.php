@@ -67,11 +67,10 @@ class PromocionModel
 		}*/
 		
 		$conn = Database::getInstance()->getDatabase();
-		$ssql = "UPDATE promo SET codigo = :codigo, descripcion = :descripcion, unidades = :unidades,
+		$ssql = "UPDATE promo SET  descripcion = :descripcion, unidades = :unidades,
 		porcentaje = :porcentaje, fecha_inicio = :fecha_inicio, fecha_fin = :fecha_fin WHERE id = :id";
 		$query = $conn->prepare($ssql);
 		$query->bindParam(':id', $id);
-		$query->bindParam(':codigo',$datos['codigo']);
 		$query->bindParam(':descripcion',$datos['descripcion']);
 		$query->bindParam(':unidades',$datos['unidades']);
 		$query->bindParam(':porcentaje',$datos['porcentaje']);

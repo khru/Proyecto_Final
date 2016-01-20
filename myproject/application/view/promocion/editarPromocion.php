@@ -1,0 +1,25 @@
+<div class="container">
+	<form action="<?= URL . $data['destino']?>" method="post">
+
+		<?php if(isset($data['errores']['descripcion'])) HelperFunctions::mostrarErrores($data['errores']['descripcion'])?>
+		<label for="descipcion">descripcion de la Promocion</label><br/>
+		<input type="text" name="descripcion" value="<?php if(isset($data['promocion'])) HelperFunctions::mostrarDatos($data['promocion'],'descripcion')?>"><br/><br/>
+		
+		<?php if(isset($data['errores']['unidades'])) HelperFunctions::mostrarErrores($data['errores']['unidades'])?>
+		<label for="unidades">Unidades de la Promocion</label><br/>
+		<input type="number" name="unidades" value="<?php if(isset($data['promocion'])) HelperFunctions::mostrarDatos($data['promocion'],'unidades')?>"><br/><br/>
+		
+		<?php if(isset($data['errores']['porcentaje'])) HelperFunctions::mostrarErrores($data['errores']['porcentaje'])?>
+		<label for="porcentaje">porcentaje de descuento de la Promocion</label><br/>
+		<input type="number" name="porcentaje" value="<?php if(isset($data['promocion'])) HelperFunctions::mostrarDatos($data['promocion'],'porcentaje')?>"><br/><br/>
+		
+		<?php if(isset($data['errores']['fecha_inicio'])) HelperFunctions::mostrarErrores($data['errores']['fecha_inicio'])?>
+		<label for="fecha_inicio">fecha de inicio de la Promocion</label><br/>
+		<input type="date" name="fecha_inicio" value="<?php if(isset($data['promocion'])) HelperFunctions::mostrarDatos($data['promocion'],'fecha_inicio')?>"><br/><br/>
+		
+		<?php if(isset($data['errores']['fecha_fin'])) HelperFunctions::mostrarErrores($data['errores']['fecha_fin'])?>
+		<label for="fecha_fin">fecha final de la Promocion</label><br/>
+		<input type="date" name="fecha_fin" value="<?php if(isset($data['promocion'])) HelperFunctions::mostrarDatos($data['promocion'],'fecha_fin')?>"><br/><br/>
+		<input type="submit" value="Enviar Promocion">
+	</form>
+</div>
