@@ -105,7 +105,7 @@ class ProyectoModel
 					  inner join provincia on (persona.provincia = provincia.id)
 					  left outer join promo on (proyecto.promocion = promo.id)
 		where (cliente.nombre_corporativo like :busqueda OR persona.nombre like :busqueda OR persona.apellidos like :busqueda OR
-		persona.telefono like :busqueda OR persona.nif like :busqueda OR persona.email like :busqueda OR promo.codigo like :busqueda OR provincia.nombre like :busqueda OR
+		persona.telefono like :busqueda OR persona.nif like :busqueda OR persona.email like :busqueda OR promo.codigo like :busqueda OR estado.descripcion like :busqueda OR provincia.nombre like :busqueda OR
 		promocion like :busqueda OR proyecto.fecha_inicio like :busqueda OR proyecto.fecha_fin like :busqueda OR fecha_prevista like :busqueda OR estado like :busqueda
 		)AND proyecto.habilitado = 1";
 
