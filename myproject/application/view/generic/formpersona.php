@@ -1,8 +1,9 @@
+<div class="container">
 <p>
 	<label for "nombre">Nombre:</label>
 	<input type="text" name="nombre" maxlength="25" value="
 	<?php if (isset($_POST['nombre'])) HelperFunctions::mostrarDatos($data['cliente']['nombre']); ?>
-	 " required><br>
+	 " required autofocus><br>
 	<?php if (isset($data['errores']['nombre'])) HelperFunctions::mostrarErrores($data['errores']['nombre']); ?>
 </p>
 
@@ -10,7 +11,7 @@
 	<label for "apellidos">Apellidos:</label>
 	<input type="text" name="apellidos" maxlength="40" value="
 	<?php if (isset($_POST['apellidos'])) HelperFunctions::mostrarDatos($data['cliente']['apellidos']); ?>
-	 " required><br>
+	 " required autofocus><br>
 	<?php if (isset($data['errores']['apellidos'])) HelperFunctions::mostrarErrores($data['errores']['apellidos']); ?>
 </p>
 
@@ -18,7 +19,7 @@
 	<label for "email">Email:</label>
 	<input type="email" name="email" maxlength="45" value="
 	<?php if (isset($_POST['email'])) HelperFunctions::mostrarDatos($data['cliente']['email']); ?>
-	 " required><br>
+	 " required autofocus><br>
 	<?php if (isset($data['errores']['email'])) HelperFunctions::mostrarErrores($data['errores']['email']); ?>
 </p>
 
@@ -26,7 +27,7 @@
 	<label for "direccion">Direccion:</label>
 	<input type="text" name="direccion" maxlength="70" value="
 	<?php if (isset($_POST['direccion'])) HelperFunctions::mostrarDatos($data['cliente']['direccion']); ?>
-	 " required><br>
+	 " required autofocus><br>
 	<?php if (isset($data['errores']['direccion'])) HelperFunctions::mostrarErrores($data['errores']['direccion']); ?>
 </p>
 
@@ -34,7 +35,7 @@
 	<label for "provincia">Provincia:</label>
 	<input type="text" name="provincia" maxlength="45" value="
 	<?php if (isset($_POST['provincia'])) HelperFunctions::mostrarDatos($data['cliente']['provincia']); ?>
-	 " required><br>
+	 " required autofocus><br>
 	<?php if (isset($data['errores']['provincia'])) HelperFunctions::mostrarErrores($data['errores']['provincia']); ?>
 </p>
 
@@ -42,7 +43,7 @@
 	<label for "nif">DNI/NIE:</label>
 	<input type="text" name="nif" maxlength="11" value="
 	<?php if (isset($_POST['nif'])) HelperFunctions::mostrarDatos($data['cliente']['nif']); ?>
-	 " required><br>
+	 " required autofocus><br>
 	<?php if (isset($data['errores']['nif'])) HelperFunctions::mostrarErrores($data['errores']['nif']); ?>
 </p>
 
@@ -50,7 +51,7 @@
 	<label for "telefono">Telefono:</label>
 	<input type="tlf" name="telefono" maxlength="15" value="
 	<?php if (isset($_POST['telefono'])) HelperFunctions::mostrarDatos($data['cliente']['telefono']); ?>
-	 " required><br>
+	 " required autofocus><br>
 	<?php if (isset($data['errores']['telefono'])) HelperFunctions::mostrarErrores($data['errores']['telefono']); ?>
 </p>
 

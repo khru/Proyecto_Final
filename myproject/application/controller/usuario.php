@@ -117,13 +117,15 @@
 
 			HelperFunctions::comprobarSesion();
 
-			if(Validaciones::validarId($id) !== true){
-				header("Location: ". URL . "usuario");
-			}
+			/*if(Validaciones::validarId($id) !== true){
+				//header("Location: ". URL . "usuario");
+				echo "Error al validar ID";
+			}*/
 
 			if(!$_POST){
+				$filenames = ["generic/formpersona", "usuario/formulario"];
 				$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear');
-				View::render("usuario/formulario", $datos);
+				View::renderMulti($filenames, $datos);
 
 			}else{
 				echo "creando";

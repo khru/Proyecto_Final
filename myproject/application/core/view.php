@@ -2,7 +2,7 @@
 class View
 {
     public static function render($filename, $data = null){
-        
+
         require APP . 'view/_templates/header.php';
         require APP . 'view/'. $filename .'.php';
         require APP . 'view/_templates/footer.php';
@@ -13,7 +13,7 @@ class View
     //$filenames es un array con los archivos de las vistas
     //Si no se le pasa un array, se ejecuta el render habitual
     public static function renderMulti($filenames, $data = null){
-        
+
         if(is_array($filenames)){
         	require APP . 'view/_templates/header.php';
 
@@ -25,7 +25,7 @@ class View
 
         }else{
         	self::render($filenames, $data);
-        }       
+        }
     }//renderMulti()
 
     public static function renderSinCabeceras($filename, $data = null){
