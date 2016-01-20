@@ -609,7 +609,7 @@
 			$errores[] = "El campo está vacío.";
 		}
 		// Comprobamos si el decimal es un numero y ademas es decimal o entero.
-		if(!is_numeric($decimal) || (!is_float($decimal) && !is_int($decimal))){
+		if(!is_numeric($decimal) && (!is_float($decimal) && !is_int($decimal))){
 			$errores[]="Este campo debe ser un número entero o decimal.";
 		}
 		// Comprobamos si el decimal es menor o igual que cero.
