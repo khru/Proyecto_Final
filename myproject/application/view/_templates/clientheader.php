@@ -15,6 +15,7 @@
 
     <!-- navigation -->
     <div class="navigation">
-        <a href="<?php echo URL; ?>">home</a>
+        <a href="<?php echo URL; ?>">HOME</a>
+        <a href="<?php echo URL . 'rss'; ?>">RSS</a>
         <a href="<?php echo URL . 'acceso'; ?>">Entrar</a>
     </div>
