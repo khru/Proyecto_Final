@@ -27,6 +27,11 @@
             }
         }// habilitar()
 
+        /**
+         * Método de deshabilitar a una persona
+         * @param  Integer $id ID de la persona a deshabilitar
+         * @return Array o ture    Devuelve True cuando pasa las validaciones y Un array cuando hay errores
+         */
         public static function deshabilitar($id){
             $errores = [];
             if (($err = Validaciones::validarId($id)) !== true) {

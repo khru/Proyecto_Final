@@ -27,7 +27,7 @@
 <p>
 	<label for "provincia">Provincia:</label>
 	<select name="cliente">
-	<?php HelperFunctions::optionList($data['provincialist'], 'nombre', false /*, $data['cliente_selected']*/); ?>
+	<?php HelperFunctions::optionList($data['provincialist'], 'nombre', false , $data['usuario_selected']); ?>
 	</select><br/>
 </p>
 
@@ -49,10 +49,8 @@
 	<?php if (isset($data['errores']['telefono'])) HelperFunctions::mostrarErrores($data['errores']['telefono']); ?>
 </p>
 
-<?php if(isset($_GET['id']) && !isset($_POST['id']) || isset($_POST['id']) && !empty($_POST)) : $_POST['id'] = $_GET['id'] ?>
-
-<p>
-	<input type="hidden" name="id" value="<?= $_POST['id'] ?>">
-</p>
-
+<?php if (isset($_GET['id'])) : ?>
+	<p>
+		<input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+	</p>
 <?php endif ?>
