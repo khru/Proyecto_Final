@@ -126,8 +126,8 @@ class Proyecto
 				$errores['fecha_de_inicio'] = $err;
 			}
 
-			if(($err = Validaciones::validarFecha($_POST['fecha_de_fin']))!== true){
-				$errores['fecha_de_fin'] = $err;
+			if(($err = Validaciones::validarFecha($_POST['fecha_prevista']))!== true){
+				$errores['fecha_prevista'] = $err;
 			}
 
 			if($errores){

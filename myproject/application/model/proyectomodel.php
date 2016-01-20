@@ -200,6 +200,8 @@ class ProyectoModel
 
 		if(!empty($fecha_fin)){
 			$ssql .= ", fecha_fin = :fecha_fin";
+		}else{
+			$ssql .= ", fecha_fin = null";
 		}
 
 		$ssql .= ' WHERE id = :id';
