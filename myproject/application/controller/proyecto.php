@@ -79,6 +79,9 @@ class Proyecto
 		if(!$_POST){
 			header("Location: " . URL . "proyecto");
 		}else{
+
+			$_POST = HelperFunctions::sanear($_POST);
+			
 			$proyectos = ProyectoModel::getSearch($_POST['buscar']);
 
 			$archivos = array("proyecto/crearproyecto","generic/buscador","proyecto/listartodos");
@@ -121,6 +124,9 @@ class Proyecto
 			}
 
 		}else{
+
+			$_POST = HelperFunctions::sanear($_POST);
+
 			$errores = [];
 			if(($err = Validaciones::validarFecha($_POST['fecha_de_inicio']))!== true){
 				$errores['fecha_de_inicio'] = $err;
@@ -164,6 +170,9 @@ class Proyecto
 			View::render("proyecto/formulario", $datos);
 
 		}else{
+
+			$_POST = HelperFunctions::sanear($_POST);
+
 			$errores = [];
 			if(($err = Validaciones::validarFecha($_POST['fecha_de_inicio']))!== true){
 				$errores['fecha_de_inicio'] = $err;

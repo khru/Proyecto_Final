@@ -96,6 +96,8 @@ class Estado
 			}
 
 		}else{
+			$_POST = HelperFunctions::sanear($_POST);
+
 			$errores = [];
 			if(!isset($_POST['descripcion']) || empty($_POST['descripcion'])){
 				$errores['descripcion'] = ['descripcion' => 'El campo es requerido'];
@@ -128,6 +130,8 @@ class Estado
 
 
 		}else{
+			$_POST = HelperFunctions::sanear($_POST);
+			
 			$errores = [];
 			if(!isset($_POST['descripcion']) || empty($_POST['descripcion'])){
 				$errores['descripcion'] = ['descripcion' => 'El campo es requerido'];

@@ -11,6 +11,7 @@ Class Acceso
 			if(!$_POST){
 				View::clientRender("acceso/login");
 			}else{
+				$_POST = HelperFunctions::sanear($_POST);
 
 				if(($err = AccesoModel::validarLogin()) !== true){
 					$datos = array("errores" => $err);

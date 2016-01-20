@@ -29,6 +29,8 @@ class Articulo
     			));
 
     	}else{
+            $_POST = HelperFunctions::sanear($_POST);
+            
             $errores = [];
 
             if(!isset($_POST['titulo']) || empty($_POST['titulo'])){
