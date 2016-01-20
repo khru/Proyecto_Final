@@ -299,6 +299,7 @@ create table estado(
     id int(11) not null auto_increment comment 'identificador del estado',
     descripcion varchar(255) comment 'descripcion del estado del proyecto',
     habilitado  boolean not null default 1 comment 'controla si está habilitada la categoría',
+    unique(descripcion),
     primary key(id)
 );
 
