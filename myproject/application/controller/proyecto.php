@@ -96,8 +96,10 @@ class Proyecto
 			header("Location: ". URL . "proyecto");
 		}
 
+		$proyecto = ProyectoModel::getProyecto($id);
+
 		if(!$_POST){
-			$proyecto = ProyectoModel::getProyecto($id);
+			
 			
 			$clientes = ClienteModel::getAll();
 			$clienteselected = ClienteModel::getCliente($proyecto['cliente_id'])['nombre corporativo'];
@@ -105,7 +107,6 @@ class Proyecto
 			$promoselected = PromocionModel::getPromocion($proyecto['promocion'])['codigo'];
 			$estados = EstadoModel::getAll();
 			$estadoselected = EstadoModel::getEstado($proyecto['estado_id'])['descripcion'];
-
 
 			if($proyecto){
 				$datos = array('destino' => 'proyecto/editar/'. $id,
@@ -120,7 +121,33 @@ class Proyecto
 			}
 
 		}else{
-			ProyectoModel::update($id, $_POST);
+			$errores = [];
+			if(($err = Validaciones::validarFecha($_POST['fecha_de_inicio']))!== true){
+				$errores['fecha_de_inicio'] = $err;
+			}
+
+			if(($err = Validaciones::validarFecha($_POST['fecha_de_fin']))!== true){
+				$errores['fecha_de_fin'] = $err;
+			}
+
+			if($errores){
+				$clientes = ClienteModel::getAll();
+				$clienteselected = $_POST['cliente'];
+				$promos = PromocionModel::getAllPromociones();
+				$promoselected = $_POST['promocion'];
+				$estados = EstadoModel::getAll();
+				$estadoselected = $_POST['estado'];
+				$datos = array('destino' => 'proyecto/editar',
+					'promolist' => $promos, 'promo_selected' => $promoselected, 
+					'estadolist' => $estados, 'estado_selected' => $estadoselected, 
+					'clientelist' => $clientes, 'cliente_selected' => $clienteselected,
+					'proyecto' => $proyecto, 'submit' => 'Editar',
+					'errores' => $errores);
+				View::render("proyecto/formulario", $datos);
+			}else{
+				ProyectoModel::update($_POST, $id);
+				header("Location: " . URL . "proyecto");
+			}	
 		}
 	}
 
@@ -137,10 +164,32 @@ class Proyecto
 			View::render("proyecto/formulario", $datos);
 
 		}else{
-			ProyectoModel::insert($_POST);
-			header("Location: " . URL . "proyecto");
+			$errores = [];
+			if(($err = Validaciones::validarFecha($_POST['fecha_de_inicio']))!== true){
+				$errores['fecha_de_inicio'] = $err;
+			}
+
+			if(($err = Validaciones::validarFecha($_POST['fecha_prevista']))!== true){
+				$errores['fecha_prevista'] = $err;
+			}
+
+			if($errores){
+				$clientes = ClienteModel::getAll();
+				$clienteselected = $_POST['cliente'];
+				$promos = PromocionModel::getAllPromociones();
+				$promoselected = $_POST['promocion'];
+				$estados = EstadoModel::getAll();
+				$estadoselected = $_POST['estado'];
+				$datos = array('destino' => 'proyecto/crear', 'submit' => 'Crear',
+					'promolist' => $promos, 'promo_selected' => $promoselected, 
+					'estadolist' => $estados, 'estado_selected' => $estadoselected, 
+					'clientelist' => $clientes, 'cliente_selected' => $clienteselected,
+					'errores' => $errores);
+				View::render("proyecto/formulario", $datos);
+			}else{
+				ProyectoModel::insert($_POST);
+				header("Location: " . URL . "proyecto");
+			}
 		}
 	}
-
-
 }

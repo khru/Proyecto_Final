@@ -119,12 +119,12 @@ class ProyectoModel
 	public static function insert($data){
 	
 		$conn = Database::getInstance()->getDatabase();
-		echo $data['cliente'];
 		$cliente = ClienteModel::getByName($data['cliente'])['id'];
 		$promocion = $data['promocion'];
 		$fecha_inicio = $data['fecha_de_inicio'];
 		$fecha_fin = $data['fecha_de_fin'];
 		$fecha_prevista = $data['fecha_prevista'];
+
 		$estado = EstadoModel::getByDescripcion($data['estado'])['id'];
 
 		$ssql = "INSERT INTO proyecto (cliente, ";
@@ -133,10 +133,10 @@ class ProyectoModel
 			$ssql .= "promocion, ";
 		}
 
-		$ssql .= "fecha_inicio, fecha_fin, estado";
+		$ssql .= "fecha_inicio, fecha_prevista, estado";
 
-		if(!empty($fecha_prevista)){
-			$ssql .= ", fecha_prevista";
+		if(!empty($fecha_fin)){
+			$ssql .= ", fecha_fin";
 		}
 
 		$ssql .= ") values (:cliente, ";
@@ -145,10 +145,10 @@ class ProyectoModel
 			$ssql .= ":promocion, ";
 		}
 
-		$ssql .= ":fecha_inicio, :fecha_fin, :estado";
+		$ssql .= ":fecha_inicio, :fecha_prevista, :estado";
 
-		if(!empty($fecha_prevista)){
-			$ssql .= ", :fecha_prevista";
+		if(!empty($fecha_fin)){
+			$ssql .= ", :fecha_fin";
 		}
 
 		$ssql .= ")";
@@ -163,11 +163,61 @@ class ProyectoModel
 		}
 		
 		$query->bindParam(':fecha_inicio', $fecha_inicio);
-		$query->bindParam(':fecha_fin', $fecha_fin);
+		$query->bindParam(':fecha_prevista', $fecha_prevista);
 		$query->bindParam(':estado', $estado);
 
-		if(!empty($fecha_prevista)){
-			$query->bindParam(':fecha_prevista', $fecha_prevista);
+		if(!empty($fecha_fin)){
+			$query->bindParam(':fecha_fin', $fecha_fin);
+		}
+		
+		$query->execute();
+
+		return $query->rowCount();
+	}
+
+	public static function update($data, $id){
+	
+		$conn = Database::getInstance()->getDatabase();
+
+		$cliente = ClienteModel::getByName($data['cliente'])['id'];
+
+		$promocion = $data['promocion'];
+
+		$fecha_inicio = $data['fecha_de_inicio'];
+
+		$fecha_fin = $data['fecha_de_fin'];
+
+		$fecha_prevista = $data['fecha_prevista'];
+
+		$estado = EstadoModel::getByDescripcion($data['estado'])['id'];
+
+		$ssql = "UPDATE proyecto SET cliente = :cliente, fecha_inicio = :fecha_inicio,
+		fecha_prevista = :fecha_prevista, estado = :estado";
+
+		if($promocion != 'ninguna'){
+			$ssql .= ", promocion = :promocion";
+		}
+
+		if(!empty($fecha_fin)){
+			$ssql .= ", fecha_fin = :fecha_fin";
+		}
+
+		$ssql .= ' WHERE id = :id';
+		$query = $conn->prepare($ssql);
+
+		$query->bindParam(':cliente', $cliente);
+		$query->bindParam(':fecha_inicio', $fecha_inicio);
+		$query->bindParam(':fecha_prevista', $fecha_prevista);
+		$query->bindParam(':estado', $estado);
+		$query->bindParam(':id', $id);
+
+		if($promocion != 'ninguna'){
+			$promocion = PromocionModel::getByCode($promocion)['id'];
+			$query->bindParam(':promocion', $promocion);
+		}
+		
+		if(!empty($fecha_fin)){
+			$query->bindParam(':fecha_fin', $fecha_fin);
 		}
 		
 		$query->execute();
