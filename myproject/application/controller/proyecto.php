@@ -138,6 +138,7 @@ class Proyecto
 
 		}else{
 			ProyectoModel::insert($_POST);
+			header("Location: " . URL . "proyecto");
 		}
 	}
 

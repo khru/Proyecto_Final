@@ -21,4 +21,15 @@ class EstadoModel
 
 		return $query->fetch();
 	}
+
+	public static function getByDescripcion($descripcion){
+		
+		$conn = Database::getInstance()->getDatabase();
+		$ssql = "SELECT * FROM estado where descripcion = :descripcion";
+		$query = $conn->prepare($ssql);
+		$query->bindParam(':descripcion', $descripcion);
+		$query->execute();
+
+		return $query->fetch();
+	}
 }

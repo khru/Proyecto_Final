@@ -119,13 +119,13 @@ class ProyectoModel
 	public static function insert($data){
 	
 		$conn = Database::getInstance()->getDatabase();
-
-		$cliente = ClienteModel::getByCode($data['cliente']);
+		echo $data['cliente'];
+		$cliente = ClienteModel::getByName($data['cliente'])['id'];
 		$promocion = $data['promocion'];
-		$fecha_inicio = $data['fecha_inicio'];
-		$fecha_fin = $data['fecha_fin'];
+		$fecha_inicio = $data['fecha_de_inicio'];
+		$fecha_fin = $data['fecha_de_fin'];
 		$fecha_prevista = $data['fecha_prevista'];
-		$estado = $data['estado'];
+		$estado = EstadoModel::getByDescripcion($data['estado'])['id'];
 
 		$ssql = "INSERT INTO proyecto (cliente, ";
 
@@ -158,7 +158,7 @@ class ProyectoModel
 		$query->bindParam(':cliente', $cliente);
 
 		if($promocion != 'ninguna'){
-			$promocion = PromocionModel::getByCode($promocion);
+			$promocion = PromocionModel::getByCode($promocion)['id'];
 			$query->bindParam(':promocion', $promocion);
 		}
 		
