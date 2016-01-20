@@ -19,4 +19,5 @@
         <a href="<?php echo URL . 'usuario'; ?>">Usuarios</a>
         <a href="<?php echo URL . 'cliente'; ?>">Clientes</a>
         <a href="<?php echo URL . 'proyecto'; ?>">Proyectos</a>
+        <a href="<?php echo URL . 'promocion'; ?>">Promociones</a>
     </div>
