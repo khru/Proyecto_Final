@@ -106,7 +106,8 @@
 
 	//Genera la url de un artículo basándose en el título
 	public static function generarUrl($titulo){
-		$url = preg_replace("/[^a-zA-Z0-9]/", '+', $titulo);
+		$url = preg_replace("/[^a-zA-Z0-9!¡]/", '-', $titulo);
+		$url = preg_replace("/[!¡]/", '', $url);
 		$url = strtolower($url);
 		return $url;
 	}
