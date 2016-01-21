@@ -103,60 +103,64 @@
 					$conn->beginTransaction();
 					if (($error = PersonaModel::insert()) === true) {
 						// Comprobaos los campos requeridos en la tabla
-						if (isset($_POST["carpeta"]) && isset($_POST["img"])) {
+						if (isset($_POST["nick"]) && isset($_POST["pass1"]) && isset($_POST["pass2"]) && isset($_POST["categoria"])) {
 							// Si cualquiera de los campos requeridos
 							// Diese un error deberemos lanzar un rollback
 
-						// validar Nick
-						if (isset($_POST["nick"])) {
-							if (($err = Validaciones::validarNick($_POST["nick"])) !== true) {
-								// comprobamos que dicho nick exista en la base de datos
-								// Sino lanzamos un error
-								try {
-									$conn = Database::getInstance()->getDatabase();
-									$ssql = "SELECT * FROM usuario WHERE nick = :nick";
-									$prepare = $conn->prepare($ssql);
-									$prepare->bindParam(":nick", $_POST["nick"], PDO::PARAM_STR);
-									$prepare->execute();
-									if ($prepare->rowCount() === 1) {
-										// si existe la preparo
-										$errores["nick"][] = "El nick ya existe";
-									} else{
-										$campos[":nick"] = $_POST["nick"];
+							// validar Nick
+							if (isset($_POST["nick"])) {
+								if (($err = Validaciones::validarNick($_POST["nick"])) === true) {
+									// comprobamos que dicho nick exista en la base de datos
+									// Sino lanzamos un error
+									try {
+										$conn = Database::getInstance()->getDatabase();
+										$ssql = "SELECT * FROM usuario WHERE nick = :nick";
+										$prepare = $conn->prepare($ssql);
+										$prepare->bindParam(":nick", $_POST["nick"], PDO::PARAM_STR);
+										$prepare->execute();
+										if ($prepare->rowCount() === 1) {
+											// si existe la preparo
+											$errores["nick"][] = "El nick ya existe";
+										} else{
+											$campos[":nick"] = $_POST["nick"];
+											// creamos la carpeta personal del usuario
+
+										}
+									} catch (PDOException $e) {
+										return $errores['generic'][] = "Error en la base de datos";
 									}
-								} catch (PDOException $e) {
-									return $errores['generic'][] = "Error en la base de datos";
+
+								} else {
+									$errores["nick"][] = $err;
 								}
-
-							} else {
-
 							}
-						}
 
 
-						// Validar contraseña
-						if (isset($_POST["pass1"]) && isset($_POST["pass1"])) {
-							if (($err = Validaciones::validarPassAlta($_POST["pass1"], $_POST["pass2"])) !== true) {
-								$errores["pass"] = $err;
+							// Validar contraseña
+							if (isset($_POST["pass1"]) && isset($_POST["pass1"])) {
+								if (($err = Validaciones::validarPassAlta($_POST["pass1"], $_POST["pass2"])) !== true) {
+									$errores["pass"] = $err;
+								} else {
+									$campos[":pass"] = $_POST["pass1"];
+								}
 							} else {
-								$campos[":pass"] = $_POST["pass1"];
+								$errores["pass"][] = "Una de las contraseñas o ambas no han sido introducidas";
 							}
-						} else {
-							$errores["pass"][] = "Una de las contraseñas o ambas no han sido introducidas";
-						}
 
-						if (isset($_POST["categoria"])) {
+							if (isset($_POST["categoria"])) {
 
-							// Validar la categoría
-							// En el formulario es un campo select
-							// el cual tiene como value el valor de la BD
-							// de forma que aqui solo hay que validar el id de la categria
-							if (($err = CategoriaModel::getCategoriaByNombre($_POST["categoria"])) !== true) {
+								// Validar la categoría
+								// En el formulario es un campo select
+								// el cual tiene como value el valor de la BD
+								// de forma que aqui solo hay que validar el id de la categria
+								if (($err = CategoriaModel::getCategoriaByNombre($_POST["categoria"])) !== true) {
+									$errores["categoria"][] = "La categoría no existe";
+								} else {
+									$campos[":categoria"] = $_POST["categoria"];
+								}// fin de las comprobaciones de categoria
+							} else {
 								$errores["categoria"][] = "La categoría no existe";
-							} else {
-								$campos[":categoria"] = $_POST["categoria"];
-							}// fin de las comprobaciones de categoria
-						}
+							}
 
 
 							// Si hay errores los retornamos
@@ -174,6 +178,7 @@
 							// que puedan logearse, si los campos del usuario no existen
 							// directamente se hace un rollback
 							$conn->rollback();
+							$errores['generic'][] = "No se han recivido los datos minimos requeridos";
 						}
 					} elseif (($error = PersonaModel::insert()) === false) {
 						$errores['generic'][] = "El usuario no se a insertado correctamente";
