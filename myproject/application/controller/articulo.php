@@ -14,7 +14,6 @@ class Articulo
 	}
 
     public function mostrarArticulo($url){
-        HelperFunctions::comprobarSesion();
         $articulo = ArticuloModel::getArticulo($url);
 
         View::clientRender('articulo/mostrarArticulo',
@@ -32,7 +31,7 @@ class Articulo
 
     	}else{
             $_POST = HelperFunctions::sanear($_POST);
-            
+
             $errores = [];
 
             if(!isset($_POST['titulo']) || empty($_POST['titulo'])){
@@ -60,7 +59,7 @@ class Articulo
                 $url = HelperFunctions::generarUrl($titulo);
 
                 ArticuloModel::nuevoArticulo($datos);
-                
+
                 View::render('articulo/articuloGuardado',
                 array('titulo' => 'Articulo Guardado',
                      'url'    => $url
