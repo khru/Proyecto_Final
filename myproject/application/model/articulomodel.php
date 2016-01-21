@@ -24,15 +24,18 @@ class ArticuloModel
 		
 		$titulo = $datos['titulo'];
 		$cuerpo = $datos['cuerpo'];
+		$habilitado = $datos['publicar'];
 		$url = HelperFunctions::generarUrl($datos['titulo']);
 		$fecha = date('Y-m-d H:i:s');
 
-		$ssql = "INSERT INTO articulo (titulo, cuerpo, url, fecha_publicacion) values (:titulo, :cuerpo, :url, :fecha)";
+		$ssql = "INSERT INTO articulo (titulo, cuerpo, url, fecha_publicacion, habilitado) 
+		values (:titulo, :cuerpo, :url, :fecha, :habilitado)";
 		$query = $conn->prepare($ssql);
 		$query->bindParam(':titulo', $titulo);
 		$query->bindParam(':cuerpo', $cuerpo);
 		$query->bindParam(':url', $url);
 		$query->bindParam(':fecha', $fecha);
+		$query->bindParam(':habilitado', $habilitado);
         $query->execute();
 	}
 

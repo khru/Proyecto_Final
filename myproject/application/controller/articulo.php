@@ -49,10 +49,18 @@ class Articulo
                         'errores' => $errores
                     ));
             }else{
+                if(isset($_POST['publicar']) && $_POST['publicar'] = 'on'){
+                    $_POST['publicar'] = 1;
+                }else{
+                    $_POST['publicar'] = 0;
+                }
+
                 $datos = $_POST;
                 $titulo = $_POST['titulo'];
                 $url = HelperFunctions::generarUrl($titulo);
+
                 ArticuloModel::nuevoArticulo($datos);
+                
                 View::render('articulo/articuloGuardado',
                 array('titulo' => 'Articulo Guardado',
                      'url'    => $url
