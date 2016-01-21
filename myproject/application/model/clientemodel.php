@@ -142,6 +142,7 @@
 									$prepare = $conn->prepare($ssql);
 									$prepare->bindParam(":nombreCorp", $_POST["nombreCorp"], PDO::PARAM_STR);
 									$prepare->execute();
+									var_dump($ssql);
 									if ($prepare->rowCount() === 1) {
 										$conn->commit();
 										return true;

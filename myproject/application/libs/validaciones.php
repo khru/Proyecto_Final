@@ -728,13 +728,14 @@
 	 * @return boolean/array true/$errores 		Devuelve que la validacion ha sido correcta/Errores producidos durante la validacion.
 	 */
 	public static function validarNombreCorporativo($nombreCorporativo){
+		$errores = [];
 		if(!isset($nombreCorporativo) || empty($nombreCorporativo) || mb_strlen(trim($nombreCorporativo)) === 0){
 			$errores[] = "Este campo está vacío.";
 		}
-		if(mb_strlen($nombreCorporativo) > 255 || mb_strlen($nombreCorporativo) < 3){
+		elseif(mb_strlen($nombreCorporativo) > 255 || mb_strlen($nombreCorporativo) < 3){
 			$errores[] = "La longitud que tiene este campo no está permitida.";
 		}
-		if(!regexNombre($nombreCorporativo)){
+		elseif(!self::regexNombre($nombreCorporativo)){
 			$errores[] = "El Nombre contiene caracteres invalidos.";
 		}
 		return self::resultado($errores);
