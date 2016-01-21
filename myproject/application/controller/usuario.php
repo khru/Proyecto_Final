@@ -152,4 +152,3 @@
 		}
 	}
 ?>
-<br /><b>Notice</b>:  Undefined index: persona in <b>/var/www/html/myproject/application/view/generic/formpersona.php</b> on line <b>7</b><br />
