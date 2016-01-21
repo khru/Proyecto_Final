@@ -5,15 +5,15 @@
 
 <table border="1">
 	<tr>
-		<td>Id</td>
-		<td>Codigo</td>
-		<td>Descripcion</td>
-		<td>Unidades</td>
-		<td>Porcentaje</td>
-		<td>Fecha Inicio</td>
-		<td>Fecha Fin</td>
-		<td>Habilitado</td>
-		<td colspan="2">Cambiar</td>
+		<th>Id</th>
+		<th>Codigo</th>
+		<th>Descripcion</th>
+		<th>Unidades</th>
+		<th>Porcentaje</th>
+		<th>Fecha Inicio</th>
+		<th>Fecha Fin</th>
+		<th>Habilitado</th>
+		<th colspan="2">Cambiar</th>
 	</tr>
 <?php foreach ($data['promociones'] as $key => $value): ?>
 	<tr>
@@ -29,7 +29,7 @@
 		<td><a href="<?=URL . 'promocion/borrarPromocion/' . $value['id']?>">Borrar</a></td>
 	</tr>
 <?php endforeach ?>
-	
+
 </table>
 <p>Total: <?=count($data['promociones'])?></p>
 <?php else : echo "No hay datos que listar"; endif?>

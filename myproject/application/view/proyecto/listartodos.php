@@ -1,24 +1,24 @@
-<div class="container">
+<div class="container scroll">
 	<h1>Proyectos</h1>
 <?php if (isset($data['proyectos']) && (!empty($data['proyectos']))) :
 	$claves = array_keys($data['proyectos'][0]);?>
 
 <table border="1">
 	<tr>
-		<td>Id</td>
-		<td>Cliente</td>
-		<td>Nombre</td>
-		<td>Apellidos</td>
-		<td>Teléfono</td>
-		<td>NIF</td>
-		<td>Email</td>
-		<td>Provincia</td>
-		<td>Promoción</td>
-		<td>Fecha de Inicio</td>
-		<td>Fecha de Fin</td>
-		<td>Fecha Prevista</td>
-		<td>Estado</td>
-		<td colspan="2">Cambiar</td>
+		<th>Id</th>
+		<th>Cliente</th>
+		<th>Nombre</th>
+		<th>Apellidos</th>
+		<th>Teléfono</th>
+		<th>NIF</th>
+		<th>Email</th>
+		<th>Provincia</th>
+		<th>Promoción</th>
+		<th>Fecha de Inicio</th>
+		<th>Fecha de Fin</th>
+		<th>Fecha Prevista</th>
+		<th>Estado</th>
+		<th colspan="2">Cambiar</th>
 	</tr>
 <?php foreach ($data['proyectos'] as $key => $value): ?>
 	<tr>
@@ -39,7 +39,7 @@
 		<td><a href="<?=URL . 'proyecto/borrar/' . $value['id']?>">Borrar</a></td>
 	</tr>
 <?php endforeach ?>
-	
+
 </table>
 <p>Total: <?=count($data['proyectos'])?></p>
 <?php else : echo "No hay datos que listar"; endif?>

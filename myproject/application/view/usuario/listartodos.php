@@ -5,21 +5,21 @@
 
 <table border="1">
 	<tr>
-		<td>Id</td>
-		<td>Nombre</td>
-		<td>Apellidos</td>
-		<td>Email</td>
-		<td>Dirección</td>
-		<td>Provincia</td>
-		<td>NIF</td>
-		<td>Teléfono</td>
-		<td>Fecha alta</td>
-		<td>Categoría</td>
-		<td>Nick</td>
-		<td>Carpeta</td>
-		<td>Img</td>
-		<td>Newsletter</td>
-		<td colspan="2">Cambiar</td>
+		<th>Id</th>
+		<th>Nombre</th>
+		<th>Apellidos</th>
+		<th>Email</th>
+		<th>Dirección</th>
+		<th>Provincia</th>
+		<th>NIF</th>
+		<th>Teléfono</th>
+		<th>Fecha alta</th>
+		<th>Categoría</th>
+		<th>Nick</th>
+		<th>Carpeta</th>
+		<th>Img</th>
+		<th>Newsletter</th>
+		<th colspan="2">Cambiar</th>
 	</tr>
 <?php foreach ($data['usuario'] as $key => $value): ?>
 	<tr>

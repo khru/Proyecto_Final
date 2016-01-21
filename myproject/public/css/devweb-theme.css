@@ -338,6 +338,11 @@ table{
 
 }
 
+th{
+	font-weight: bold;
+	background-color: #90CAF9;
+}
+
 table tr{
 		border:1px solid black;
 
