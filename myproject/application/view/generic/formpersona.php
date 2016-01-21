@@ -4,7 +4,7 @@
 <form action="<?=URL . $data['destino']?>" method="post" name="persona" enctype="multipart/form-data">
 <p>
 	<label for "nombre">Nombre:</label>
-	<input type="text" name="nombre" maxlength="25" required autofocus value="<?php /*(isset($_POST['nombre'])) ?  HelperFunctions::mostrarDatos($data['persona'], 'nombre') : ""; */ ?>"><br>
+	<input type="text" name="nombre" maxlength="25" required autofocus value="<?php (isset($_POST['nombre'])) ?  HelperFunctions::mostrarDatos($data['persona'], 'nombre') : ""; ?>"><br>
 	<?php (isset($data['errores']['nombre'])) ? HelperFunctions::mostrarErrores($data['errores']['nombre']) : ""; ?>
 </p>
 
