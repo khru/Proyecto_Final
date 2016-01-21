@@ -121,7 +121,7 @@
 				if (isset($_POST["nif"])) {
 					// se valida
 					if (($err = Validaciones::validarNif($_POST["nif"])) !== true) {
-						$errores["nif"] = $err;
+						$errores["nif"][] = "El DNI o NIF no cumple el formato.";
 					} else {
 						// si existe la preparo
 						$campos[":nif"] = $_POST["nif"];
