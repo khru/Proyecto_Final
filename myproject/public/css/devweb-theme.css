@@ -1,21 +1,21 @@
 /* ------------------------------------*\
  *  Estilos para tema DevWeb.
- *	
  *
- *	Tema destinado actualmente para uso 
+ *
+ *	Tema destinado actualmente para uso
  *	exclusivo académico y no comercial.
- *  Los recursos gratuitos utilizados de otros autores durante 
+ *  Los recursos gratuitos utilizados de otros autores durante
  *  la creación del tema serán mencionados junto con su licencia.
- *  
- *  Este tema incluye el estilo "Mobile First" de Bootstrap 3 (con modificaciones). 
- *  Los estilos se aplicarán primero a los dispositivos móviles. Así 
+ *
+ *  Este tema incluye el estilo "Mobile First" de Bootstrap 3 (con modificaciones).
+ *  Los estilos se aplicarán primero a los dispositivos móviles. Así
  *	el tema se enfocará más en el contenido y al rendimiento.
- *  
+ *
  *  Para consultar estilos, consultar hoja de estilos del proyecto: ...
  *
  *	@version 1.0
  *	@autor Daniel Martínez
- *	@autorURL danmnez.me 
+ *	@autorURL danmnez.me
  *	@copyright © DevWeb & Daniel Martínez, para uso personal.
 \* ------------------------------------*/
 
@@ -32,11 +32,11 @@
 		3.3. Separadores.
 	4. Específicos.
 		4.1. Smartphones.
-		4.2. Tablets. 
+		4.2. Tablets.
 		4.3. Laptops.
 		4.4. Desktops.
 */
- 
+
 /*------------------------------------*\
 	1. RESET CSS por Eric Meyer’s
 \*------------------------------------*/
@@ -45,7 +45,7 @@
 /*------------------------------------*\
 	2. TIPOGRAFÍA
 \*------------------------------------*/
-	
+
 	/* ----- Texto (Exo 2 desde Google font) ----- */
 	@import url(https://fonts.googleapis.com/css?family=Exo+2:400,200,200italic,400italic,600,600italic);
 
@@ -79,8 +79,8 @@ body {
 
 /* ----- Smartphones ó < ----- */
 
-/*** 
-	cabecera. 
+/***
+	cabecera.
 */
 header {
 	height: 90px;
@@ -121,8 +121,8 @@ header {
 		text-decoration: none;
 	}
 
-/*** 
-	slider. 
+/***
+	slider.
 */
 /* modificaciones al css de sequence (APAÑO) */
 section#slider { /* adaptar para la posicion fija del header */
@@ -142,8 +142,8 @@ section#slider { /* adaptar para la posicion fija del header */
 }
 .seq-button {font-family: 'Exo 2' !important;}
 
-/*** 
-	servicios.	 
+/***
+	servicios.
 */
 section#servicios {padding: 20px;}
 section#servicios > h2 {
@@ -193,8 +193,8 @@ section#servicios .celda > p {
 	font-weight: 200;
 }
 
-/*** 
-	proyectos. 
+/***
+	proyectos.
 */
 section#proyectos {
 	background-color: #ed5d52;
@@ -218,8 +218,8 @@ section#proyectos > p {
 	color: #eee;
 }
 
-/*** 
-	Equipo. 
+/***
+	Equipo.
 */
 section#equipo {padding: 20px;}
 section#equipo h2 {
@@ -255,8 +255,8 @@ section#equipo h4 {
 		color: #e74c3c;
 	}
 
-/*** 
-	Citas. 
+/***
+	Citas.
 */
 section#citas {
 
@@ -302,11 +302,18 @@ p.error{
 
 ul.ul-error{
 	font-weight: bold;
-	color:red;
+	color:#f44336;
+	background-color: #ffcdd2;
+	margin-bottom: 10px;
 }
 
 li.li-error{
-	color: red;
+	color:  #f44336;
+	padding: 5px;
+}
+h2.titulo-error{
+	color: #f44336;
+	font-weight: bold;
 }
 
 div.container h2, div.first h2{
