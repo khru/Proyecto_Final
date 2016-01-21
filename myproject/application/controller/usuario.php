@@ -135,7 +135,8 @@
 				$provincias = ProvinciaModel::getAll();
 				$categorias = CategoriaModel::getAll();
 				$errores = [];
-				if ( $err = (UsuarioModel::insert() === true) ) {
+				$err = UsuarioModel::insert();
+				if ( $err === true) {
 					header("Location: " . URL . "usuario");
 				} elseif ( $err !== true && is_array($err)) {
 					$errores = $err;
@@ -143,12 +144,11 @@
 					$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear', 'provincialist' => $provincias, 'categorialist' => $categorias, 'persona' => $_POST, 'errores' => $errores);
 					View::renderMulti($filenames, $datos);
 				} else {
+					echo "ELESE";
 					$filenames = ["generic/formpersona", "usuario/formulario"];
 					$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear', 'provincialist' => $provincias, 'categorialist' => $categorias, 'persona' => $_POST, 'errores' => $errores);
 					View::renderMulti($filenames, $datos);
 				}
-
-				echo "creando";
 			}
 		}
 	}

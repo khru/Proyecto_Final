@@ -492,8 +492,6 @@
 			if (isset($pass1) && isset($pass2)) {
 				if ($pass1 != $pass2) {
 					$errores[] = "Las contraseñas son distintas";
-				} else {
-					$pass = $pass1;
 				}
 			}
 			// Utilizamos la función que comprueba si el array existe o no

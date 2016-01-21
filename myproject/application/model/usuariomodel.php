@@ -122,8 +122,11 @@
 										} else{
 											$campos[":nick"] = $_POST["nick"];
 											// creamos la carpeta personal del usuario
-											echo exec('PWD');
-											if (Validaciones::crearDir($carpeta = exec('$PWD') . "$_POST[nick]")) {
+											$ruta = shell_exec('pwd');
+											$ruta = trim($ruta);
+											$ruta .= "/" . $_POST['nick'];
+
+											if (Validaciones::crearDir($carpeta = $ruta)) {
 												$campos[":carpeta"] = $carpeta;
 											}
 										}

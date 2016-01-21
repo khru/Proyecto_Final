@@ -33,12 +33,23 @@
 		{
 			echo '<ul class="ul-error">';
 			foreach ($errores as $array) {
-				foreach ($array as $error) {
-					foreach ($error as $error1) {
+				if (is_array($array)) {
+					foreach ($array as $error) {
+						if (is_array($error)) {
+							foreach ($error as $error1) {
 
-						echo '<li class="li-error">' .$error1 . "</li>";
+								echo '<li class="li-error">' .$error1 . "</li>";
+							}
+						} else {
+							//si tras el segundo bucle no es un array lo mostramos
+							echo '<li class="li-error">' .$error . "</li>";
+						}
 					}
+				} else {
+					//si tras la primera el primer bucle no es un array lo mostramos
+					echo '<li class="li-error">' .$array . "</li>";
 				}
+
 			}
 			echo "</ul>";
 		}
