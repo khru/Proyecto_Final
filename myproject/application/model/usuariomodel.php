@@ -124,7 +124,9 @@
 										} else{
 											$campos[":nick"] = $_POST["nick"];
 											// creamos la carpeta personal del usuario
-
+											if (Validaciones::crearDir($carpeta = "/var/www/privada/$_POST[nick]")) {
+												$campos[":carpeta"] = $carpeta;
+											}
 										}
 									} catch (PDOException $e) {
 										return $errores['generic'][] = "Error en la base de datos";
@@ -156,7 +158,7 @@
 								if (($err = CategoriaModel::getCategoriaByNombre($_POST["categoria"])) !== true) {
 									$errores["categoria"][] = "La categoría no existe";
 								} else {
-									$campos[":categoria"] = $_POST["categoria"];
+									$campos[":categoria"] = $err['id'];
 								}// fin de las comprobaciones de categoria
 							} else {
 								$errores["categoria"][] = "La categoría no existe";
@@ -168,7 +170,28 @@
 								$conn->rollback();
 								return Validaciones::resultado($errores);
 							} else {
+								$ssql = "INSERT INTO usuario($fields) VALUES ($values)";
+								$query = $conn->prepare($ssql);
 								// Insertamos todos los valores
+								// Montamos las consultas
+								$fields = "";
+								$value = "";
+								// $values = " :campo1 :campo2 ..."
+								// $fields = "campo1, campo2,"
+								foreach ($campos as $indice => $valor) {
+									$values .= " " . $indice;
+									$aux = mb_substr($indice, 1);
+									$fields .= $aux . ",";
+								}
+								// le quito la última coma de más
+								$fields = trim($fields, ",");
+								foreach ($campos as $indice => $valor) {
+									if ($indice == ":categoria") {
+										$query->bindParam($indice, $valor,PDO::PARAM_INT);
+									} else {
+										$query->bindParam($indice, $valor,PDO::PARAM_STR);
+									}
+								}
 
 							}
 

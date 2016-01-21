@@ -131,7 +131,15 @@
 				View::renderMulti($filenames, $datos);
 
 			}else{
+				$_POST = HelperFunctions::sanear($_POST);
 				$errores = [];
+				if (UsuarioModel::insert() === true) {
+					header("Location: " . URL . "usuario");
+				} else {
+					$filenames = ["generic/formpersona", "usuario/formulario"];
+					$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear', 'provincialist' => $provincias, 'categorialist' => $categorias);
+					View::renderMulti($filenames, $datos);
+				}
 
 				echo "creando";
 			}
