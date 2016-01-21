@@ -4,6 +4,7 @@
 <form action="<?=URL . $data['destino']?>" method="post" name="persona" enctype="multipart/form-data">
 <?php if(isset($data["errores"])) : ?>
 <p>
+	<h2 class="titulo-error">Errores</h2>
 	<?php HelperFunctions::mostrarErroresArray($data['errores']) ?>
 </p>
 <?php endif ?>

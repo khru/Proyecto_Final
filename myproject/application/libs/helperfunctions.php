@@ -31,11 +31,11 @@
 
 		public static function mostrarErroresArray($errores)
 		{
-			echo "<ul>";
+			echo '<ul class="ul-error">';
 			foreach ($errores as $array) {
 				foreach ($array as $error) {
 					foreach ($error as $error1) {
-						echo "<li>" .$error1 . "</li>";
+						echo '<li class="li-error">' .$error1 . "</li>";
 					}
 				}
 			}
