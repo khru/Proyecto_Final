@@ -118,12 +118,11 @@
 				// empezamos la transacción
 				$conn = Database::getInstance()->getDatabase();
 				$conn->beginTransaction();
-				if (($ErrorOId = PersonaModel::insert()) && is_array($ErrorOId)) {
+				if (is_array($ErrorOId = PersonaModel::insert())) {
 					$errores[] = $ErrorOId;
 					$conn->rollback();
 					return Validaciones::resultado($errores);
 				} elseif ($ErrorOId === false) {
-					echo "hola"; die();
 					$conn->rollback();
 					return $errores['generic'][] = "El cliente no se a insertado correctamente";
 
@@ -144,8 +143,6 @@
 							} catch (PDOException $e) {
 								return $errores['generic'][] = "Error en la base de datos";
 							}
-
-
 
 							try {
 								$conn = Database::getInstance()->getDatabase();

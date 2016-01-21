@@ -88,7 +88,7 @@ class Cliente
 			$archivos = array("generic/formpersona", "cliente/formulario");
 			$datos = array('destino' => 'cliente/registrar', 'submit' => 'Insertar Cliente',
 			 'provincialist' => $provincias, 'provinciaSelected' => $provinciaSelected, 'persona' => $_POST,
-			 'errores' => $errores);
+			 'errores' => $errores, 'volver' => 'cliente/index');
 
 			View::renderMulti($archivos, $datos);
 		}

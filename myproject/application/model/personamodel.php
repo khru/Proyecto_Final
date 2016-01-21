@@ -64,12 +64,11 @@
             try {
                 $conn = Database::getInstance()->getDatabase();
 
-                $ssql = "select * from persona where :campo=:valor";
+                $ssql = "select * from persona where $campo=:valor";
                 $query = $conn->prepare($ssql);
-                $query->bindParam(':campo', $campo, PDO::PARAM_INT);
                 $query->bindParam(':valor', $valor, PDO::PARAM_STR);
                 $query->execute();
-                if($query->rowCount() === 0){
+                if(empty($query->fetch())){
                    return false;
                 }
                 return true;
@@ -110,14 +109,13 @@
 					}
 				}
 
-
 				if (isset($_POST["email"])) {
 					// validamos el email
 					if (($err = Validaciones::validarEmail($_POST["email"])) !== true) {
 						$errores["email"] = $err;
 					} else {
 						if(self::comprobarUnique("email", $_POST["email"]) === true){
-							return $errores["email"] = "El email insertado ya está registrado.";
+							$errores["email"][] = "El email insertado ya está registrado.";
 						} else {
 							$campos[":email"] = $_POST["email"];
 						}
@@ -152,11 +150,13 @@
 					if (($err = Validaciones::validarNif($_POST["nif"])) !== true) {
 						$errores["nif"][] = "El DNI o NIF no cumple el formato.";
 					} else {
-						// si existe la preparo
-						$campos[":nif"] = $_POST["nif"];
+						if(self::comprobarUnique("nif", $_POST["nif"]) === true){
+							$errores["nif"][] = "El DNI o NIF insertado ya está registrado.";
+						} else {
+							$campos[":nif"] = $_POST["nif"];
+						}
 					}
 				}
-
 				// si existe telefono
 				if (isset($_POST["telefono"])) {
 					// se valida
