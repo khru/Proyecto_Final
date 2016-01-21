@@ -1,6 +1,6 @@
 <!-- // Sección SLIDER por sequence http://www.sequencejs.com/themes/ -->
 	<section id="slider">
-			
+
 		<div id="sequence" class="seq">
 
 		    <div class="seq-screen">
@@ -74,8 +74,8 @@
 		<h2>Proyectos</h2>
 		<p>Este es el ejemplo de nuestro trabajo</p>
 		<div class="separador" style="background-color:#fff;"></div>
-		
-	
+
+
 
 		<p style="margin-top: 50px;margin-left:33%"><img style="border: 3px solid white; border-radius:5px" src="<?=URL . 'img/superior.png'?>" alt=""></p>
 
@@ -89,27 +89,27 @@
 
 		<div style="margin-top: 20px; text-align:center;">
 			<div class="tarjeta">
-				<img style="width: 200px;" src="./img/avatar.png" alt="">
+				<img style="width: 250px;" src="./img/aatrox.png" alt="">
 				<h4>Luis</h4>
 				<p>Desarrollador</p>
 			</div>
 			<div class="tarjeta">
-				<img style="width: 200px;" src="./img/avatar.png" alt="">
+				<img style="width: 200px;" src="./img/ninja.png" alt="">
 				<h4>Manu</h4>
 				<p>Desarrollador</p>
 			</div>
 			<div class="tarjeta">
-				<img style="width: 200px;" src="./img/avatar.png" alt="">
+				<img style="width: 200px;" src="./img/halo.png" alt="">
 				<h4>Edu</h4>
 				<p>Desarrollador</p>
 			</div>
 			<div class="tarjeta">
-				<img style="width: 200px;" src="./img/avatar.png" alt="">
+				<img style="width: 200px;" src="./img/pikachu.png" alt="">
 				<h4>Dani</h4>
 				<p>Desarrollador</p>
 			</div>
 			<div class="tarjeta">
-				<img style="width: 200px;" src="./img/avatar.png" alt="">
+				<img style="width: 200px;" src="./img/majora.png" alt="">
 				<h4>David</h4>
 				<p>Desarrollador</p>
 			</div>
