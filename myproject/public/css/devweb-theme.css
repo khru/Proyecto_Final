@@ -198,7 +198,7 @@ section#servicios .celda > p {
 */
 section#proyectos {
 	background-color: #ed5d52;
-	height: 600px;
+	/*height: 600px;*/
 }
 section#proyectos {padding: 20px;}
 section#proyectos > h2 {

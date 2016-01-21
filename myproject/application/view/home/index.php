@@ -77,7 +77,7 @@
 
 
 
-		<p style="margin-top: 50px;margin-left:33%"><img style="border: 3px solid white; border-radius:5px" src="<?=URL . 'img/superior.png'?>" alt=""></p>
+		<p style="margin-top: 50px; margin-bottom:50px"><img style=" width: 90%;" src="<?=URL . 'img/superior.png'?>" alt=""></p>
 
 	</section>
 
