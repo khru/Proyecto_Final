@@ -4,10 +4,12 @@ class Articulo
 	public function index(){
         HelperFunctions::comprobarSesion();
 		$articulos = ArticuloModel::getAllArticulos();
-
-		View::render('articulo/todos',
+        $deshabilitados = ArticuloModel::getAllArticulos(0);
+        $archivos = ['articulo/todos', 'articulo/deshabilitados'];
+		View::renderMulti($archivos,
 			array('titulo'    => 'Lista de Artículos',
-				  'articulos' => $articulos
+				  'articulos' => $articulos,
+                  'deshabilitados' => $deshabilitados
 				  ));
 	}
 
@@ -57,6 +59,51 @@ class Articulo
                     ));
             }
     	}
+    }
+
+    public function borrar($url, $definitivo = false){
+        HelperFunctions::comprobarSesion();
+
+        if($definitivo === "true"){
+            ArticuloModel::borrar($url);
+            header("Location: ". URL . "articulo");
+
+
+        }else{
+            $articulo = ArticuloModel::getArticulo($url);
+
+            if(!$articulo){
+                header("Location: ". URL . "articulo");
+            }
+
+            $archivos = array("articulo/mostrarArticulo", "articulo/borrarArticulo");
+            $datos = array('titulo' => 'Borrar Articulo', 'articulo' => $articulo);
+
+            View::renderMulti($archivos, $datos);
+        }
+    }
+
+
+    public function habilitar($url, $definitivo = false){
+        HelperFunctions::comprobarSesion();
+
+        if($definitivo === "true"){
+            ArticuloModel::habilitar($url);
+            header("Location: ". URL . "articulo");
+
+
+        }else{
+            $articulo = ArticuloModel::getArticulo($url);
+
+            if(!$articulo){
+                header("Location: ". URL . "articulo");
+            }
+
+            $archivos = array("articulo/mostrarArticulo", "articulo/habilitarArticulo");
+            $datos = array('titulo' => 'Habilitar Articulo', 'articulo' => $articulo);
+
+            View::renderMulti($archivos, $datos);
+        }
     }
 
 }

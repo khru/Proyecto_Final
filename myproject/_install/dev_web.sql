@@ -563,6 +563,7 @@ create table articulo(
     cuerpo text not null,
     url varchar(100) not null,
     fecha_publicacion datetime not null,
+    habilitado boolean not null default 1,
     unique(titulo),
     unique(url),
     primary key(id)
@@ -571,7 +572,7 @@ create table articulo(
 insert into articulo(titulo, cuerpo, url, fecha_publicacion) values ("¡Precios por los suelos!", "¡Nueva promoción! Se reduce en un 10% el precio del mantenimiento durante 2 meses", "precios-por-los-suelos", "2012-10-10 13:20:25");
 insert into articulo(titulo, cuerpo, url, fecha_publicacion) values ("¡Precios de escándalo!", "¡Nueva promoción! Se reduce en un 30% la contratacion de creacion+mantenimiento", "precios-de-esc-ndalo", "2011-11-05 10:20:25");
 insert into articulo(titulo, cuerpo, url, fecha_publicacion) values ("¡Nueva plantilla: Dark Essence!", "¡Nueva plantilla! ¡Pide ahora la nueva plantilla y con descuento!", "nueva-plantilla--dark-essence", "2012-10-10 13:20:25");
-insert into articulo(titulo, cuerpo, url, fecha_publicacion) values ("¡Precios Increibles!", "¡Nueva promoción! Se reduce en un 15% el precio del mantenimiento contratado por 3 años", "precios-increibles", "2010-10-10 13:10:25");
+insert into articulo(titulo, cuerpo, url, fecha_publicacion, habilitado) values ("¡Precios Increibles!", "¡Nueva promoción! Se reduce en un 15% el precio del mantenimiento contratado por 3 años", "precios-increibles", "2010-10-10 13:10:25",0);
 
 
 
