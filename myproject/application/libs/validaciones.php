@@ -354,9 +354,8 @@
 				return false;
 			}
 		} // comparar()
-		public static function validarTelefono($telefono){
+		public static function validarTelefono($telefono, $longitud = 14, $longitudMinima = 9){
 			$errores = [];
-			$longitudMinima = 9;
 			if (!isset($telefono) || empty($telefono) || mb_strlen(trim($telefono)) == 0) {
 				$errores[] = "El teléfono está vacio";
 			} elseif (mb_strlen(trim($telefono)) < $longitudMinima) {
@@ -751,11 +750,11 @@
 	}
 
 	public static function validarNif($nif){
-		$cadena = strtoupper($cadena);
-		//$letra = substr($cadena, -1, 1); donde empieza el substring y cuanto a de coger
-		$letra = substr($cadena, -1, 1);
+		$nif = strtoupper($nif);
+		//$letra = substr($nif, -1, 1); donde empieza el substring y cuanto a de coger
+		$letra = substr($nif, -1, 1);
 		//numero de digitos que tendrá el DNI o NIE
-		$numero = substr($cadena, 0, 8);
+		$numero = substr($nif, 0, 8);
 
 		// Si es un NIE hay que cambiar la primera letra por 0, 1 ó 2 dependiendo de si es X, Y o Z.
 		$numero = str_replace(array('X', 'Y', 'Z'), array(0, 1, 2), $numero);
