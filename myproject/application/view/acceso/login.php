@@ -2,6 +2,7 @@
 	<p>Usuario: luilliangelux    Email: luiscavero92@gmail.com    Contraseña: Admin123</p>
 </div>
 <!-- LA FUNCIÓN mostrarErrores INCLUYE UN SALTO DE LINEA PARA SEPARAR CADA ERROR -->
+<div class="container">
 <form action="<?= URL . 'acceso'?>" method="post">
 	<?php if (isset($data['errores']['generic'])) HelperFunctions::mostrarErrores($data['errores']['generic']); ?>
 	<br/>
@@ -17,3 +18,4 @@
 	<br/>
 	<input type="submit" value="ENTRAR">
 </form>
+</div>

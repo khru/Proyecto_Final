@@ -132,12 +132,18 @@
 
 			}else{
 				$_POST = HelperFunctions::sanear($_POST);
+				$provincias = ProvinciaModel::getAll();
+				$categorias = CategoriaModel::getAll();
 				$errores = [];
 				if (UsuarioModel::insert() === true) {
 					header("Location: " . URL . "usuario");
+				} elseif (is_array(UsuarioModel::insert())) {
+					$filenames = ["generic/formpersona", "usuario/formulario"];
+					$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear', 'provincialist' => $provincias, 'categorialist' => $categorias, 'persona' => $_POST, 'errores' => $errores);
+					View::renderMulti($filenames, $datos);
 				} else {
 					$filenames = ["generic/formpersona", "usuario/formulario"];
-					$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear', 'provincialist' => $provincias, 'categorialist' => $categorias);
+					$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear', 'provincialist' => $provincias, 'categorialist' => $categorias, 'persona' => $_POST, 'errores' => $errores);
 					View::renderMulti($filenames, $datos);
 				}
 
@@ -146,3 +152,4 @@
 		}
 	}
 ?>
+<br /><b>Notice</b>:  Undefined index: persona in <b>/var/www/html/myproject/application/view/generic/formpersona.php</b> on line <b>7</b><br />
