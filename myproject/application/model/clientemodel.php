@@ -118,10 +118,17 @@
 					// empezamos la transacción
 					$conn = Database::getInstance()->getDatabase();
 					$conn->beginTransaction();
-					if (($error = PersonaModel::insert()) === true) {
+					if (($error = PersonaModel::insert()) !== true && is_array($error)) {
+						$errores[] = $error;
+						$conn->rollback();
+						return Validaciones::resultado($errores);
+					} elseif (($error = PersonaModel::insert()) === false) {
+						$errores['generic'][] = "El cliente no se a insertado correctamente";
+						$conn->rollback();
+					} else {
 						// Comprobaos los campos requeridos en la tabla
 						if (isset($_POST["nombreCorp"])) {
-
+							$_POST["nombreCorp"] = Validaciones::saneamiento($_POST["nombreCorp"]);
 							if (($err = Validaciones::validarNombreCorporativo($_POST["nombreCorp"])) === true) {
 								try {
 									$conn = Database::getInstance()->getDatabase();
@@ -138,11 +145,11 @@
 
 								try {
 									$conn = Database::getInstance()->getDatabase();
-									$ssql = "insert into cliente (nombre_corporativo) values :nombreCorp";
+									$ssql = "insert into cliente (id, nombre_corporativo) values (:id, :nombreCorp)";
 									$prepare = $conn->prepare($ssql);
+									$prepare->bindParam(":id", $error, PDO::PARAM_INT);
 									$prepare->bindParam(":nombreCorp", $_POST["nombreCorp"], PDO::PARAM_STR);
 									$prepare->execute();
-									var_dump($ssql);
 									if ($prepare->rowCount() === 1) {
 										$conn->commit();
 										return true;
@@ -160,13 +167,6 @@
 							$conn->rollback();
 							return $errores["nombreCorp"][] = "El nombre corporativo no se ha recibido";
 						}
-					} elseif (($error = PersonaModel::insert()) === false) {
-						$errores['generic'][] = "El cliente no se a insertado correctamente";
-						$conn->rollback();
-					} else {
-						$errores[] = $error;
-						$conn->rollback();
-						return Validaciones::resultado($errores);
 					}
 			} else {
 				$errores['generic'][] = "No se han recivido datos";
