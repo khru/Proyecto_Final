@@ -35,6 +35,7 @@
 			foreach ($errores as $array) {
 				foreach ($array as $error) {
 					foreach ($error as $error1) {
+
 						echo '<li class="li-error">' .$error1 . "</li>";
 					}
 				}
