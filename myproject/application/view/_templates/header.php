@@ -18,12 +18,12 @@
     <header>
         <a class ="logo" href="<?= URL ?>"><img src="<?php echo URL; ?>img/logo.png"></a>
         <a href="<?= URL . 'admin' ?>"><img src="<?php echo URL; ?>img/home.png" alt=""></a>
+                <a class="max" href="<?= URL . 'proyecto' ?>"><img src="<?php echo URL; ?>img/proyecto.png" alt=""></a>
         <a class="med" href="<?= URL . 'cliente' ?>"><img src="<?php echo URL; ?>img/cliente.png" alt=""></a>
-        <a class="max" href="<?= URL . 'proyecto' ?>"><img src="<?php echo URL; ?>img/proyecto.png" alt=""></a>
-        <a class="med" href="<?= URL . 'servicio' ?>"><img src="<?php echo URL; ?>img/servicio.png" alt=""></a>
         <a class="med" href="<?= URL . 'promocion' ?>"><img src="<?php echo URL; ?>img/promocion.png" alt=""></a>
         <a class="max" href="<?= URL . 'articulo' ?>"><img src="<?php echo URL; ?>img/articulo.png" alt=""></a>
         <a class="max" href="<?= URL . 'usuario' ?>"><img src="<?php echo URL; ?>img/usuario.png" alt=""></a>
+        <a class="med" href="<?= URL . 'servicio' ?>"><img src="<?php echo URL; ?>img/servicio.png" alt=""></a>
         <a href="<?= URL . 'rss' ?>"><img src="<?php echo URL; ?>img/rss.png" alt=""></a>
     </header>
 
