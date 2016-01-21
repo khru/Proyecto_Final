@@ -75,7 +75,7 @@ class Cliente
 			$provincias = ProvinciaModel::getAll();
 			$archivos = array("generic/formpersona", "cliente/formulario");
 			$datos = array('destino' => 'cliente/registrar', 'submit' => 'Insertar Cliente',
-			 'provincialist' => $provincias);
+			 'provincialist' => $provincias, '');
 			View::renderMulti($archivos, $datos);
 
 		}else{
@@ -86,7 +86,7 @@ class Cliente
 			$provinciaSelected = $_POST['provincia'];
 			$archivos = array("generic/formpersona", "cliente/formulario");
 			$datos = array('destino' => 'cliente/registrar', 'submit' => 'Insertar Cliente',
-			 'provincialist' => $provincias, 'provinciaSelected' => $provinciaSelected);
+			 'provincialist' => $provincias, 'provinciaSelected' => $provinciaSelected, 'persona' => $_POST);
 			View::renderMulti($archivos, $datos);
 		}
 	}

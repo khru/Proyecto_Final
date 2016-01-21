@@ -132,34 +132,34 @@
 									$prepare->bindParam(":nombreCorp", $_POST["nombreCorp"], PDO::PARAM_STR);
 									$prepare->execute();
 									if ($prepare->rowCount() === 1) {
-										// si existe la preparo
-										$errores["nombreCorp"][] = "El nombre corporativo ya existe";
-									} else{
-										$campos[":nombreCorp"] = $_POST["nombreCorp"];
+										return $errores["nombreCorp"][] = "El nombre corporativo ya existe";
 									}
 								} catch (PDOException $e) {
 									return $errores['generic'][] = "Error en la base de datos";
 								}
 
 								try {
-									
+									$conn = Database::getInstance()->getDatabase();
+									$ssql = "insert into cliente (nombre_corporativo) values :nombreCorp";
+									$prepare = $conn->prepare($ssql);
+									$prepare->bindParam(":nombreCorp", $_POST["nombreCorp"], PDO::PARAM_STR);
+									$prepare->execute();
+									if ($prepare->rowCount() === 1) {
+										$conn->commit();
+										return true;
+									}
+									return false;
 								} catch (PDOException $e) {
 									return $errores['generic'][] = "Error en la base de datos";
 								}
 
 							} else {
+								$conn->rollback();
 								return $err;
 							}
-
-
-
-
-
-
-
-
 						} else {
 							$conn->rollback();
+							return $errores["nombreCorp"][] = "El nombre corporativo no se ha recibido";
 						}
 					} elseif (($error = PersonaModel::insert()) === false) {
 						$errores['generic'][] = "El cliente no se a insertado correctamente";
