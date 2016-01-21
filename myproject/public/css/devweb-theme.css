@@ -292,6 +292,10 @@ div.container input{
 	margin-bottom: 20px;
 }
 
+div.scroll{
+	overflow: scroll;
+}
+
 div.container select{
 	margin-bottom: 20px;
 }

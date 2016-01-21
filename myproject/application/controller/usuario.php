@@ -12,7 +12,7 @@
 			$archivos = array("usuario/crearusuario","generic/buscador", "usuario/listartodos",
 				"usuario/listardeshabilitados");
 
-			$datos = array('titulo' => 'Usuario', 'proyectos' => $usuario,
+			$datos = array('titulo' => 'Usuario', 'usuario' => $usuario,
 				'deshabilitados' => $deshabilitados, 'destino' => 'usuario/buscar');
 
 			View::renderMulti($archivos, $datos);
