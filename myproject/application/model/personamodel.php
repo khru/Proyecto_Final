@@ -44,7 +44,7 @@
                     $query = $conn->prepare($ssql);
                     $query->bindParam(':id', $id);
                     $query->execute();
-                    if($query->rowCount() == 0){
+                    if($query->rowCount() === 0){
                         $errores['id'] = "No se ha podido deshabilitar la persona especificada";
                     }
                     return Validaciones::resultado($errores);
@@ -53,6 +53,31 @@
                 }// fin de bloque TRY-CATCH
             }
         }// habilitar()
+
+        /**
+         * Metodo que comprueba si ese valor (unique) ya esta en la base de datos.
+         * @param  string $campo Campo de la base de datos
+         * @param  string $valor Valor a comprobar de ese campo
+         * @return bool        Devuelve true si lo encuentra o false si no.
+         */
+        public static function comprobarUnique($campo, $valor){
+            try {
+                $conn = Database::getInstance()->getDatabase();
+
+                $ssql = "select * from persona where :campo=:valor";
+                $query = $conn->prepare($ssql);
+                $query->bindParam(':campo', $campo, PDO::PARAM_INT);
+                $query->bindParam(':valor', $valor, PDO::PARAM_STR);
+                $query->execute();
+                if($query->rowCount() === 0){
+                   return false;
+                }
+                return true;
+            } catch (PDOException $e) {
+                throw new Exception("Error en la base de datos");
+            }
+        }
+
 
 		/**
 		 * Método estatico de inserción de registros en persona
@@ -91,8 +116,11 @@
 					if (($err = Validaciones::validarEmail($_POST["email"])) !== true) {
 						$errores["email"] = $err;
 					} else {
-						// si es valido, preparamos para el bindeo
-						$campos[":email"] = $_POST["email"];
+						if(self::comprobarUnique("email", $_POST["email"]) === true){
+							return $errores["email"] = "El email insertado ya está registrado.";
+						} else {
+							$campos[":email"] = $_POST["email"];
+						}
 					}
 				}
 

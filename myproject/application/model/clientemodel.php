@@ -115,59 +115,63 @@
 			if ($_POST) {
 				// Validamos todas las variables de $_POST
 				$_POST = Validaciones::sanearEntrada($_POST);
-					// empezamos la transacción
-					$conn = Database::getInstance()->getDatabase();
-					$conn->beginTransaction();
-					if (($error = PersonaModel::insert()) !== true && is_array($error)) {
-						$errores[] = $error;
-						$conn->rollback();
-						return Validaciones::resultado($errores);
-					} elseif (($error = PersonaModel::insert()) === false) {
-						$errores['generic'][] = "El cliente no se a insertado correctamente";
-						$conn->rollback();
-					} else {
-						// Comprobaos los campos requeridos en la tabla
-						if (isset($_POST["nombreCorp"])) {
-							$_POST["nombreCorp"] = Validaciones::saneamiento($_POST["nombreCorp"]);
-							if (($err = Validaciones::validarNombreCorporativo($_POST["nombreCorp"])) === true) {
-								try {
-									$conn = Database::getInstance()->getDatabase();
-									$ssql = "SELECT * FROM cliente WHERE nombre_corporativo = :nombreCorp";
-									$prepare = $conn->prepare($ssql);
-									$prepare->bindParam(":nombreCorp", $_POST["nombreCorp"], PDO::PARAM_STR);
-									$prepare->execute();
-									if ($prepare->rowCount() === 1) {
-										return $errores["nombreCorp"][] = "El nombre corporativo ya existe";
-									}
-								} catch (PDOException $e) {
-									return $errores['generic'][] = "Error en la base de datos";
-								}
+				// empezamos la transacción
+				$conn = Database::getInstance()->getDatabase();
+				$conn->beginTransaction();
+				if (($ErrorOId = PersonaModel::insert()) && is_array($ErrorOId)) {
+					$errores[] = $ErrorOId;
+					$conn->rollback();
+					return Validaciones::resultado($errores);
+				} elseif ($ErrorOId === false) {
+					echo "hola"; die();
+					$conn->rollback();
+					return $errores['generic'][] = "El cliente no se a insertado correctamente";
 
-								try {
-									$conn = Database::getInstance()->getDatabase();
-									$ssql = "insert into cliente (id, nombre_corporativo) values (:id, :nombreCorp)";
-									$prepare = $conn->prepare($ssql);
-									$prepare->bindParam(":id", $error, PDO::PARAM_INT);
-									$prepare->bindParam(":nombreCorp", $_POST["nombreCorp"], PDO::PARAM_STR);
-									$prepare->execute();
-									if ($prepare->rowCount() === 1) {
-										$conn->commit();
-										return true;
-									}
-									return false;
-								} catch (PDOException $e) {
-									return $errores['generic'][] = "Error en la base de datos";
+				} else {
+					// Comprobaos los campos requeridos en la tabla
+					if (isset($_POST["nombreCorp"])) {
+						$_POST["nombreCorp"] = Validaciones::saneamiento($_POST["nombreCorp"]);
+						if (($err = Validaciones::validarNombreCorporativo($_POST["nombreCorp"])) === true) {
+							try {
+								$conn = Database::getInstance()->getDatabase();
+								$ssql = "SELECT * FROM cliente WHERE nombre_corporativo = :nombreCorp";
+								$prepare = $conn->prepare($ssql);
+								$prepare->bindParam(":nombreCorp", $_POST["nombreCorp"], PDO::PARAM_STR);
+								$prepare->execute();
+								if ($prepare->rowCount() === 1) {
+									return $errores["nombreCorp"][] = "El nombre corporativo ya existe";
 								}
-
-							} else {
-								$conn->rollback();
-								return $err;
+							} catch (PDOException $e) {
+								return $errores['generic'][] = "Error en la base de datos";
 							}
+
+
+
+							try {
+								$conn = Database::getInstance()->getDatabase();
+								$ssql = "insert into cliente (id, nombre_corporativo) values (:id, :nombreCorp)";
+								$prepare = $conn->prepare($ssql);
+								$prepare->bindParam(":id", $ErrorOId, PDO::PARAM_INT);
+								$prepare->bindParam(":nombreCorp", $_POST["nombreCorp"], PDO::PARAM_STR);
+								$prepare->execute();
+								if ($prepare->rowCount() === 1) {
+									$conn->commit();
+									return true;
+								}
+								return false;
+							} catch (PDOException $e) {
+								return $errores['generic'][] = "Error en la base de datos";
+							}
+
 						} else {
 							$conn->rollback();
-							return $errores["nombreCorp"][] = "El nombre corporativo no se ha recibido";
+							return $err;
 						}
+					} else {
+						$conn->rollback();
+						return $errores["nombreCorp"][] = "El nombre corporativo no se ha recibido";
 					}
+				}
 			} else {
 				$errores['generic'][] = "No se han recivido datos";
 				return Validaciones::resultado($errores);

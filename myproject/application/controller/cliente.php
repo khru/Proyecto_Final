@@ -79,10 +79,7 @@ class Cliente
 			View::renderMulti($archivos, $datos);
 
 		}else{
-
 			if(!is_array($err = ClienteModel::insert())){
-				var_dump($err);
-				die();
 				header("Location: " . URL . "cliente");
 			}
 			$errores = $err;
