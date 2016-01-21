@@ -26,7 +26,7 @@
 		public static function saneamiento($parm){
 			$parm = strip_tags($parm);
 			$parm = trim($parm);
-			$parm = htmlentities($parm);
+			//$parm = htmlentities($parm);
 			return $parm;
 		}// saneamiento()
 		/**
