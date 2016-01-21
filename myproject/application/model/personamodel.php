@@ -176,7 +176,7 @@
 						$query = $conn->prepare($ssql);
 						$query->execute($campos);
 						if ($query->rowCount() === 1) {
-							return true;
+							return $conn->lastInsertId();
 						}
 						return false;
 

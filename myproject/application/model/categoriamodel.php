@@ -29,5 +29,15 @@
 			}
 			return true;
 		}
+
+		public static function getCategoriaId($nombre)
+		{
+			$conn = Database::getInstance()->getDatabase();
+			$ssql = "SELECT * FROM cat_usu WHERE nombre = :nombre";
+			$query = $conn->prepare($ssql);
+			$query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+			$query->execute();
+			return $query->fetchAll(PDO::FETCH_ASSOC);
+		}
 	}
 ?>
