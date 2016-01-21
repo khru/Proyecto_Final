@@ -23,7 +23,7 @@
 <?php foreach ($data['proyectos'] as $key => $value): ?>
 	<tr>
 		<td><?=$value['id']?></td>
-		<td><a href="<?=URL . 'cliente/listarcliente/' . $value['cliente_id']?>"><?=$value['cliente']?></a></td>
+		<td><a href="<?=URL . 'cliente/mostrarCliente/' . $value['cliente_id']?>"><?=$value['cliente']?></a></td>
 		<td><?=$value['nombre']?></td>
 		<td><?=$value['apellidos']?></td>
 		<td><?=$value['telefono']?></td>

@@ -18,6 +18,19 @@ class Cliente
 		
 	} // index()
 
+
+	public function mostrarCliente($id){
+
+        HelperFunctions::comprobarSesion();
+
+        $cliente = ClienteModel::getCliente($id);
+
+        $datos = array('cliente' => $cliente);
+
+        View::render("cliente/listarcliente",$datos);
+    }
+
+
 	public function borrar($id, $definitivo = false){
 		HelperFunctions::comprobarSesion();
 		

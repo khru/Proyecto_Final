@@ -1,5 +1,5 @@
 <div class="container">
-<h1>Clientes</h1>
+<h1>Cliente Seleccionado</h1>
 <?php $claves = array_keys($data['cliente']); ?>
 	<table border="1" style="background:yellow">
 		<tr>
