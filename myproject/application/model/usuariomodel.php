@@ -142,7 +142,7 @@
 								if (($err = Validaciones::validarPassAlta($_POST["pass1"], $_POST["pass2"])) !== true) {
 									$errores["pass"] = $err;
 								} else {
-									$campos[":pass"] = $_POST["pass1"];
+									$campos[":pass"] = HelperFunctions::encriptarPasswd($_POST["pass1"]);
 								}
 							} else {
 								$errores["pass"][] = "Una de las contraseñas o ambas no han sido introducidas";
