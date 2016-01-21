@@ -137,7 +137,8 @@
 				$errores = [];
 				if (UsuarioModel::insert() === true) {
 					header("Location: " . URL . "usuario");
-				} elseif (is_array(UsuarioModel::insert())) {
+				} elseif (($err = UsuarioModel::insert()) !== true && is_array($err)) {
+					$errores = $err;
 					$filenames = ["generic/formpersona", "usuario/formulario"];
 					$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear', 'provincialist' => $provincias, 'categorialist' => $categorias, 'persona' => $_POST, 'errores' => $errores);
 					View::renderMulti($filenames, $datos);

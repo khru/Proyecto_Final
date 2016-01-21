@@ -2,10 +2,15 @@
 <div class="container">
 <h1>Información personal</h1>
 <form action="<?=URL . $data['destino']?>" method="post" name="persona" enctype="multipart/form-data">
+<?php if(isset($data["errores"])) : ?>
+<p>
+	<?php HelperFunctions::mostrarErroresArray($data['errores']) ?>
+</p>
+<?php endif ?>
 <p>
 	<label for "nombre">Nombre:</label>
 	<input type="text" name="nombre" maxlength="25" required autofocus value="<?php (isset($_POST['nombre'])) ?  HelperFunctions::mostrarDatos($data['persona'], 'nombre') : ""; ?>"><br>
-	<?php (isset($data['errores']['nombre'])) ? HelperFunctions::mostrarErrores($data['errores']['nombre']) : ""; ?>
+	<?php if (isset($data['errores']['nombre'])) { HelperFunctions::mostrarErrores($data['errores']['nombre']); } else{ echo "";} ?>
 </p>
 
 <p>

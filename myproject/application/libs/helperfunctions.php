@@ -29,6 +29,19 @@
 			}
 		}
 
+		public static function mostrarErroresArray($errores)
+		{
+			echo "<ul>";
+			foreach ($errores as $array) {
+				foreach ($array as $error) {
+					foreach ($error as $error1) {
+						echo "<li>" .$error1 . "</li>";
+					}
+				}
+			}
+			echo "</ul>";
+		}
+
 		/**
 		 * Método que encripta la contraseña
 		 * @param  String $passwd Contraseña a cifrar
@@ -90,7 +103,7 @@
 	public static function optionList($array, $clave, $void = true, $selected = null){
 		if($void){ ?>
 			<option value='ninguna'>Ninguna</option>
-  <?php } 
+  <?php }
 		foreach ($array as $key => $value) {
 			if($selected){
 				print_r($value[$clave] . $selected);
