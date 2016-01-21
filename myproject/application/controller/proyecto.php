@@ -201,4 +201,15 @@ class Proyecto
 			}
 		}
 	}
+
+	public function mostrarProyecto($id){
+
+        HelperFunctions::comprobarSesion();
+
+        $proyecto = ProyectoModel::getProyecto($id);
+
+        $datos = array('titulo' => 'Proyecto', 'proyecto' => $proyecto);
+
+        View::render("proyecto/listarproyecto",$datos);
+    }
 }

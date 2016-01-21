@@ -1,7 +1,7 @@
-<?php HelperFunctions::comprobarSesion(); ?>
-    <div class="container">
-        Actualmente te encuentras identificado como <?= $_SESSION['usuario']['nick']?>
-        <a href="<?= URL . 'acceso/logout'?>">Cerrar Sesion</a>
-    </div>
+	<!-- // js. -->
+	<script src="<?php echo URL; ?>js/hammer.min.js"></script> <!-- touch para el movil. -->
+	<script src="<?php echo URL; ?>js/sequence.min.js"></script>
+    <script src="<?php echo URL; ?>js/sequence-theme.basic.js"></script>
+    
 </body>
 </html>

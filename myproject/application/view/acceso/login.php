@@ -1,4 +1,4 @@
-<div class="container">
+<div class="first">
 	<p>Usuario: luilliangelux    Email: luiscavero92@gmail.com    Contraseña: Admin123</p>
 </div>
 <!-- LA FUNCIÓN mostrarErrores INCLUYE UN SALTO DE LINEA PARA SEPARAR CADA ERROR -->

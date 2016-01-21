@@ -19,7 +19,7 @@
 
 		public static function mostrarErrores($errores){
 			foreach ($errores as $error) {
-				echo $error . "<br/>";
+				echo "<p class='error'>" . $error . "</p>";
 			}
 		}// mostrarErrores()
 

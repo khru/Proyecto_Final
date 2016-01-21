@@ -1,0 +1,343 @@
+/* ------------------------------------*\
+ *  Estilos para tema DevWeb.
+ *	
+ *
+ *	Tema destinado actualmente para uso 
+ *	exclusivo académico y no comercial.
+ *  Los recursos gratuitos utilizados de otros autores durante 
+ *  la creación del tema serán mencionados junto con su licencia.
+ *  
+ *  Este tema incluye el estilo "Mobile First" de Bootstrap 3 (con modificaciones). 
+ *  Los estilos se aplicarán primero a los dispositivos móviles. Así 
+ *	el tema se enfocará más en el contenido y al rendimiento.
+ *  
+ *  Para consultar estilos, consultar hoja de estilos del proyecto: ...
+ *
+ *	@version 1.0
+ *	@autor Daniel Martínez
+ *	@autorURL danmnez.me 
+ *	@copyright © DevWeb & Daniel Martínez, para uso personal.
+\* ------------------------------------*/
+
+/**
+	Indice de contenidos para la versión 1.0.
+
+	1. Reset.
+	2. Tipografía.
+		2.2. Texto.
+		2.3. Iconos.
+	3. General.
+		3.1. Enlaces.
+		3.2. Encabezados.
+		3.3. Separadores.
+	4. Específicos.
+		4.1. Smartphones.
+		4.2. Tablets. 
+		4.3. Laptops.
+		4.4. Desktops.
+*/
+ 
+/*------------------------------------*\
+	1. RESET CSS por Eric Meyer’s
+\*------------------------------------*/
+@import url("reset.css");
+
+/*------------------------------------*\
+	2. TIPOGRAFÍA
+\*------------------------------------*/
+	
+	/* ----- Texto (Exo 2 desde Google font) ----- */
+	@import url(https://fonts.googleapis.com/css?family=Exo+2:400,200,200italic,400italic,600,600italic);
+
+	/* ----- Iconos ----- */
+
+/*------------------------------------*\
+	3. GENERAL
+\*------------------------------------*/
+
+body {
+	background-color: #f1f1f1;
+	font-family: 'Exo 2';
+}
+
+	/* ----- Enlaces ----- */
+	/* ----- Encabezados ----- */
+	/* ----- Separadores ----- */
+	.separador {
+		max-width: 80px;
+		margin: 0 auto;
+		height: 3px;
+		background-color: #e74c3c;
+		margin-top: 20px;
+	}
+	/* ----- Tablas ----- */
+
+
+/*------------------------------------*\
+	3. ESPECÍFICOS
+\*------------------------------------*/
+
+/* ----- Smartphones ó < ----- */
+
+/*** 
+	cabecera. 
+*/
+header {
+	height: 60px;
+	width: 100%;
+	padding: 20px;
+	background-color: #2f3742;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1; /* superponer */
+}
+	header > a img{
+		margin-top: 20px;
+		margin-right: 10px;
+		width: 100px;
+		height: 20px;
+		cursor:pointer;
+	}
+
+	header > a.logo  {
+		margin-right: 20px;
+	}
+
+	header > a.med img{
+		width: 140px;
+	}
+
+	header > a.max img{
+		width: 180px;
+	}
+
+	.menu {
+		color: #fff;
+		font-size: 3em;
+		float: right;
+		margin-top: 5px;
+		margin-right: 35px;
+		text-decoration: none;
+	}
+
+/*** 
+	slider. 
+*/
+/* modificaciones al css de sequence (APAÑO) */
+section#slider { /* adaptar para la posicion fija del header */
+	margin-top: 60px;
+}
+.flaticon-technology21 {font-size: 5.5em !important; }
+.flaticon-inspiration {font-size: 5.5em !important;}
+.flaticon-send4 {font-size: 5.5em !important;}
+
+.seq-subtitle {
+	position: relative;
+	top: -20px;
+}
+.seq-content {
+	font-family: 'Exo 2';
+	font-weight: 400;
+}
+.seq-button {font-family: 'Exo 2' !important;}
+
+/*** 
+	servicios.	 
+*/
+section#servicios {padding: 20px;}
+section#servicios > h2 {
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 1.5em;
+	color: #e74c3c;
+}
+section#servicios > p {
+	max-width: 400px;
+	margin: 0 auto;
+	margin-top: 10px;
+	text-align: center;
+	font-weight: 200;
+	font-size: 1.2em;
+}
+
+section#servicios > .tabla {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.celda {margin: 20px;}
+
+.flaticon-paint86 {
+	font-size: 6em;
+	color: #28b162;
+}
+.flaticon-tick16 {
+	font-size: 6em;
+	color: #e74c3c;
+}
+.flaticon-website7 {
+	font-size: 6em;
+	color: #2d8ccb;
+}
+
+section#servicios h3 {
+	margin-top: 10px;
+	font-size: 1.2em;
+	text-transform: uppercase;
+}
+
+section#servicios .celda > p {
+	margin-top: 10px;
+	font-weight: 200;
+}
+
+/*** 
+	proyectos. 
+*/
+section#proyectos {
+	background-color: #ed5d52;
+	height: 600px;
+}
+section#proyectos {padding: 20px;}
+section#proyectos > h2 {
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 1.5em;
+	color: #fff;
+}
+section#proyectos > p {
+	max-width: 400px;
+	margin: 0 auto;
+	margin-top: 10px;
+	text-align: center;
+	font-weight: 200;
+	font-size: 1.2em;
+	color: #eee;
+}
+
+/*** 
+	Equipo. 
+*/
+section#equipo {padding: 20px;}
+section#equipo h2 {
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 1.5em;
+}
+section#equipo > p {
+	max-width: 400px;
+	margin: 0 auto;
+	margin-top: 10px;
+	text-align: center;
+	font-weight: 200;
+	font-size: 1.2em;
+}
+
+section#equipo h4 {
+	text-transform: uppercase;
+	font-size: 1.2em;
+	margin-top: 10px;
+	font-weight: 600;
+}
+
+.tarjeta {
+	padding: 20px;
+	margin-top: 10px;
+	background: #fff;
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0.44);
+}
+	.tarjeta p {
+		margin-top: 5px;
+		color: #e74c3c;
+	}
+
+/*** 
+	Citas. 
+*/
+section#citas {
+
+}
+
+
+@media only screen and (min-width : 480px) {}
+@media only screen and (min-width : 768px) {}
+@media only screen and (min-width : 992px) {}
+@media only screen and (min-width : 1200px) {}
+
+div.first{
+	margin-top:120px;
+	margin-left: 33px;
+	margin-right: 33px;
+	margin-bottom: 33px;
+	border: 1px solid #ddd;
+	background: white;
+    padding: 20px;
+}
+
+div.container{
+	margin-top: 33px;
+	margin-left: 33px;
+	margin-right: 33px;
+	margin-bottom: 33px;
+	border: 1px solid #ddd;
+	background: white;
+    padding: 20px;
+}
+
+div.container input{
+	margin-bottom: 20px;
+}
+
+div.container select{
+	margin-bottom: 20px;
+}
+
+p.error{
+	color:red;
+}
+
+ul.ul-error{
+	font-weight: bold;
+	color:red;
+}
+
+li.li-error{
+	color: red;
+}
+
+div.container h2, div.first h2{
+	font-size: 20px;
+	margin-bottom: 15px;
+	margin-top:15px;
+}
+
+div.container h1, div.first h1{
+	font-size: 20px;
+	margin-bottom: 15px;
+	margin-top:15px;
+}
+
+table{
+	border:1px solid black;
+	margin-bottom: 5px;
+
+}
+
+table tr{
+		border:1px solid black;
+
+}
+
+table th{
+	border:1px solid black;
+	text-align: center;
+	padding: 2px;
+}
+table td{
+		border:1px solid black;
+padding: 5px;
+}
