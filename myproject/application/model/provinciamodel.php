@@ -29,5 +29,15 @@
 			}
 			return true;
 		}
+
+		public static function getProvinciaId($nombre)
+		{
+			$conn = Database::getInstance()->getDatabase();
+			$ssql = "SELECT id FROM provincia WHERE nombre = :nombre";
+			$query = $conn->prepare($ssql);
+			$query->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+			$query->execute();
+			return $query->fetchAll(PDO::FETCH_ASSOC);	
+		}
 	}
 ?>

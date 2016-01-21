@@ -113,7 +113,8 @@
 					if (($err = provinciaModel::getProvinciaByNombre($_POST["provincia"])) !== true) {
 						$errores["provincia"][] = "La provincia no existe";
 					} else {
-						$campos[":provincia"] = $_POST["provincia"];
+						$prov = ProvinciaModel::getProvinciaId($_POST["provincia"]);
+						$campos[":provincia"] =  $prov[0]['id'];
 					}
 				}// si existe provincia
 
@@ -154,35 +155,27 @@
 					try{
 						// Montamos las consultas
 						$fields = "";
-						$value = "";
+						$values = "";
 						// $values = " :campo1 :campo2 ..."
 						// $fields = "campo1, campo2,"
 						foreach ($campos as $indice => $valor) {
-							$values .= " " . $indice;
+							$values .= " " . $indice . ",";
 							$aux = mb_substr($indice, 1);
 							$fields .= $aux . ",";
 						}
 						// le quito la última coma de más
 						$fields = trim($fields, ",");
+						$values = trim($values, ",");
 						// conexión a la base de datos
 						$conn = Database::getInstance()->getDatabase();
 						// consulta de la base de datos
 						// Añadimos a la consulta la fecha de alta formateada
-						$fecha = date("Y-m-d");
-						$ssql = "INSERT INTO persona($fields) VALUES ($values, $fecha)";
+						$fecha = "'" . date("Y-m-d") . "'";
+						$ssql = "INSERT INTO persona($fields, fecha_alta) VALUES ($values, $fecha)";
 						// preparamos la consulta
-
 						$query = $conn->prepare($ssql);
-						// Hacemos el bindeo de parametros
-						foreach ($campos as $indice => $valor) {
-							if ($indice == ":newsletter" || $indice == ":provincia") {
-								$query->bindParam($indice, $valor,PDO::PARAM_INT);
-							} else {
-								$query->bindParam($indice, $valor,PDO::PARAM_STR);
-							}
-						}
-						$query->execute();
-						if ($query->rowCount === 1) {
+						$query->execute($campos);
+						if ($query->rowCount() === 1) {
 							return true;
 						}
 						return false;

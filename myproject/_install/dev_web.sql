@@ -118,7 +118,6 @@ create table persona(
     newsletter  boolean default 0 comment 'campo para saber si la persona desea recibir correos electronicos con noticias',
     unique(email),
     unique(nif),
-    unique(telefono),
     foreign key(provincia) references provincia(id),
     primary key (id)
 );
