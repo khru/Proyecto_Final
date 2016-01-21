@@ -68,7 +68,7 @@ class Cliente
 	} // buscar()
 
 	public function registrar(){
-
+		$errores = [];
 		HelperFunctions::comprobarSesion();
 
 		if(!$_POST){
@@ -79,14 +79,20 @@ class Cliente
 			View::renderMulti($archivos, $datos);
 
 		}else{
-			if(!is_array(ClienteModel::insert())){
+
+			if(!is_array($err = ClienteModel::insert())){
+				var_dump($err);
+				die();
 				header("Location: " . URL . "cliente");
 			}
+			$errores = $err;
 			$provincias = ProvinciaModel::getAll();
 			$provinciaSelected = $_POST['provincia'];
 			$archivos = array("generic/formpersona", "cliente/formulario");
 			$datos = array('destino' => 'cliente/registrar', 'submit' => 'Insertar Cliente',
-			 'provincialist' => $provincias, 'provinciaSelected' => $provinciaSelected, 'persona' => $_POST);
+			 'provincialist' => $provincias, 'provinciaSelected' => $provinciaSelected, 'persona' => $_POST,
+			 'errores' => $errores);
+
 			View::renderMulti($archivos, $datos);
 		}
 	}

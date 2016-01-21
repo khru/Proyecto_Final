@@ -122,8 +122,6 @@
 						// Comprobaos los campos requeridos en la tabla
 						if (isset($_POST["nombreCorp"])) {
 
-
-
 							if (($err = Validaciones::validarNombreCorporativo($_POST["nombreCorp"])) === true) {
 								try {
 									$conn = Database::getInstance()->getDatabase();
