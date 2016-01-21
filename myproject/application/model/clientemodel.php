@@ -89,16 +89,16 @@
 
 			$busqueda = '%' . $busqueda . '%';
 			
-			$ssql = "SELECT cliente.id, persona.nombre, apellidos, nombre_corporativo
-            , email, telefono, nif, direccion, provincia.nombre
-             as 'provincia', fecha_alta, newsletter,habilitado
+			$ssql = "SELECT cliente.id, persona.nombre, apellidos, nombre_corporativo,
+             email, telefono, nif, direccion, provincia.nombre
+             as 'provincia', fecha_alta, newsletter
             FROM cliente inner join persona on (cliente.id = persona.id)
              inner join provincia on (persona.provincia = provincia.id)
             WHERE (cliente.nombre_corporativo like :busqueda OR persona.nombre
              like :busqueda OR apellidos like :busqueda OR telefono like :busqueda
              OR nif like :busqueda OR direccion like :busqueda OR fecha_alta like
              :busqueda OR persona.email like :busqueda OR provincia like :busqueda)
-             order by id";
+             AND persona.habilitado = 1 order by id";
 
 			$query = $conn->prepare($ssql);
 
@@ -106,6 +106,83 @@
 			$query->execute();
 			return $query->fetchAll();
 		} // getSearch()
+
+
+		public static function insert(){
+			// Primero tenemos que preparar un bloque try catch
+			$errores = [];
+			$campos = [];
+			if ($_POST) {
+				// Validamos todas las variables de $_POST
+				$_POST = Validaciones::sanearEntrada($_POST);
+					// empezamos la transacción
+					$conn = Database::getInstance()->getDatabase();
+					$conn->beginTransaction();
+					if (($error = PersonaModel::insert()) === true) {
+						// Comprobaos los campos requeridos en la tabla
+						if (isset($_POST["nombreCorp"])) {
+
+
+
+							if (($err = Validaciones::validarNombreCorporativo($_POST["nombreCorp"])) === true) {
+								try {
+									$conn = Database::getInstance()->getDatabase();
+									$ssql = "SELECT * FROM cliente WHERE nombre_corporativo = :nombreCorp";
+									$prepare = $conn->prepare($ssql);
+									$prepare->bindParam(":nombreCorp", $_POST["nombreCorp"], PDO::PARAM_STR);
+									$prepare->execute();
+									if ($prepare->rowCount() === 1) {
+										// si existe la preparo
+										$errores["nombreCorp"][] = "El nombre corporativo ya existe";
+									} else{
+										$campos[":nombreCorp"] = $_POST["nombreCorp"];
+									}
+								} catch (PDOException $e) {
+									return $errores['generic'][] = "Error en la base de datos";
+								}
+
+								try {
+									
+								} catch (PDOException $e) {
+									return $errores['generic'][] = "Error en la base de datos";
+								}
+
+							} else {
+								return $err;
+							}
+
+
+
+
+
+
+
+
+						} else {
+							$conn->rollback();
+						}
+					} elseif (($error = PersonaModel::insert()) === false) {
+						$errores['generic'][] = "El cliente no se a insertado correctamente";
+						$conn->rollback();
+					} else {
+						$errores[] = $error;
+						$conn->rollback();
+						return Validaciones::resultado($errores);
+					}
+			} else {
+				$errores['generic'][] = "No se han recivido datos";
+				return Validaciones::resultado($errores);
+			}
+
+		}
+
+
+
+
+
+
+
+
 
 	} // ClienteModel
 ?>

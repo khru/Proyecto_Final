@@ -7,7 +7,7 @@ class Cliente
 		$habilitados = ClienteModel::getAll();
 		$deshabilitados = ClienteModel::getAllDisabled();
 
-		$archivos = array("generic/buscador", "cliente/listarhabilitados", 
+		$archivos = array("cliente/nuevocliente", "generic/buscador", "cliente/listarhabilitados", 
 			"cliente/listardeshabilitados");
 
 		$datos = array('titulo' => 'Clientes', 'habilitados' => $habilitados, 
@@ -62,9 +62,33 @@ class Cliente
 
 			$archivos = array("generic/buscador","cliente/listarhabilitados");
 			$datos = array('titulo' => 'Clientes', 'cliente' => $cliente, 'destino' => 'cliente/buscar',
-			 'tituloListado' => 'Clientes Encontrados <sub>(Incluye deshabilitados)</sub>');
+			 'tituloListado' => 'Clientes Encontrados');
 			View::renderMulti($archivos, $datos);
 		}
 	} // buscar()
+
+	public function registrar(){
+
+		HelperFunctions::comprobarSesion();
+
+		if(!$_POST){
+			$provincias = ProvinciaModel::getAll();
+			$archivos = array("generic/formpersona", "cliente/formulario");
+			$datos = array('destino' => 'cliente/registrar', 'submit' => 'Insertar Cliente',
+			 'provincialist' => $provincias);
+			View::renderMulti($archivos, $datos);
+
+		}else{
+			if(!is_array(ClienteModel::insert())){
+				header("Location: " . URL . "cliente");
+			}
+			$provincias = ProvinciaModel::getAll();
+			$provinciaSelected = $_POST['provincia'];
+			$archivos = array("generic/formpersona", "cliente/formulario");
+			$datos = array('destino' => 'cliente/registrar', 'submit' => 'Insertar Cliente',
+			 'provincialist' => $provincias, 'provinciaSelected' => $provinciaSelected);
+			View::renderMulti($archivos, $datos);
+		}
+	}
 
 } // Cliente

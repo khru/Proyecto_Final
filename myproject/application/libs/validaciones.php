@@ -516,7 +516,7 @@
 	 	 * @return Boolean  true | false
 	 	 */
 	 	public static function regexNombre($cadena){
-	 		$pattern = "/^[A-Za-zñÑáéíóúÁÉÍÓÚÄËÏÖÜäëïöüàèìòùÀÈÌÔÙ ]{3,}/";
+	 		$pattern = "/^[A-Za-zñÑáéíóúÁÉÍÓÚÄËÏÖÜäëïöüàèìòùÀÈÌÔÙ ]{3,}$/";
 	 		if (preg_match($pattern, $cadena)) {
 	 			return true;
 	 		}
@@ -540,7 +540,7 @@
 	 	 * @return Boolean  true | false
 	 	 */
 	 	public static function regexDireccion($cadena, $longitud = 100){
-	 		$pattern = "/^[A-Za-zñÑáéíóúÁÉÍÓÚÄËÏÖÜäëïöüàèìòùÀÈÌÔÙçÇ 0-9-ºª,#.\\/]{3,". $longitud . "}/";
+	 		$pattern = "/^[A-Za-zñÑáéíóúÁÉÍÓÚÄËÏÖÜäëïöüàèìòùÀÈÌÔÙçÇ 0-9-ºª,#.\\/]{3,". $longitud . "$}/";
 	 		if (preg_match($pattern, $cadena)) {
 	 			return true;
 	 		}
