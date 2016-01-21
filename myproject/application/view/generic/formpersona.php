@@ -28,7 +28,7 @@
 
 <p>
 	<label for "direccion">Direccion:</label>
-	<input type="text" name="direccion" size="70" maxlength="70" value="<?php (isset($data['persona']['direccion'])) ? HelperFunctions::mostrarDatos($data['persona'], 'direccion') : ""; ?>" required autofocus><br>
+	<input type="text" name="direccion" size="70" maxlength="70" value="<?php (isset($data['persona']['direccion'])) ? HelperFunctions::mostrarDatos($data['persona'], 'direccion') : ""; ?>" autofocus><br>
 	<?php if (isset($data['errores']['direccion'])) HelperFunctions::mostrarErrores($data['errores']['direccion']); ?>
 </p>
 
@@ -40,13 +40,13 @@
 
 <p>
 	<label for "nif">DNI/NIE:</label>
-	<input type="text" name="nif" maxlength="11" value="<?php  (isset($data['persona']['nif'])) ? HelperFunctions::mostrarDatos($data['persona'], 'nif') : ""; ?>" required autofocus><br>
+	<input type="text" name="nif" maxlength="11" value="<?php  (isset($data['persona']['nif'])) ? HelperFunctions::mostrarDatos($data['persona'], 'nif') : ""; ?>" autofocus><br>
 	<?php if (isset($data['errores']['nif'])) HelperFunctions::mostrarErrores($data['errores']['nif']); ?>
 </p>
 
 <p>
 	<label for "telefono">Telefono:</label>
-	<input type="tlf" name="telefono" maxlength="15" value="<?php  (isset($data['persona']['telefono'])) ?  HelperFunctions::mostrarDatos($data['persona'], 'telefono') : ""; ?>" required autofocus><br>
+	<input type="tlf" name="telefono" maxlength="15" value="<?php  (isset($data['persona']['telefono'])) ?  HelperFunctions::mostrarDatos($data['persona'], 'telefono') : ""; ?>" autofocus><br>
 	<?php if (isset($data['errores']['telefono'])) HelperFunctions::mostrarErrores($data['errores']['telefono']); ?>
 </p>
 
