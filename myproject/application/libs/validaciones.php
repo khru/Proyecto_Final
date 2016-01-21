@@ -30,6 +30,107 @@
 			return $parm;
 		}// saneamiento()
 		/**
+		 * Método estatico que valida una imagen empleando la variable globarl $_FILES
+		 * @return [type] [description]
+		 */
+		public static function validarImg($img, $tam_max = 2097152)
+		{
+			$errores = [];
+			if (isset($img["img"])) {
+		 		//Realizamos las validaciones
+		 		if ($img["img"]["size"] > $tam_max) {
+		 			$errores["img"] = "El fichero es demasiado grande";
+		 		} elseif (!self::cabeceraFichero($img["img"]["type"])) {
+		 			// Comprobamos que el fichero tiene una extensión valida sino error
+		 			$errores["img"]  = "El fichero no es una imagen";
+		 		} else {
+		 			//Como no nos podemos fiar del usuario, vamos a comprobar el mime obteniendo todos los mimes
+		 			$mime = finfo_open(FILEINFO_MIME);
+		 			if(!$mime){
+		 				// Si no se puede declarar $mime por la razón que sea no subir el fichero
+		 				$errores["img"] = "Por motivos de seguridad no se a podido analizar su archivo";
+		 			} else {
+		 				// si la cabecera original del fichero
+		 				if (!self::tipoFichero($img["img"], $mime)) {
+		 					$errores["img"] = "El fichero no es un una imagen";
+		 				}
+		 			}
+		 		}
+		 	}
+		 	return self::resultado($errores);
+		} // validarImg
+
+		public static function subirImg($id_con, $img){
+			$errores = [];
+			// Si pasa la comprobaciones
+			// declaramos la ruta del directorio donde almacenaremos lasimagenes
+			$dir = FOTOS;
+			// le daremos al fichero la ruta donde se va a almacenar, una cadena aleatoria. puesto que si alguien
+			// nos sube 2 fichero con el mismo nombre el servidor sobreescribe, la primera imagen y lo concateno
+			// con el nombre de la imagen, para seguir conteniendo la extensión del fichero
+			$fichero = $dir  . $id_con . $img["img"]["name"];
+			// creamos el directorio si da error mostramos un error
+			if(self::crearDir($dir)){
+				if (!move_uploaded_file($img["img"]["tmp_name"],$fichero)) {
+					$errores["img"] = "Error guardando la imagen";
+				}
+			} else {
+				$errores["img"] = "No se ha podido subir la foto al servidor";
+			}
+			return self::resultado($errores);
+		}
+
+
+	 	public static function crearDir($dir){
+	 		if (file_exists($dir)) {
+	 			return true;
+	 		} else{
+	 			if (mkdir($dir, "0700")) {
+	 				# Si se crea la carpeta $dir correctamente
+	 				return true;
+	 			}
+	 			// Si el directorio no se puede crear
+	 			return false;
+	 		}
+	 	}
+
+	 	/**
+	 	 * Método que comprueba las cabeceras mime
+	 	 * @param  String $cabecera_mime cabecera a comprobar
+	 	 * @return Boolean
+	 	 */
+	 	public static function cabeceraFichero($cabecera_mime){
+	 		switch ($cabecera_mime) {
+	 			case 'image/png':
+	 				return true;
+	 			break;
+	 			case 'image/jpeg':
+	 				return true;
+	 			break;
+	 			case 'image/gif':
+	 				return true;
+	 			break;
+	 			case 'image/bmp':
+	 				return true;
+	 			break;
+	 			default:
+	 				return false;
+	 			break;
+	 		}
+	 	}
+	 	/**
+	 	 * Método que comprueba el mime original
+	 	 */
+	 	public static function tipoFichero($tipoFichero, $mimeinfo){
+	 		$mimereal = finfo_file($mimeinfo, $tipoFichero["tmp_name"]);
+	 		if(strpos($mimereal, 'image/jpeg') !== 0 && strpos($mimereal, 'image/png')  !== 0  && strpos($mimereal, 'image/gif') && strpos($mimereal, 'image/bmp') !== 0) {
+	 			return false;
+	 		} else{
+	 			return true;
+	 		}
+	 	} // tipoFichero();
+
+		/**
 		 * 	Método de validación de tipos
 		 * @param  String $tipo Tipo de rol del usuario
 		 * @return true | array  resultado()
