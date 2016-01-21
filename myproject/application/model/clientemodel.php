@@ -173,11 +173,74 @@
 				return Validaciones::resultado($errores);
 			}
 
-		}
+		} // insert()
 
+		public static function update($id){
+			// Primero tenemos que preparar un bloque try catch
+			$errores = [];
+			if ($_POST) {
+				// Validamos todas las variables de $_POST
+				$_POST = Validaciones::sanearEntrada($_POST);
+				// empezamos la transacción
+				$conn = Database::getInstance()->getDatabase();
+				$conn->beginTransaction();
+				if (is_array($ErrorOId = PersonaModel::update())) {
+					$errores[] = $ErrorOId;
+					$conn->rollback();
+					return Validaciones::resultado($errores);
+				} elseif ($ErrorOId === false) {
+					$conn->rollback();
+					return $errores['generic'][] = "El cliente no se ha insertado correctamente";
 
+				} else {
+					// Comprobaos los campos requeridos en la tabla
+					if (isset($_POST["nombreCorp"])) {
+						$_POST["nombreCorp"] = Validaciones::saneamiento($_POST["nombreCorp"]);
+						if (($err = Validaciones::validarNombreCorporativo($_POST["nombreCorp"])) === true) {
+							try {
+								$conn = Database::getInstance()->getDatabase();
+								$ssql = "UPDATE cliente set nombre_corporativo = :nombreCorp WHERE id=:id";
+								$prepare = $conn->prepare($ssql);
+								$prepare->bindParam(":nombreCorp", $_POST["nombreCorp"], PDO::PARAM_STR);
+								$prepare->execute();
+								if ($prepare->rowCount() === 1) {
+									return $errores["nombreCorp"][] = "El nombre corporativo ya existe";
+								}
+							} catch (PDOException $e) {
+								return $errores['generic'][] = "Error en la base de datos";
+							}
 
+							try {
+								$conn = Database::getInstance()->getDatabase();
+								$ssql = "insert into cliente (id, nombre_corporativo) values (:id, :nombreCorp)";
+								$prepare = $conn->prepare($ssql);
+								$prepare->bindParam(":id", $ErrorOId, PDO::PARAM_INT);
+								$prepare->bindParam(":nombreCorp", $_POST["nombreCorp"], PDO::PARAM_STR);
+								$prepare->execute();
+								if ($prepare->rowCount() === 1) {
+									$conn->commit();
+									return true;
+								}
+								return false;
+							} catch (PDOException $e) {
+								return $errores['generic'][] = "Error en la base de datos";
+							}
 
+						} else {
+							$conn->rollback();
+							return $err;
+						}
+					} else {
+						$conn->rollback();
+						return $errores["nombreCorp"][] = "El nombre corporativo no se ha recibido";
+					}
+				}
+			} else {
+				$errores['generic'][] = "No se han recivido datos";
+				return Validaciones::resultado($errores);
+			}
+
+		} // update()
 
 
 

@@ -20,7 +20,7 @@
 				<td><?=$datos?></td>
 			
 		<?php endforeach ?>
-				<td><a href="#">Editar</a></td>
+				<td><a href="<?=URL . 'cliente/update/' . $valor['id']?>">Editar</a></td>
 				<td><a href="<?=URL . 'cliente/habilitar/' . $valor['id']?>">Habilitar</a></td>
 	</tr>
   <?php endforeach ?>

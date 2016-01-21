@@ -107,8 +107,7 @@
   <?php }
 		foreach ($array as $key => $value) {
 			if($selected){
-				print_r($value[$clave] . $selected);
-				if(strcmp(trim($value[$clave]), $selected) === 0){?>
+				if($value[$clave] === $selected){?>
 					<option selected="selected" value='<?=$value[$clave]?>'><?=$value[$clave]?></option>;
 		  <?php }else{?>
 					<option value='<?=$value[$clave]?>'><?=$value[$clave]?></option>;

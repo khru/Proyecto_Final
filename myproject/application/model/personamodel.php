@@ -83,7 +83,7 @@
 		 * + FECHA DE ALTA
 		 * @return [type]              [description]
 		 */
-		public static function insert(){
+		public static function insert($actualiza = false){
 			// Comprobamos que los campos requeridos están sino error
 			if (isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["email"])) {
 				// variable del método para poder hacer un rapido bindeo de parametros y errores
@@ -180,6 +180,10 @@
 
 				// si no hay errores
 				if (!$errores) {
+					// Si ha pasado las validaciones y estoy actualizando paro aquí y devuelvo true.
+					if($actualiza === true){
+						return true;
+					}
 					try{
 						// Montamos las consultas
 						$fields = "";
@@ -223,6 +227,36 @@
 				return Validaciones::resultado($errores);
 			}
 		}// insert()
+
+		public static function update(){
+			$errores = [];
+			// Usamos la funcion insert para validar los campos sin repetir codigo.
+			if( ($error = self::insert(true)) !== true){
+				return $error;
+			}
+			try{
+				foreach ($parametros as $key => $value) {
+					$cuerpo = $cuerpo . $key . "=:" . $key . ", "; 
+				}
+				$cuerpo = rtrim($cuerpo, 'id=:id, ');
+
+				// conexión a la base de datos
+				$conn = Database::getInstance()->getDatabase();
+				
+				$ssql = "UPDATE persona set $cuerpo where id=:id";
+				// preparamos la consulta
+				$query = $conn->prepare($ssql);
+				$query->execute($campos);
+				if ($query->rowCount() === 1) {
+					return $conn->lastInsertId();
+				}
+				return false;
+
+			} catch (PDOException $e){
+				// Lanzamos una excepción a tratar en el controlador
+				throw new Exception('Error con la base de datos');
+			}
+		}// update()
 
 	}
 ?>

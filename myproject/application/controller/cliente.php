@@ -79,7 +79,7 @@ class Cliente
 			View::renderMulti($archivos, $datos);
 
 		}else{
-			if(!is_array($err = ClienteModel::insert())){
+			if(!is_array($err = ClienteModel::insert()) && $err === true){
 				header("Location: " . URL . "cliente");
 			}
 			$errores = $err;
@@ -93,5 +93,37 @@ class Cliente
 			View::renderMulti($archivos, $datos);
 		}
 	}
+
+		public function update($id){
+		$errores = [];
+		HelperFunctions::comprobarSesion();
+
+		if(Validaciones::validarId($id) !== true){
+			header("Location: ". URL . "cliente");
+		}
+
+		if(!$_POST){
+			$cliente = ClienteModel::getCliente($id);
+			$provincias = ProvinciaModel::getAll();
+			$archivos = array("generic/formpersona", "cliente/formulario");
+			$datos = array('destino' => 'cliente/update', 'submit' => 'Editar Cliente',
+			 'provincialist' => $provincias, 'persona' => $cliente, 'errores' => $errores,
+			 'volver' => 'cliente/index');
+			View::renderMulti($archivos, $datos);
+		}else{
+			if(!is_array($err = ClienteModel::update()) && $err === true){
+				header("Location: " . URL . "cliente");
+			}
+			$errores = $err;
+			$provincias = ProvinciaModel::getAll();
+			$provinciaSelected = $_POST['provincia'];
+			$archivos = array("generic/formpersona", "cliente/formulario");
+			$datos = array('destino' => 'cliente/update', 'submit' => 'Insertar Cliente',
+			 'provincialist' => $provincias, 'provinciaSelected' => $provinciaSelected, 'persona' => $_POST,
+			 'errores' => $errores, 'volver' => 'cliente/index');
+
+			View::renderMulti($archivos, $datos);
+		}
+	} // update()
 
 } // Cliente
