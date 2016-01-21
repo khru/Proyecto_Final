@@ -94,19 +94,17 @@
 		public static function insert(){
 			// Primero tenemos que preparar un bloque try catch
 			$errores = [];
-			$campos = [];
 			if ($_POST) {
 				// Validamos todas las variables de $_POST
 				$_POST = Validaciones::sanearEntrada($_POST);
 					// empezamos la transacción
 					$conn = Database::getInstance()->getDatabase();
 					$conn->beginTransaction();
-					if (($error = PersonaModel::insert()) && is_array(PersonaModel::insert())) {
+					if (($error = PersonaModel::insert()) && !is_array($error)) {
 						// Comprobaos los campos requeridos en la tabla
 						if (isset($_POST["nick"]) && isset($_POST["pass1"]) && isset($_POST["pass2"]) && isset($_POST["categoria"])) {
 							// Si cualquiera de los campos requeridos
 							// Diese un error deberemos lanzar un rollback
-
 							// validar Nick
 							if (isset($_POST["nick"])) {
 								if (($err = Validaciones::validarNick($_POST["nick"])) === true) {
@@ -166,7 +164,6 @@
 								$errores["categoria"][] = "La categoría no existe";
 							}
 
-
 							// Si hay errores los retornamos
 							if ($errores) {
 								$conn->rollback();
@@ -184,12 +181,13 @@
 									$aux = mb_substr($indice, 1);
 									$fields .= $aux . ",";
 								}
-								// le quito la última coma de más
-								$fields = trim($fields, ",");
-								$values = trim($values, ",");
+								// le añado el id
+								$fields .= " id";
+								$values .= " :id";
+								$campos[":id"] = $error; // Si ha entrado aqui, $error es el id.
+
 								$ssql = "INSERT INTO usuario($fields) VALUES ($values)";
 								$query = $conn->prepare($ssql);
-								echo "$ssql";
 								/*foreach ($campos as $indice => $valor) {
 									if ($indice == ":categoria") {
 										$query->bindParam($indice, $valor,PDO::PARAM_INT);
@@ -199,6 +197,7 @@
 								}*/
 								$query->execute($campos);
 								$conn->commit();
+								return true;
 							}
 
 						} else {
@@ -209,7 +208,7 @@
 							$conn->rollback();
 							$errores['generic'][] = "No se han recivido los datos minimos requeridos";
 						}
-					} elseif (($error = PersonaModel::insert()) === false) {
+					} elseif ($error === false) {
 						$errores['generic'][] = "El usuario no se a insertado correctamente";
 						// Si no se puede insertar el usuario hacemos un rollback
 						$conn->rollback();

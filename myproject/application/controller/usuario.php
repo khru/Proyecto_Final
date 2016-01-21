@@ -135,9 +135,9 @@
 				$provincias = ProvinciaModel::getAll();
 				$categorias = CategoriaModel::getAll();
 				$errores = [];
-				if (UsuarioModel::insert() === true) {
+				if ( $err = (UsuarioModel::insert() === true) ) {
 					header("Location: " . URL . "usuario");
-				} elseif (($err = UsuarioModel::insert()) !== true && is_array($err)) {
+				} elseif ( $err !== true && is_array($err)) {
 					$errores = $err;
 					$filenames = ["generic/formpersona", "usuario/formulario"];
 					$datos = array('destino' => 'usuario/crear', 'submit' => 'Crear', 'provincialist' => $provincias, 'categorialist' => $categorias, 'persona' => $_POST, 'errores' => $errores);

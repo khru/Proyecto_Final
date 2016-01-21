@@ -111,7 +111,6 @@
 		public static function insert(){
 			// Primero tenemos que preparar un bloque try catch
 			$errores = [];
-			$campos = [];
 			if ($_POST) {
 				// Validamos todas las variables de $_POST
 				$_POST = Validaciones::sanearEntrada($_POST);
